@@ -66,9 +66,24 @@
 - GitHub Copilot Agent Mode を使えること
 - エディタとして Visual Studio Code を使うことを想定
 
-Python の外部ライブラリは、原則として使いません。
+実装コードでは、Python の標準ライブラリのみを使います。
 
-テストには `pytest` を使います。
+単体テストには `pytest` を使います。
+テスト実行用の最小依存として、`requirements.txt` に `pytest` のみを記載しています。
+
+---
+
+## セットアップ
+
+テストを実行する場合は、必要に応じて以下を実行してください。
+
+    python -m pip install -r requirements.txt
+
+このリポジトリでは、実装コードには Python 標準ライブラリのみを使います。
+
+`requirements.txt` は、単体テスト用の `pytest` をインストールするために用意しています。
+
+仮想環境を使う場合は、先に仮想環境を作成してからインストールしてください。
 
 ---
 
