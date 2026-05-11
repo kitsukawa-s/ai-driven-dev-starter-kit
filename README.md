@@ -143,12 +143,20 @@
     │     └─ 020_simple-calculator/
     │        └─ 01_feature.md
     ├─ prompts/
-    │  ├─ 01_read_sample.md
-    │  ├─ 02_create_function_design.md
-    │  ├─ 03_create_function_call_flow.md
-    │  ├─ 04_create_test_design.md
-    │  ├─ 05_create_review_checklist.md
-    │  └─ 06_implement_feature.md
+    │  ├─ create_feature_spec.md
+    │  ├─ create_function_design.md
+    │  ├─ create_function_call_flow.md
+    │  ├─ create_test_design.md
+    │  ├─ create_review_checklist.md
+    │  ├─ implement_feature.md
+    │  ├─ review_feature.md
+    │  └─ tutorial/
+    │     ├─ 01_read_sample.md
+    │     ├─ 02_create_function_design.md
+    │     ├─ 03_create_function_call_flow.md
+    │     ├─ 04_create_test_design.md
+    │     ├─ 05_create_review_checklist.md
+    │     └─ 06_implement_feature.md
     ├─ src/
     │  ├─ common/
     │  │  └─ __init__.py
@@ -218,9 +226,18 @@ AIに新しい設計書を作成させる場合は、このひな形を参照さ
 
 ### prompts/
 
+`prompts/` 直下には、実際の開発で繰り返し使う汎用プロンプトを配置します。
+利用者は対象機能フォルダを指定して、仕様作成、関数設計、呼び出し定義、テスト設計、レビュー観点作成、実装、レビューに使えます。
+汎用プロンプトは、冒頭の「利用者が指定する項目」だけを埋めれば使える形にしています。
+主に書き換えるのは、対象機能フォルダ、対象機能名、作りたいもの、必要に応じた補足条件です。
+プロンプトによっては、実行イメージ、今回やらないこと、実装ファイル、テストファイルも指定します。
+
+`prompts/tutorial/` には、このスターターキット体験用のプロンプトを配置します。
+学習者は、ここにあるプロンプトを順番に使うことで、`020_simple-calculator` を題材にAI駆動開発の流れを体験できます。
+
 GitHub Copilot Agent Mode に貼り付けるためのプロンプト例を配置します。
 
-学習者は、ここにあるプロンプトを順番に使うことで、AI駆動開発の流れを体験できます。
+学習者は、`prompts/tutorial/` にあるプロンプトを順番に使うことで、AI駆動開発の流れを体験できます。
 
 ### src/
 
@@ -268,7 +285,7 @@ Python の実装コードを配置します。
 
     docs/features/020_simple-calculator/01_feature.md
 
-学習者は、`prompts/` 配下のプロンプトを使って、AIに以下を作成してもらいます。
+学習者は、`prompts/tutorial/` 配下のプロンプトを使って、AIに以下を作成してもらいます。
 
 - `docs/features/020_simple-calculator/02_function_design.md`
 - `docs/features/020_simple-calculator/03_function_call_flow.md`
@@ -299,13 +316,13 @@ Python の実装コードを配置します。
 
 ### 2. AIにサンプルを読ませる
 
-`prompts/01_read_sample.md` を GitHub Copilot Agent Mode に貼り付けます。
+`prompts/tutorial/01_read_sample.md` を GitHub Copilot Agent Mode に貼り付けます。
 
 AIに、完成済みサンプルの構成を確認してもらいます。
 
 ### 3. 関数設計を作る
 
-`prompts/02_create_function_design.md` を使って、AIに `020_simple-calculator` の関数設計を作成してもらいます。
+`prompts/tutorial/02_create_function_design.md` を使って、AIに `020_simple-calculator` の関数設計を作成してもらいます。
 
 作成対象:
 
@@ -319,7 +336,7 @@ AIに、完成済みサンプルの構成を確認してもらいます。
 
 ### 4. 関数呼び出し定義を作る
 
-`prompts/03_create_function_call_flow.md` を使って、AIに関数呼び出し定義を作成してもらいます。
+`prompts/tutorial/03_create_function_call_flow.md` を使って、AIに関数呼び出し定義を作成してもらいます。
 
 作成対象:
 
@@ -327,7 +344,7 @@ AIに、完成済みサンプルの構成を確認してもらいます。
 
 ### 5. テスト設計を作る
 
-`prompts/04_create_test_design.md` を使って、AIにテスト設計を作成してもらいます。
+`prompts/tutorial/04_create_test_design.md` を使って、AIにテスト設計を作成してもらいます。
 
 作成対象:
 
@@ -335,7 +352,7 @@ AIに、完成済みサンプルの構成を確認してもらいます。
 
 ### 6. レビュー観点を作る
 
-`prompts/05_create_review_checklist.md` を使って、AIにレビュー観点を作成してもらいます。
+`prompts/tutorial/05_create_review_checklist.md` を使って、AIにレビュー観点を作成してもらいます。
 
 作成対象:
 
@@ -343,7 +360,7 @@ AIに、完成済みサンプルの構成を確認してもらいます。
 
 ### 7. 実装とテストを作る
 
-`prompts/06_implement_feature.md` を使って、AIに実装とテストを作成してもらいます。
+`prompts/tutorial/06_implement_feature.md` を使って、AIに実装とテストを作成してもらいます。
 
 作成対象:
 
