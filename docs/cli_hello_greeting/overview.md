@@ -26,7 +26,11 @@
 - 設定ファイル対応
 - GUI対応
 - 外部API連携
-- 結合試験、CI/CD、デプロイ
+- CI/CD
+- デプロイ
+
+結合試験は機能要件には含めません。
+command/app 単位の結合確認が必要な場合は、`docs/cli_hello_greeting/10_integration_test_plan.md` で扱います。
 
 ## entrypoint の責務
 

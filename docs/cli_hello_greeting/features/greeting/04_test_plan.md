@@ -7,14 +7,12 @@ cli_hello_greeting / greeting
 ## テスト対象
 
 - `create_greeting`
-- `entrypoint.main`
-- `entrypoint.parse_args`
 
 ## テスト方針
 
-- 単体試験までを対象にする
-- ロジック関数 `create_greeting` の確認を優先する
-- CLI相当の確認として `entrypoint.main` に引数リストを渡して確認する
+- feature 単体テストを対象にする
+- ロジック関数 `create_greeting` の正常系と異常系を確認する
+- CLI引数解析、標準出力、終了コードはこのテスト計画の対象外にする
 - 外部API、結合試験、CI/CD、デプロイは対象外にする
 
 ## テスト観点一覧
@@ -25,29 +23,31 @@ cli_hello_greeting / greeting
 | 正常系 | 日本語名であいさつ文を生成できる |
 | 異常系 | 空文字は `ValueError` |
 | 異常系 | 空白のみは `ValueError` |
-| CLI | `entrypoint.main(["--name", "Alice"])` が出力して `0` を返す |
-| CLI | `entrypoint.main([])` は `SystemExit` |
 
 ## 正常系
 
 - `create_greeting("Alice")` が `"Hello, Alice!"` を返す
-- 日本語名でも同じ形式のあいさつ文を返す
-- `entrypoint.main(["--name", "Alice"])` が `0` を返し、標準出力に `Hello, Alice!` を出す
+- `create_greeting("太郎")` が `"Hello, 太郎!"` を返す
 
 ## 異常系
 
 - `create_greeting("")` は `ValueError`
 - `create_greeting("   ")` は `ValueError`
-- `entrypoint.main([])` は `argparse` により `SystemExit`
 
 ## CLI実行時の確認観点
 
-- CLI引数 `--name` で名前を指定できること
-- 標準出力に期待する文字列が出ること
-- 未指定時はCLI引数エラーになること
+今回は対象外です。
+
+entrypoint の確認は `tests/cli_hello_greeting/test_entrypoint_greeting.py` で扱います。
+command/app 単位の結合試験は `docs/cli_hello_greeting/10_integration_test_plan.md` と `tests/cli_hello_greeting/test_integration_greeting.py` で扱います。
 
 ## 今回テストしないこと
 
+- `entrypoint.parse_args`
+- `entrypoint.main`
+- CLI引数解析
+- 標準出力
+- 終了コード
 - 結合試験
 - 外部API連携
 - CI/CD
@@ -56,10 +56,10 @@ cli_hello_greeting / greeting
 
 ## レビュー観点
 
-- 必須要件を確認できるテストになっていること
+- 必須要件を feature 単体テストで確認できること
 - 正常系と異常系が含まれていること
 - 実装の詳細に寄りすぎていないこと
-- 単体試験の範囲に収まっていること
+- entrypoint テストや結合試験の観点と混ざっていないこと
 
 ## 補足
 

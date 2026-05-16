@@ -14,7 +14,7 @@
 - 個別機能を `features/<feature_name>/` で管理する方法
 - 仕様、設計、呼び出し定義、テスト計画、レビュー観点を先に整理する流れ
 - `entrypoint.py` と `features/` の責務を分ける流れ
-- AIの出力を各工程でレビューする流れ
+- feature 単体レビューと command/app 全体レビューを分ける流れ
 - `overview.md` を起点に、コマンド/アプリ全体と feature 分割を整理する流れ
 - 必要に応じて、entrypoint から feature を束ねる結合試験計画を作る流れ
 
@@ -53,12 +53,14 @@ ai-driven-dev-starter-kit/
 │  │  ├─ 03_flow_template.md
 │  │  ├─ 04_test_plan_template.md
 │  │  ├─ 05_review_checklist_template.md
-│  │  └─ 10_integration_test_plan_template.md
+│  │  ├─ 10_integration_test_plan_template.md
+│  │  └─ 11_command_review_result_template.md
 │  ├─ tutorials/
 │  │  └─ 010_simple_calculator.md
 │  ├─ cli_hello_greeting/
 │  │  ├─ overview.md
 │  │  ├─ 10_integration_test_plan.md
+│  │  ├─ 11_command_review_result.md
 │  │  └─ features/
 │  │     └─ greeting/
 │  │        ├─ 01_spec.md
@@ -69,6 +71,7 @@ ai-driven-dev-starter-kit/
 │  └─ cli_simple_calculator/
 │     ├─ overview.md
 │     ├─ 10_integration_test_plan.md
+│     ├─ 11_command_review_result.md
 │     └─ features/
 │        └─ calculator/
 │           └─ 01_spec.md
@@ -83,7 +86,8 @@ ai-driven-dev-starter-kit/
 │  ├─ implement_feature.md
 │  ├─ implement_entrypoint.md
 │  ├─ implement_integration_test.md
-│  └─ review_feature.md
+│  ├─ review_feature.md
+│  └─ review_command.md
 ├─ src/
 │  ├─ common/
 │  │  └─ __init__.py
@@ -95,7 +99,8 @@ ai-driven-dev-starter-kit/
 │        └─ greeting.py
 └─ tests/
    └─ cli_hello_greeting/
-      ├─ test_entrypoint.py
+      ├─ test_entrypoint_greeting.py
+      ├─ test_integration_greeting.py
       └─ features/
          └─ test_greeting.py
 ```
@@ -144,8 +149,18 @@ tests/<command_or_app_name>/features/test_<feature_name>.py
 標準出力やCLI引数解析は原則として持たせません。
 
 実装時は、feature 本体と entrypoint を分けて扱います。
-`prompts/implement_feature.md` は feature 本体と feature 単体テストを作成し、`prompts/implement_entrypoint.md` は `entrypoint.py` と `test_entrypoint.py` を作成します。
+`prompts/implement_feature.md` は feature 本体と feature 単体テストを作成し、`prompts/implement_entrypoint.md` は `entrypoint.py` と `test_entrypoint_<short_name>.py` を作成します。
 entrypoint 実装中に feature が呼び出しにくい場合も、勝手に feature 実装を変更せず、見直し候補として報告します。
+
+entrypoint テストと結合試験の標準命名は以下です。
+
+```text
+tests/<command_or_app_name>/test_entrypoint_<short_name>.py
+tests/<command_or_app_name>/test_integration_<short_name>.py
+```
+
+`<short_name>` は、単一 feature の command/app では feature 名を使います。
+複数 feature を束ねる command/app では、command/app を短く表す名前を使います。
 
 ---
 
@@ -158,6 +173,20 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 
 結合試験計画は、必要に応じて `docs/<command_or_app_name>/10_integration_test_plan.md` に作成します。
 常に必須ではなく、entrypoint から feature を束ねて確認する必要がある場合に扱います。
+
+---
+
+## レビューの位置づけ
+
+レビューは2段階で扱います。
+
+- feature 単体レビュー: `prompts/review_feature.md` を使い、結果を `<対象機能フォルダ>/06_review_result.md` に記録します
+- command/app 全体レビュー: `prompts/review_command.md` を使い、結果を `docs/<command_or_app_name>/11_command_review_result.md` に記録します
+
+`review_feature.md` は feature の仕様、設計、実装、単体テストに集中します。
+entrypoint と結合試験まで含めた最終確認は `review_command.md` で扱います。
+
+既存のレビュー結果がある場合でも、古い判定をそのまま採用せず、現在のファイル群を読み直して再レビューします。
 
 ---
 
@@ -248,6 +277,7 @@ python -m pytest
 - 外部ライブラリは原則使わないでください
 - CI/CD、デプロイ資産は追加しないでください
 - 結合試験は、計画があり必要な場合だけ扱ってください
+- feature 単体レビューと command/app 全体レビューを混ぜないでください
 - `entrypoint.py` を厚くしないでください
 - feature 固有ロジックを `entrypoint.py` に入れないでください
 - `src/common/` に勝手に共通処理を追加しないでください

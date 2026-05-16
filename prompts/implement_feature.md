@@ -40,7 +40,8 @@
 - `prompts/`
 - `src/common/`
 - `src/<command_or_app_name>/entrypoint.py`
-- `tests/<command_or_app_name>/test_entrypoint.py`
+- entrypoint テストファイル
+- 結合試験ファイル
 - `<対象機能フォルダ>/01_spec.md`
 - `<対象機能フォルダ>/02_design.md`
 - `<対象機能フォルダ>/03_flow.md`
@@ -73,7 +74,8 @@
 - 仕様にない便利機能を追加しないでください
 - 外部ライブラリを追加しないでください
 - 共通化候補があっても、人間レビュー前に `src/common/` へ切り出さないでください
-- entrypoint.py や test_entrypoint.py を作成しないでください
+- entrypoint.py や entrypoint テストを作成しないでください
 - entrypoint が必要な場合は、`prompts/implement_entrypoint.md` を使ってください
+- 結合試験が必要な場合は、`prompts/implement_integration_test.md` を使ってください
 - 結合試験、外部API、CI/CD、デプロイ資産を作成しないでください
 - 設計書と大きく異なる実装に勝手に変更しないでください

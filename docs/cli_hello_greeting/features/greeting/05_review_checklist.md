@@ -52,7 +52,9 @@ cli_hello_greeting / greeting
 ## 最終確認
 
 - [x] 仕様・設計・実装・テストに大きなズレがない
-- [x] 結合試験、CI/CD、デプロイ資産を追加していない
+- [x] entrypoint や結合試験の確認は、feature との責務分担の範囲にとどまっている
+- [x] command/app 全体の最終確認は `prompts/review_command.md` に委ねる前提になっている
+- [x] CI/CD、デプロイ資産を追加していない
 - [x] 変更したファイルと理由を説明できる
 
 ## 補足

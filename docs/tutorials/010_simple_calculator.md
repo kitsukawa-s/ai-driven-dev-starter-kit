@@ -12,6 +12,7 @@
 最初の状態では、以下の仕様書だけが用意されています。
 
 ```text
+docs/cli_simple_calculator/overview.md
 docs/cli_simple_calculator/features/calculator/01_spec.md
 ```
 
@@ -21,9 +22,13 @@ docs/cli_simple_calculator/features/calculator/01_spec.md
 - `docs/cli_simple_calculator/features/calculator/03_flow.md`
 - `docs/cli_simple_calculator/features/calculator/04_test_plan.md`
 - `docs/cli_simple_calculator/features/calculator/05_review_checklist.md`
+- `docs/cli_simple_calculator/features/calculator/06_review_result.md`
+- `docs/cli_simple_calculator/10_integration_test_plan.md`
+- `docs/cli_simple_calculator/11_command_review_result.md`
 - `src/cli_simple_calculator/entrypoint.py`
 - `src/cli_simple_calculator/features/calculator.py`
-- `tests/cli_simple_calculator/test_entrypoint.py`
+- `tests/cli_simple_calculator/test_entrypoint_calculator.py`
+- `tests/cli_simple_calculator/test_integration_calculator.py`
 - `tests/cli_simple_calculator/features/test_calculator.py`
 
 `prompts/*.md` は直接編集しません。
@@ -172,7 +177,7 @@ prompts/implement_feature.md を参照してください。
 実装ファイル: src/cli_simple_calculator/features/calculator.py
 テストファイル: tests/cli_simple_calculator/features/test_calculator.py
 作りたいもの: 2つの整数を足し算するシンプルな計算機
-補足条件: Python標準ライブラリのみを使ってください。entrypoint.py と test_entrypoint.py は作成しないでください。
+補足条件: Python標準ライブラリのみを使ってください。entrypoint.py と test_entrypoint_calculator.py は作成しないでください。
 ```
 
 作成または更新されるファイル:
@@ -196,8 +201,9 @@ prompts/implement_entrypoint.md を参照してください。
 コマンド/アプリ名: cli_simple_calculator
 対象 overview: docs/cli_simple_calculator/overview.md
 対象 entrypoint: src/cli_simple_calculator/entrypoint.py
-作成または更新するテストファイル: tests/cli_simple_calculator/test_entrypoint.py
+作成または更新するテストファイル: tests/cli_simple_calculator/test_entrypoint_calculator.py
 対象 feature: calculator
+short_name: calculator
 補足条件: entrypoint.py は薄くし、features/calculator.py の機能を呼び出すだけにしてください。
 ```
 
@@ -205,14 +211,78 @@ prompts/implement_entrypoint.md を参照してください。
 
 ```text
 src/cli_simple_calculator/entrypoint.py
-tests/cli_simple_calculator/test_entrypoint.py
+tests/cli_simple_calculator/test_entrypoint_calculator.py
 ```
 
 ---
 
-## 8. テストを実行する
+## 8. 結合試験計画を作成する
 
-実装後、単体テストを実行します。
+`prompts/create_integration_test_plan.md` を参照して、command/app 単位の結合試験計画を作成します。
+
+feature 単体の詳細ロジックは feature 単体テストに任せ、結合試験計画では entrypoint と feature の接続、入出力、終了コード、エラー時の扱いを整理します。
+
+チャット例:
+
+```text
+prompts/create_integration_test_plan.md を参照してください。
+
+コマンド/アプリ名: cli_simple_calculator
+対象 overview: docs/cli_simple_calculator/overview.md
+作成または更新する結合試験計画: docs/cli_simple_calculator/10_integration_test_plan.md
+対象 entrypoint: src/cli_simple_calculator/entrypoint.py
+対象 feature: calculator
+補足条件:
+- entrypoint.py から calculator feature を呼び出し、command/app として期待どおり動くことを確認する計画にしてください。
+- feature 単体の詳細ロジックは feature 単体テストに任せてください。
+- まだテストコードは作成しないでください。
+```
+
+作成または更新されるファイル:
+
+```text
+docs/cli_simple_calculator/10_integration_test_plan.md
+```
+
+---
+
+## 9. 結合試験を実装する
+
+`prompts/implement_integration_test.md` を参照して、結合試験を実装します。
+
+結合試験は `10_integration_test_plan.md` に従い、subprocess による `entrypoint.py` の実行確認を中心にします。
+
+チャット例:
+
+```text
+prompts/implement_integration_test.md を参照してください。
+
+コマンド/アプリ名: cli_simple_calculator
+対象 overview: docs/cli_simple_calculator/overview.md
+対象 結合試験計画: docs/cli_simple_calculator/10_integration_test_plan.md
+対象 entrypoint: src/cli_simple_calculator/entrypoint.py
+作成または更新するテストファイル: tests/cli_simple_calculator/test_integration_calculator.py
+対象 feature: calculator
+short_name: calculator
+補足条件:
+- 結合試験は 10_integration_test_plan.md に従い、subprocess による entrypoint.py の実行確認を中心にしてください。
+- feature 単体の詳細ロジックは再検証しないでください。
+- 指定した出力先パスを変更しないでください。
+- pytest の import mismatch やファイル名衝突が発生した場合は、勝手に別名ファイルを作成せず、確認事項として報告してください。
+- src、docs、prompts、src/common は変更しないでください。
+```
+
+作成または更新されるファイル:
+
+```text
+tests/cli_simple_calculator/test_integration_calculator.py
+```
+
+---
+
+## 10. テストを実行する
+
+実装後、feature 単体テスト、entrypoint テスト、結合試験をまとめて実行します。
 
 ```bash
 python -m pytest
@@ -222,11 +292,14 @@ python -m pytest
 
 ---
 
-## 9. 機能全体をレビューする
+## 11. feature 単体レビューを行う
 
-`prompts/review_feature.md` を参照して、実装後の機能レビューを行います。
+`prompts/review_feature.md` を参照して、feature 単体レビューを行います。
 
 レビュー結果は `05_review_checklist.md` ではなく、`06_review_result.md` に記録します。
+既存の `06_review_result.md` がある場合でも、古い判定をそのまま採用せず、現在のファイル群を読み直して上書き再作成します。
+
+`entrypoint.py` や結合試験は、feature との責務分担に関係する範囲でだけ確認します。command/app 全体の最終確認は次の `review_command.md` で扱います。
 
 チャット例:
 
@@ -244,6 +317,31 @@ prompts/review_feature.md を参照してください。
 
 ---
 
+## 12. command/app 全体レビューを行う
+
+`prompts/review_command.md` を参照して、command/app 全体レビューを行います。
+
+レビュー結果は `docs/cli_simple_calculator/11_command_review_result.md` に記録します。
+既存の `11_command_review_result.md` がある場合でも、古い判定をそのまま採用せず、現在の overview、entrypoint、結合試験計画、結合試験、feature 単体レビュー結果を読み直して上書き再作成します。
+
+チャット例:
+
+```text
+prompts/review_command.md を参照してください。
+
+コマンド/アプリ名: cli_simple_calculator
+対象 overview: docs/cli_simple_calculator/overview.md
+対象 entrypoint: src/cli_simple_calculator/entrypoint.py
+entrypoint テスト: tests/cli_simple_calculator/test_entrypoint_calculator.py
+結合試験計画: docs/cli_simple_calculator/10_integration_test_plan.md
+結合試験ファイル: tests/cli_simple_calculator/test_integration_calculator.py
+command/app 全体レビュー結果ファイル: docs/cli_simple_calculator/11_command_review_result.md
+short_name: calculator
+補足条件: レビューだけ行い、レビュー結果ファイル以外は変更しないでください。
+```
+
+---
+
 ## 進めるときの注意
 
 - `prompts/*.md` は直接編集しません
@@ -251,5 +349,7 @@ prompts/review_feature.md を参照してください。
 - 仕様にない便利機能は追加しません
 - `entrypoint.py` は薄く保ちます
 - feature 実装と entrypoint 実装は別のプロンプトで扱います
+- feature 単体レビューと command/app 全体レビューは別のプロンプトで扱います
 - 共通化候補があっても、勝手に `src/common/` へ切り出しません
-- 結合試験、外部API、CI/CD、デプロイ資産は追加しません
+- 結合試験は計画があり必要な場合だけ扱います
+- 外部API、CI/CD、デプロイ資産は追加しません

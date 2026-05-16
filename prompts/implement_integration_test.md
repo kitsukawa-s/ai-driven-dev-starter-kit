@@ -24,8 +24,9 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 - 対象 overview: `docs/<command_or_app_name>/overview.md`
 - 対象 結合試験計画: `docs/<command_or_app_name>/10_integration_test_plan.md`
 - 対象 entrypoint: `src/<command_or_app_name>/entrypoint.py`
-- 作成または更新するテストファイル: `tests/<command_or_app_name>/test_integration.py`
+- 作成または更新するテストファイル: `tests/<command_or_app_name>/test_integration_<short_name>.py`
 - 対象 feature: `必要に応じて feature 名を書く。全体対象の場合は「10_integration_test_plan.md に従う」`
+- short_name: `単一 feature の command/app では feature 名。複数 feature を束ねる command/app では command/app を短く表す名前`
 - 補足条件: `必要に応じて書く。なければ「なし」`
 
 ## 参照するファイル
@@ -46,11 +47,11 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 
 ## 作成または更新するファイル
 
-- `tests/<command_or_app_name>/test_integration.py`
+- `tests/<command_or_app_name>/test_integration_<short_name>.py`
 
 ## 変更してよいファイル
 
-- `tests/<command_or_app_name>/test_integration.py`
+- `tests/<command_or_app_name>/test_integration_<short_name>.py`
 
 ## 変更してはいけないファイル
 
@@ -72,6 +73,15 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 - 他のコマンド/アプリ配下
 - CI/CD、デプロイ関連のファイル
 
+## ファイル出力先と命名に関する追加ルール（最小反映）
+
+- 結合試験の標準出力先は `tests/<command_or_app_name>/test_integration_<short_name>.py` です。
+- `<short_name>` は、単一 feature の command/app では feature 名を使います。複数 feature を束ねる command/app では、command/app を短く表す名前を使います。
+- 利用者が指定した出力先パス（例: `tests/<command_or_app_name>/test_integration_<short_name>.py`）は、AIの判断で変更してはなりません。
+- `pytest` の import mismatch やテストファイル名の衝突が発生した場合でも、標準命名ルールと現状の差分を確認せずに、AI判断で別名ファイルを作成しないでください。
+
+確認事項には、発生した問題、衝突しているファイル、指定された出力先、標準命名ルールとの差分、代替案、推奨案、人間に判断してほしい点を含めて提示してください。
+
 ## 作業範囲
 
 1. `AGENTS.md` を確認してください
@@ -79,7 +89,7 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 3. `docs/<command_or_app_name>/10_integration_test_plan.md` を確認してください
 4. `src/<command_or_app_name>/entrypoint.py` を確認してください
 5. 必要に応じて対象 feature の仕様、設計、単体テストを確認してください
-6. 結合試験計画に沿って、`tests/<command_or_app_name>/test_integration.py` を作成または更新してください
+6. 結合試験計画に沿って、`tests/<command_or_app_name>/test_integration_<short_name>.py` を作成または更新してください
 7. 結合試験は、entrypoint から feature を束ねて呼び出す流れを確認する範囲に限定してください
 8. 実装後、可能であれば `python -m pytest` を実行してください
 9. `python -m pytest` が環境理由で失敗する場合は、利用可能な Python 実体で代替実行してください

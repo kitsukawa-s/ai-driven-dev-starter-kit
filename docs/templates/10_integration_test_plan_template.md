@@ -3,8 +3,12 @@
 ## 対象コマンド/アプリ
 
 - コマンド/アプリ名: `<command_or_app_name>`
+- short_name: `<short_name>`
 - 入口ファイル: `src/<command_or_app_name>/entrypoint.py`
 - 対象ドキュメント: `docs/<command_or_app_name>/overview.md`
+
+`<short_name>` は、単一 feature の command/app では feature 名を使います。
+複数 feature を束ねる command/app では、command/app を短く表す名前を使います。
 
 ## 結合試験の目的
 
@@ -96,8 +100,8 @@ feature 単体の詳細なロジックは、各 feature の単体試験で確認
 
 ## 作成するテストファイル候補
 
-- `tests/<command_or_app_name>/test_entrypoint.py`
-- `tests/<command_or_app_name>/test_integration.py`
+- `tests/<command_or_app_name>/test_entrypoint_<short_name>.py`
+- `tests/<command_or_app_name>/test_integration_<short_name>.py`
 
 ## 今回やらないこと
 
