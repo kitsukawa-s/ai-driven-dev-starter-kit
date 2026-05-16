@@ -2,12 +2,13 @@
 
 あなたは、このリポジトリのAI駆動開発ルールに従う開発補助者です。
 
-利用者は、下の「利用者が指定する項目」だけを主に書き換えて使います。
+このプロンプトファイルは直接書き換えず、チャットでこのファイルのパスと下の「利用者が指定する項目」を指定して使います。
 それ以外の作業ルールは変更せず、`AGENTS.md` と `docs/templates/` に従ってください。
 
 ## 利用者が指定する項目
 
-- 対象機能フォルダ: `docs/features/<number>_<feature-name>/`
+- 対象機能フォルダ: `docs/<command_or_app_name>/features/<feature_name>/`
+- コマンド/アプリ名: `<command_or_app_name>`
 - 対象機能名: `<feature-name>`
 - 作りたいもの: `必要に応じて補足を書く`
 - 補足条件: `必要に応じて書く。なければ「なし」`
@@ -15,18 +16,31 @@
 ## 参照するファイル
 
 - `AGENTS.md`
-- `<対象機能フォルダ>/01_feature.md`
-- `docs/templates/02_function_design_template.md`
+- `<対象機能フォルダ>/01_spec.md`
+- `docs/templates/02_design_template.md`
 
 ## 作成または更新するファイル
 
-- `<対象機能フォルダ>/02_function_design.md`
+- `<対象機能フォルダ>/02_design.md`
+
+## 変更してはいけないファイル
+
+- このプロンプトファイル
+- `AGENTS.md`
+- `docs/templates/`
+- `<対象機能フォルダ>/01_spec.md`
+- `<対象機能フォルダ>/03_flow.md`
+- `<対象機能フォルダ>/04_test_plan.md`
+- `<対象機能フォルダ>/05_review_checklist.md`
+- 実装ファイル
+- テストファイル
+- CI/CD、結合試験、デプロイ関連のファイル
 
 ## 作業範囲
 
-1. `01_feature.md` を読んで、機能要望をレビューしてください
+1. `01_spec.md` を読んで、機能要望をレビューしてください
 2. レビュー結果として、問題なし、確認した方がよい点、仮定して進める点を簡潔に出してください
-3. `docs/templates/02_function_design_template.md` の見出し構成を維持して `02_function_design.md` を作成または更新してください
+3. `docs/templates/02_design_template.md` の見出し構成を維持して `02_design.md` を作成または更新してください
 4. 共通化候補を検討し、候補があれば提案として記録してください
 
 ## 禁止事項

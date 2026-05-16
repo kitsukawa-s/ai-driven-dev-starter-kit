@@ -9,7 +9,7 @@ simple-calculator
 ## 実行イメージ
 
 ```bash
-python src/simple_calculator.py --a 2 --b 3
+python src/cli_simple_calculator/entrypoint.py --a 2 --b 3
 ```
 
 ## 期待する出力
@@ -64,4 +64,4 @@ python src/simple_calculator.py --a 2 --b 3
 ## 補足
 
 この段階では、この仕様ファイルのみを用意します。
-設計、呼び出し定義、テスト設計、レビュー観点、実装、テストは `prompts/` のプロンプトを使って学習者がAIと作成します。
+設計、呼び出し定義、テスト設計、レビュー観点、実装、テストは `prompts/` の汎用プロンプトを使って学習者がAIと作成します。

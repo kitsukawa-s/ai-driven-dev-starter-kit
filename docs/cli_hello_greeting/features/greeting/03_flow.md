@@ -2,17 +2,17 @@
 
 ## 対象機能
 
-010_hello-greeting
+cli_hello_greeting / greeting
 
 ## 処理の入口
 
-- CLI実行時の入口は `if __name__ == "__main__":`
-- 実際の制御は `main()` が行う
+- CLI実行時の入口は `src/cli_hello_greeting/entrypoint.py`
+- 実際の制御は `entrypoint.py` の `main()` が行う
 
 ## CLI実行時の呼び出し流れ
 
-1. `raise SystemExit(main())` で `main` を呼び出す
-2. `main` が `parse_args` を呼び出す
+1. `entrypoint.py` の `raise SystemExit(main())` で `main` を呼び出す
+2. `entrypoint.py` の `main` が `parse_args` を呼び出す
 3. `parse_args` が `--name` を解析する
 4. `main` が `create_greeting` を呼び出す
 5. `create_greeting` があいさつ文を返す
@@ -25,16 +25,16 @@
 CLI
   -> main
     -> parse_args
-    -> create_greeting
+    -> features.greeting.create_greeting
 ```
 
 ## 責務の分担
 
 | 関数名 | 責務 |
 |---|---|
-| `parse_args` | CLI引数の解析 |
-| `create_greeting` | あいさつ文の生成 |
-| `main` | 全体制御と標準出力 |
+| `entrypoint.parse_args` | CLI引数の解析 |
+| `features.greeting.create_greeting` | あいさつ文の生成 |
+| `entrypoint.main` | 全体制御と標準出力 |
 
 ## エラー時の流れ
 
@@ -45,8 +45,9 @@ CLI
 ## 実装時の注意点
 
 - `create_greeting` は標準出力を行わない
-- `parse_args` はあいさつ文を作らない
-- `main` は正常終了時に `0` を返す
+- `entrypoint.parse_args` はあいさつ文を作らない
+- `entrypoint.main` は正常終了時に `0` を返す
+- `entrypoint.py` に業務ロジック本体を置かない
 
 ## レビュー観点
 

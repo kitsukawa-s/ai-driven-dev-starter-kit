@@ -2,7 +2,7 @@
 
 ## 対象機能
 
-010_hello-greeting
+cli_hello_greeting / greeting
 
 ## 前提
 
@@ -15,8 +15,6 @@
 | 関数名 | 役割 |
 |---|---|
 | `create_greeting` | 名前からあいさつ文を作る |
-| `parse_args` | CLI引数を解析する |
-| `main` | 引数解析、ロジック呼び出し、標準出力を制御する |
 
 ## 関数詳細
 
@@ -28,27 +26,11 @@
 - エラー扱い: 空文字、空白のみの文字列は `ValueError`
 - 実装時の注意点: 標準出力には出さず、文字列を返すだけにする
 
-### `parse_args(argv: list[str] | None = None) -> argparse.Namespace`
-
-- 役割: CLI引数を解析する
-- 入力: CLI引数のリスト、または `None`
-- 出力: `argparse.Namespace`
-- エラー扱い: `--name` 未指定は `argparse` の `SystemExit`
-- 実装時の注意点: `--name` は必須引数にする
-
-### `main(argv: list[str] | None = None) -> int`
-
-- 役割: CLIツール全体を制御する
-- 入力: CLI引数のリスト、または `None`
-- 出力: 正常終了時は `0`
-- エラー扱い: `parse_args` と `create_greeting` のエラーを握りつぶさない
-- 実装時の注意点: あいさつ文を標準出力に表示する
-
 ## エラー処理方針
 
-- `--name` 未指定は `argparse` に任せる
 - 空文字、空白のみは `create_greeting` で `ValueError` にする
-- `main` ではエラーを握りつぶさない
+- CLI引数のエラーは `entrypoint.py` の `argparse` に任せる
+- `entrypoint.py` ではエラーを握りつぶさない
 
 ## 共通化候補
 
@@ -57,7 +39,7 @@
 - 候補となる処理: CLI引数解析や文字列の空チェック
 - 想定される共通化先: `src/common/`
 - 共通化を検討する理由: 今後、複数機能で同じ処理が必要になる可能性があるため
-- 影響を受ける機能: `010_hello-greeting`、将来追加されるCLI機能
+- 影響を受ける機能: `cli_hello_greeting / greeting`、将来追加されるCLI機能
 - 現時点で共通化すべきかどうか: 候補として記録するが、今回は共通化しない
 
 ## 実装時の注意点
@@ -66,6 +48,8 @@
 - 外部ライブラリは使わない
 - クラスは使わず、関数中心で実装する
 - `src/common/` へ勝手に切り出さない
+- CLI引数解析と標準出力は `src/cli_hello_greeting/entrypoint.py` に置く
+- 機能ロジックは `src/cli_hello_greeting/features/greeting.py` に置く
 
 ## 今回やらないこと
 

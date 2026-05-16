@@ -2,18 +2,19 @@
 
 ## 対象機能
 
-010_hello-greeting
+cli_hello_greeting / greeting
 
 ## テスト対象
 
 - `create_greeting`
-- `main`
+- `entrypoint.main`
+- `entrypoint.parse_args`
 
 ## テスト方針
 
 - 単体試験までを対象にする
 - ロジック関数 `create_greeting` の確認を優先する
-- CLI相当の確認として `main` に引数リストを渡して確認する
+- CLI相当の確認として `entrypoint.main` に引数リストを渡して確認する
 - 外部API、結合試験、CI/CD、デプロイは対象外にする
 
 ## テスト観点一覧
@@ -24,20 +25,20 @@
 | 正常系 | 日本語名であいさつ文を生成できる |
 | 異常系 | 空文字は `ValueError` |
 | 異常系 | 空白のみは `ValueError` |
-| CLI | `main(["--name", "Alice"])` が出力して `0` を返す |
-| CLI | `main([])` は `SystemExit` |
+| CLI | `entrypoint.main(["--name", "Alice"])` が出力して `0` を返す |
+| CLI | `entrypoint.main([])` は `SystemExit` |
 
 ## 正常系
 
 - `create_greeting("Alice")` が `"Hello, Alice!"` を返す
 - 日本語名でも同じ形式のあいさつ文を返す
-- `main(["--name", "Alice"])` が `0` を返し、標準出力に `Hello, Alice!` を出す
+- `entrypoint.main(["--name", "Alice"])` が `0` を返し、標準出力に `Hello, Alice!` を出す
 
 ## 異常系
 
 - `create_greeting("")` は `ValueError`
 - `create_greeting("   ")` は `ValueError`
-- `main([])` は `argparse` により `SystemExit`
+- `entrypoint.main([])` は `argparse` により `SystemExit`
 
 ## CLI実行時の確認観点
 

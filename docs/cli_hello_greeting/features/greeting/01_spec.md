@@ -9,7 +9,7 @@ hello-greeting
 ## 実行イメージ
 
 ```bash
-python src/hello_greeting.py --name Alice
+python src/cli_hello_greeting/entrypoint.py --name Alice
 ```
 
 ## 期待する出力
@@ -36,7 +36,7 @@ Hello, Alice!
 ## 出力
 
 - 標準出力に `Hello, <name>!` を表示する
-- `main` は正常終了時に `0` を返す
+- `entrypoint.main` は正常終了時に `0` を返す
 
 ## エラー扱い
 

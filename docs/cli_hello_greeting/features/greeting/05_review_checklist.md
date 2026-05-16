@@ -2,7 +2,7 @@
 
 ## 対象機能
 
-010_hello-greeting
+cli_hello_greeting / greeting
 
 ## 仕様レビュー
 

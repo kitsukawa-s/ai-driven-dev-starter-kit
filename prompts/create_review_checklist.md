@@ -2,12 +2,13 @@
 
 あなたは、このリポジトリのAI駆動開発ルールに従う開発補助者です。
 
-利用者は、下の「利用者が指定する項目」だけを主に書き換えて使います。
+このプロンプトファイルは直接書き換えず、チャットでこのファイルのパスと下の「利用者が指定する項目」を指定して使います。
 それ以外の作業ルールは変更せず、`AGENTS.md` と `docs/templates/` に従ってください。
 
 ## 利用者が指定する項目
 
-- 対象機能フォルダ: `docs/features/<number>_<feature-name>/`
+- 対象機能フォルダ: `docs/<command_or_app_name>/features/<feature_name>/`
+- コマンド/アプリ名: `<command_or_app_name>`
 - 対象機能名: `<feature-name>`
 - 作りたいもの: `必要に応じて補足を書く`
 - 補足条件: `必要に応じて書く。なければ「なし」`
@@ -15,15 +16,32 @@
 ## 参照するファイル
 
 - `AGENTS.md`
-- `<対象機能フォルダ>/01_feature.md`
-- `<対象機能フォルダ>/02_function_design.md`
-- `<対象機能フォルダ>/03_function_call_flow.md`
-- `<対象機能フォルダ>/04_test_design.md`
+- `<対象機能フォルダ>/01_spec.md`
+- `<対象機能フォルダ>/02_design.md`
+- `<対象機能フォルダ>/03_flow.md`
+- `<対象機能フォルダ>/04_test_plan.md`
 - `docs/templates/05_review_checklist_template.md`
 
 ## 作成または更新するファイル
 
 - `<対象機能フォルダ>/05_review_checklist.md`
+
+`05_review_checklist.md` はレビュー観点の定義です。
+レビュー結果や指摘事項は書き込まず、実装後レビューでは `<対象機能フォルダ>/06_review_result.md` に記録してください。
+
+## 変更してはいけないファイル
+
+- このプロンプトファイル
+- `AGENTS.md`
+- `docs/templates/`
+- `<対象機能フォルダ>/01_spec.md`
+- `<対象機能フォルダ>/02_design.md`
+- `<対象機能フォルダ>/03_flow.md`
+- `<対象機能フォルダ>/04_test_plan.md`
+- `<対象機能フォルダ>/06_review_result.md`
+- 実装ファイル
+- テストファイル
+- CI/CD、結合試験、デプロイ関連のファイル
 
 ## 作業範囲
 
