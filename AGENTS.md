@@ -25,11 +25,11 @@ AIは、いきなり実装するのではなく、仕様・設計・テスト観
 
 ## 対象範囲
 
-このリポジトリでは、単体試験までを対象とします。
+このリポジトリでは、feature 単位の単体試験を基本とします。
+必要に応じて、command/app 単位の結合試験も扱います。
 
 AIは、以下を勝手に追加しないでください。
 
-- 結合試験用スタブ
 - CI/CD設定
 - GitHub Actions
 - デプロイ設定
@@ -49,6 +49,7 @@ docs、src、tests は `<command_or_app_name>` 単位で対応させます。
 docs/
   <command_or_app_name>/
     overview.md
+    10_integration_test_plan.md
     features/
       <feature_name>/
         01_spec.md
@@ -97,11 +98,13 @@ tests/
 
 | 作成するファイル | 参照するひな形 |
 |---|---|
+| `overview.md` | `docs/templates/00_overview_template.md` |
 | `01_spec.md` | `docs/templates/01_spec_template.md` |
 | `02_design.md` | `docs/templates/02_design_template.md` |
 | `03_flow.md` | `docs/templates/03_flow_template.md` |
 | `04_test_plan.md` | `docs/templates/04_test_plan_template.md` |
 | `05_review_checklist.md` | `docs/templates/05_review_checklist_template.md` |
+| `10_integration_test_plan.md` | `docs/templates/10_integration_test_plan_template.md` |
 
 AIは、ひな形の見出し構成を勝手に変更しないでください。
 必要な情報がない場合は、見出しを削除せず、`未定`、`該当なし`、`今回は対象外` のように記載してください。
@@ -112,21 +115,22 @@ AIは、ひな形の見出し構成を勝手に変更しないでください。
 
 原則として、以下の順番で作業してください。
 
-1. `01_spec.md` を読む
-2. 機能要望をレビューする
-3. `02_design.md` を作成または更新する
-4. 関数設計をレビューする
+1. `overview.md` を確認または作成する
+2. `overview.md` をもとに feature 分割を確認する
+3. 対象 feature の `01_spec.md` を作成または確認する
+4. `02_design.md` を作成または更新する
 5. `03_flow.md` を作成または更新する
-6. 呼び出し定義をレビューする
-7. `04_test_plan.md` を作成または更新する
-8. テスト計画をレビューする
-9. `05_review_checklist.md` を作成または更新する
-10. 実装する
-11. 実装をセルフレビューする
-12. テストを作成する
-13. テストをレビューする
-14. `python -m pytest` を実行する
-15. 最終レビューを行う
+6. `04_test_plan.md` を作成または更新する
+7. `05_review_checklist.md` を作成または更新する
+8. feature 本体と feature 単体テストを作成する
+9. 必要に応じて `entrypoint.py` と `test_entrypoint.py` を作成する
+10. 必要に応じて `10_integration_test_plan.md` を作成する
+11. 必要に応じて結合試験を実装する
+12. `python -m pytest` を実行する
+13. 最終レビューを行う
+
+結合試験は常に必須ではありません。
+entrypoint から複数 feature を束ねて確認する必要がある場合に扱ってください。
 
 ---
 
@@ -150,6 +154,20 @@ entrypoint に入れてはいけないもの:
 - 仕様にない便利機能
 
 機能実装は `src/<command_or_app_name>/features/<feature_name>.py` に置いてください。
+entrypoint 実装中に feature が呼び出しにくい場合でも、勝手に feature 実装を変更しないでください。
+必要な見直しは作業報告に記載し、人間レビューに回してください。
+
+---
+
+## 結合試験の扱い
+
+`10_integration_test_plan.md` は、command/app 単位の結合試験計画です。
+
+feature 単体の詳細ロジックは、feature 単体試験で確認してください。
+結合試験では、`entrypoint.py` と feature の接続、入出力、終了コード、エラー時の扱いを確認します。
+
+結合試験を実装している途中でテストしにくいと判断しても、勝手に `src/` を変更しないでください。
+実装側の変更が必要そうな場合は、作業報告に記載し、人間レビューに回してください。
 
 ---
 
@@ -192,7 +210,7 @@ AIは、明示指示なしに以下を変更しないでください。
 - `docs/templates/`
 - `src/common/`
 - `requirements.txt`
-- CI/CD、結合試験、デプロイ関連ファイル
+- CI/CD、デプロイ関連ファイル
 
 今回のように利用者が明示的にルール更新を依頼した場合のみ、`AGENTS.md` や `prompts/*.md` を必要最小限で更新してください。
 
@@ -229,10 +247,12 @@ AIは、明示指示なしに以下を変更しないでください。
 
 #### 確認したこと
 
+- overview とのズレ: なし / あり / 該当なし
 - 仕様とのズレ: なし / あり
 - 関数設計とのズレ: なし / あり
 - 呼び出し定義とのズレ: なし / あり
 - テスト計画とのズレ: なし / あり
+- 結合試験計画とのズレ: なし / あり / 該当なし
 - 共通化候補: なし / あり
 - AIが勝手に共通化していないこと: 確認済み / 未確認
 - 気になる点: ...

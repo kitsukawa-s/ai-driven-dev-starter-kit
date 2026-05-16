@@ -6,6 +6,8 @@
 docs/<command_or_app_name>/
 src/<command_or_app_name>/
 tests/<command_or_app_name>/
+tests/<command_or_app_name>/test_entrypoint.py
+tests/<command_or_app_name>/features/test_<feature_name>.py
 ```
 
 個別機能は `features/<feature_name>/` 配下で管理します。
@@ -18,6 +20,7 @@ tests/<command_or_app_name>/
 docs/
   <command_or_app_name>/
     overview.md
+    10_integration_test_plan.md
     features/
       <feature_name>/
         01_spec.md
@@ -38,6 +41,7 @@ docs/
 | ファイル | 役割 |
 |---|---|
 | `overview.md` | コマンド/アプリ全体の目的、入口、機能一覧、責務分担を書く |
+| `10_integration_test_plan.md` | command/app 単位の結合試験計画を書く |
 | `01_spec.md` | 機能要望・仕様を書く |
 | `02_design.md` | 関数単位の責務・入力・出力・エラー方針を書く |
 | `03_flow.md` | 関数同士の呼び出し順・依存関係・全体フローを書く |
@@ -53,11 +57,13 @@ docs/
 
 | 作成するファイル | 参照するテンプレート |
 |---|---|
+| `overview.md` | `docs/templates/00_overview_template.md` |
 | `01_spec.md` | `docs/templates/01_spec_template.md` |
 | `02_design.md` | `docs/templates/02_design_template.md` |
 | `03_flow.md` | `docs/templates/03_flow_template.md` |
 | `04_test_plan.md` | `docs/templates/04_test_plan_template.md` |
 | `05_review_checklist.md` | `docs/templates/05_review_checklist_template.md` |
+| `10_integration_test_plan.md` | `docs/templates/10_integration_test_plan_template.md` |
 
 ---
 
@@ -72,6 +78,10 @@ docs/
 
 機能固有のロジックは `src/<command_or_app_name>/features/<feature_name>.py` に置きます。
 `entrypoint.py` に業務ロジック本体や複雑な変換処理を置かないでください。
+
+entrypoint のテストは `tests/<command_or_app_name>/test_entrypoint.py` に置きます。
+feature の単体テストは `tests/<command_or_app_name>/features/test_<feature_name>.py` に置きます。
+feature 実装と entrypoint 実装は分けて扱います。
 
 ---
 
@@ -104,23 +114,26 @@ docs/
 
 ## 今回の対象範囲
 
-このスターターキットでは、単体試験までを対象にします。
+このスターターキットでは、feature 単位の単体試験を基本にします。
+必要に応じて、command/app 単位の結合試験計画と結合試験も扱います。
 
 対象にするもの:
 
+- overview による command/app 全体の整理
+- feature 分割
 - 機能要望の整理
 - 関数設計
 - 関数呼び出し定義
 - テスト計画
 - 実装
 - 単体テスト
+- 必要に応じた結合試験計画
+- 必要に応じた結合試験
 - レビュー
 
 対象外:
 
-- 結合試験
 - 外部システム連携
-- 結合試験用スタブ
 - CI/CD
 - デプロイ
 - 本番運用設計

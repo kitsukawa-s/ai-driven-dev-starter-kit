@@ -157,9 +157,9 @@ docs/cli_simple_calculator/features/calculator/05_review_checklist.md
 
 ---
 
-## 6. 実装とテストを作成する
+## 6. feature 実装と feature 単体テストを作成する
 
-`prompts/implement_feature.md` を参照して、実装と単体テストを作成します。
+`prompts/implement_feature.md` を参照して、feature 本体と feature 単体テストを作成します。
 
 チャット例:
 
@@ -172,21 +172,45 @@ prompts/implement_feature.md を参照してください。
 実装ファイル: src/cli_simple_calculator/features/calculator.py
 テストファイル: tests/cli_simple_calculator/features/test_calculator.py
 作りたいもの: 2つの整数を足し算するシンプルな計算機
-補足条件: entrypoint.py も必要最小限で作成してください。Python標準ライブラリのみを使ってください。
+補足条件: Python標準ライブラリのみを使ってください。entrypoint.py と test_entrypoint.py は作成しないでください。
 ```
 
-作成または更新される主なファイル:
+作成または更新されるファイル:
 
 ```text
-src/cli_simple_calculator/entrypoint.py
 src/cli_simple_calculator/features/calculator.py
-tests/cli_simple_calculator/test_entrypoint.py
 tests/cli_simple_calculator/features/test_calculator.py
 ```
 
 ---
 
-## 7. テストを実行する
+## 7. entrypoint.py と entrypoint テストを作成する
+
+`prompts/implement_entrypoint.md` を参照して、CLI入口と entrypoint のテストを作成します。
+
+チャット例:
+
+```text
+prompts/implement_entrypoint.md を参照してください。
+
+コマンド/アプリ名: cli_simple_calculator
+対象 overview: docs/cli_simple_calculator/overview.md
+対象 entrypoint: src/cli_simple_calculator/entrypoint.py
+作成または更新するテストファイル: tests/cli_simple_calculator/test_entrypoint.py
+対象 feature: calculator
+補足条件: entrypoint.py は薄くし、features/calculator.py の機能を呼び出すだけにしてください。
+```
+
+作成または更新されるファイル:
+
+```text
+src/cli_simple_calculator/entrypoint.py
+tests/cli_simple_calculator/test_entrypoint.py
+```
+
+---
+
+## 8. テストを実行する
 
 実装後、単体テストを実行します。
 
@@ -198,7 +222,7 @@ python -m pytest
 
 ---
 
-## 8. 機能全体をレビューする
+## 9. 機能全体をレビューする
 
 `prompts/review_feature.md` を参照して、実装後の機能レビューを行います。
 
@@ -226,5 +250,6 @@ prompts/review_feature.md を参照してください。
 - チャットで、参照するプロンプトのパスと対象機能情報を渡します
 - 仕様にない便利機能は追加しません
 - `entrypoint.py` は薄く保ちます
+- feature 実装と entrypoint 実装は別のプロンプトで扱います
 - 共通化候補があっても、勝手に `src/common/` へ切り出しません
 - 結合試験、外部API、CI/CD、デプロイ資産は追加しません

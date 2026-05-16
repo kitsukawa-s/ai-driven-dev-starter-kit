@@ -15,6 +15,8 @@
 - 仕様、設計、呼び出し定義、テスト計画、レビュー観点を先に整理する流れ
 - `entrypoint.py` と `features/` の責務を分ける流れ
 - AIの出力を各工程でレビューする流れ
+- `overview.md` を起点に、コマンド/アプリ全体と feature 分割を整理する流れ
+- 必要に応じて、entrypoint から feature を束ねる結合試験計画を作る流れ
 
 ---
 
@@ -45,15 +47,18 @@ ai-driven-dev-starter-kit/
 │  ├─ common/
 │  │  └─ README.md
 │  ├─ templates/
+│  │  ├─ 00_overview_template.md
 │  │  ├─ 01_spec_template.md
 │  │  ├─ 02_design_template.md
 │  │  ├─ 03_flow_template.md
 │  │  ├─ 04_test_plan_template.md
-│  │  └─ 05_review_checklist_template.md
+│  │  ├─ 05_review_checklist_template.md
+│  │  └─ 10_integration_test_plan_template.md
 │  ├─ tutorials/
 │  │  └─ 010_simple_calculator.md
 │  ├─ cli_hello_greeting/
 │  │  ├─ overview.md
+│  │  ├─ 10_integration_test_plan.md
 │  │  └─ features/
 │  │     └─ greeting/
 │  │        ├─ 01_spec.md
@@ -63,16 +68,21 @@ ai-driven-dev-starter-kit/
 │  │        └─ 05_review_checklist.md
 │  └─ cli_simple_calculator/
 │     ├─ overview.md
+│     ├─ 10_integration_test_plan.md
 │     └─ features/
 │        └─ calculator/
 │           └─ 01_spec.md
 ├─ prompts/
+│  ├─ create_overview.md
 │  ├─ create_feature_spec.md
 │  ├─ create_function_design.md
 │  ├─ create_function_call_flow.md
 │  ├─ create_test_design.md
 │  ├─ create_review_checklist.md
+│  ├─ create_integration_test_plan.md
 │  ├─ implement_feature.md
+│  ├─ implement_entrypoint.md
+│  ├─ implement_integration_test.md
 │  └─ review_feature.md
 ├─ src/
 │  ├─ common/
@@ -112,6 +122,15 @@ tests/<command_or_app_name>/features/test_<feature_name>.py
 
 ---
 
+## overview.md の位置づけ
+
+`docs/<command_or_app_name>/overview.md` は、コマンド/アプリ全体の設計入口です。
+
+ここでは、コマンド/アプリの目的、Boundary、`entrypoint.py`、feature 分割方針、機能一覧を整理します。
+新しい機能を追加する場合は、まず overview.md でコマンド/アプリ全体の責務と feature 分割を確認し、そのうえで `features/<feature_name>/` 配下のドキュメントを作成します。
+
+---
+
 ## entrypoint と features の責務
 
 `entrypoint.py` はCLI入口として薄く保ちます。
@@ -123,6 +142,22 @@ tests/<command_or_app_name>/features/test_<feature_name>.py
 
 `features/` 配下には、機能固有のロジックを置きます。
 標準出力やCLI引数解析は原則として持たせません。
+
+実装時は、feature 本体と entrypoint を分けて扱います。
+`prompts/implement_feature.md` は feature 本体と feature 単体テストを作成し、`prompts/implement_entrypoint.md` は `entrypoint.py` と `test_entrypoint.py` を作成します。
+entrypoint 実装中に feature が呼び出しにくい場合も、勝手に feature 実装を変更せず、見直し候補として報告します。
+
+---
+
+## 結合試験の位置づけ
+
+このスターターキットにおける結合試験は、`entrypoint.py` から複数 feature を束ねて呼び出し、コマンド/アプリとして期待どおり動くことを確認するものです。
+
+feature 単体の詳細ロジックは、各 feature の単体試験で確認します。
+結合試験では、`entrypoint.py`、feature 呼び出し、入出力、終了コード、エラー時の扱いを確認します。
+
+結合試験計画は、必要に応じて `docs/<command_or_app_name>/10_integration_test_plan.md` に作成します。
+常に必須ではなく、entrypoint から feature を束ねて確認する必要がある場合に扱います。
 
 ---
 
@@ -151,6 +186,19 @@ tests/<command_or_app_name>/features/test_<feature_name>.py
 - 補足条件
 
 詳しくは `docs/how_to_use_prompts.md` を参照してください。
+
+---
+
+## はじめて使う場合
+
+はじめて使う場合は、以下の順番で確認してください。
+
+1. `README.md` で全体像を確認する
+2. `docs/how_to_use_prompts.md` で汎用プロンプトの使い方を確認する
+3. `docs/tutorials/010_simple_calculator.md` でチュートリアルを進める
+4. 必要に応じて `docs/overview.md` でドキュメント構成を確認する
+
+実際の作業では、`prompts/*.md` を直接編集せず、チャットで「参照するプロンプトのパス」と「対象機能情報」を渡して使います。
 
 ---
 
@@ -198,7 +246,10 @@ python -m pytest
 
 - 仕様にない機能を勝手に追加しないでください
 - 外部ライブラリは原則使わないでください
-- CI/CD、結合試験、デプロイ資産は追加しないでください
+- CI/CD、デプロイ資産は追加しないでください
+- 結合試験は、計画があり必要な場合だけ扱ってください
 - `entrypoint.py` を厚くしないでください
+- feature 固有ロジックを `entrypoint.py` に入れないでください
 - `src/common/` に勝手に共通処理を追加しないでください
+- 結合試験中にテストしにくい点があっても、勝手に実装コードを変更しないでください
 - チュートリアル専用プロンプト置き場は作成しないでください
