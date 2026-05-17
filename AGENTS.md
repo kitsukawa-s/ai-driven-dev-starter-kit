@@ -49,10 +49,12 @@ docs、src、tests は `<command_or_app_name>` 単位で対応させます。
 docs/
   <command_or_app_name>/
     overview.md
+    tasks.md
     10_integration_test_plan.md
     11_command_review_result.md
     features/
       <feature_name>/
+        tasks.md
         01_spec.md
         02_design.md
         03_flow.md
@@ -85,6 +87,10 @@ tests/
 `11_command_review_result.md` は command/app 全体レビュー結果を記録するファイルです。
 まだレビューしていない場合は、無理に作成しなくて構いません。
 
+`tasks.md` は作業状態を記録するファイルです。
+command/app 単位では `docs/<command_or_app_name>/tasks.md`、feature 単位では `docs/<command_or_app_name>/features/<feature_name>/tasks.md` に配置します。
+まだ作業状態を記録する必要がない場合は、無理に作成しなくて構いません。
+
 ---
 
 ## ドキュメント管理ルール
@@ -93,6 +99,9 @@ tests/
 - コマンド/アプリ全体の説明は `docs/<command_or_app_name>/overview.md` に書く
 - 個別機能の仕様・設計・呼び出し定義・テスト計画・レビュー観点は `docs/<command_or_app_name>/features/<feature_name>/` にまとめる
 - 新しい機能を追加する場合は、対象コマンド/アプリの `features/<feature_name>/` 配下に追加する
+- feature 名は機能単位の名前にし、関数名や実装上の処理名だけを理由に feature フォルダを分けない
+- 作業を中断・再開・引き継ぎしやすくしたい場合は、対象範囲の `tasks.md` に現在の状態、次にやること、保留事項を短く記録する
+- `tasks.md` は作業管理用のメモとし、仕様・設計・テスト計画・レビュー結果の代わりにしない
 - 実装前に、対象機能フォルダ内の設計書を確認する
 - 実装後に、設計書と実装内容にズレがないか確認する
 
@@ -105,6 +114,7 @@ tests/
 | 作成するファイル | 参照するひな形 |
 |---|---|
 | `overview.md` | `docs/templates/00_overview_template.md` |
+| `tasks.md` | `docs/templates/tasks_template.md` |
 | `01_spec.md` | `docs/templates/01_spec_template.md` |
 | `02_design.md` | `docs/templates/02_design_template.md` |
 | `03_flow.md` | `docs/templates/03_flow_template.md` |
@@ -123,19 +133,21 @@ AIは、ひな形の見出し構成を勝手に変更しないでください。
 原則として、以下の順番で作業してください。
 
 1. `overview.md` を確認または作成する
-2. `overview.md` をもとに feature 分割を確認する
-3. 対象 feature の `01_spec.md` を作成または確認する
-4. `02_design.md` を作成または更新する
-5. `03_flow.md` を作成または更新する
-6. `04_test_plan.md` を作成または更新する
-7. `05_review_checklist.md` を作成または更新する
-8. feature 本体と feature 単体テストを作成する
-9. 必要に応じて `entrypoint.py` と `test_entrypoint_<short_name>.py` を作成する
-10. 必要に応じて `10_integration_test_plan.md` を作成する
-11. 必要に応じて結合試験を実装する
-12. `python -m pytest` を実行する
-13. feature 単体レビューを行い、`06_review_result.md` に記録する
-14. command/app 全体レビューを行い、`11_command_review_result.md` に記録する
+2. 必要に応じて `tasks.md` を確認または作成し、現在の作業状態を短く記録する
+3. `overview.md` をもとに feature 分割を確認する
+4. 対象 feature の `01_spec.md` を作成または確認する
+5. 必要に応じて feature 側の `tasks.md` を確認または作成する
+6. `02_design.md` を作成または更新する
+7. `03_flow.md` を作成または更新する
+8. `04_test_plan.md` を作成または更新する
+9. `05_review_checklist.md` を作成または更新する
+10. feature 本体と feature 単体テストを作成する
+11. 必要に応じて `entrypoint.py` と `test_entrypoint_<short_name>.py` を作成する
+12. 必要に応じて `10_integration_test_plan.md` を作成する
+13. 必要に応じて結合試験を実装する
+14. `python -m pytest` を実行する
+15. feature 単体レビューを行い、`06_review_result.md` に記録する
+16. command/app 全体レビューを行い、`11_command_review_result.md` に記録する
 
 結合試験は常に必須ではありません。
 entrypoint から複数 feature を束ねて確認する必要がある場合に扱ってください。
@@ -186,6 +198,9 @@ command/app 全体レビューは `docs/<command_or_app_name>/11_command_review_
 
 既存のレビュー結果がある場合でも、古い判定をそのまま採用せず、現在の仕様・設計・実装・テストを読み直して再レビューしてください。
 レビュー中に問題を見つけても、レビュー結果ファイル以外を勝手に変更しないでください。
+
+`tasks.md` には、レビューの判定や詳細な指摘を記録しません。
+未完了作業、次の一手、保留事項だけを短く記録し、レビュー結果は `06_review_result.md` または `11_command_review_result.md` に分けてください。
 
 ---
 

@@ -48,6 +48,7 @@ ai-driven-dev-starter-kit/
 │  │  └─ README.md
 │  ├─ templates/
 │  │  ├─ 00_overview_template.md
+│  │  ├─ tasks_template.md
 │  │  ├─ 01_spec_template.md
 │  │  ├─ 02_design_template.md
 │  │  ├─ 03_flow_template.md
@@ -70,10 +71,12 @@ ai-driven-dev-starter-kit/
 │  │        └─ 05_review_checklist.md
 │  └─ cli_simple_calculator/
 │     ├─ overview.md
+│     ├─ tasks.md
 │     ├─ 10_integration_test_plan.md
 │     ├─ 11_command_review_result.md
 │     └─ features/
 │        └─ calculator/
+│           ├─ tasks.md
 │           └─ 01_spec.md
 ├─ prompts/
 │  ├─ create_overview.md
@@ -124,6 +127,11 @@ docs/<command_or_app_name>/features/<feature_name>/
 src/<command_or_app_name>/features/<feature_name>.py
 tests/<command_or_app_name>/features/test_<feature_name>.py
 ```
+
+`tasks.md` は作業状態を引き継ぐための現在地メモです。
+command/app 単位の `docs/<command_or_app_name>/tasks.md` には全体の作業状態を、feature 単位の `docs/<command_or_app_name>/features/<feature_name>/tasks.md` には個別機能の作業状態を短く記録します。
+仕様、設計、テスト計画、レビュー結果の代わりにはしません。
+新しく作成する場合は、`docs/templates/tasks_template.md` を参考にします。
 
 ---
 
