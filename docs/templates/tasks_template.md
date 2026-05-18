@@ -27,6 +27,6 @@
 ## 注意点
 
 - `tasks.md` には現在の状態、作業メモ、次に確認すること、引き継ぎに必要な短い注意点だけを書きます。
-- 仕様の詳細は `01_spec.md`、設計の詳細は `02_design.md`、テスト計画の詳細は `04_test_plan.md` や `10_integration_test_plan.md` に書きます。
-- レビュー結果は `06_review_result.md` または `11_command_review_result.md` に記録します。
+- 仕様の詳細は `20_spec.md`、設計の詳細は `21_design.md`、テスト計画の詳細は `23_test_plan.md` や `11_integration_test_plan.md` に書きます。
+- レビュー結果は `25_review_result.md` または `12_command_review_result.md` に記録します。
 - 長いテストログは書きません。

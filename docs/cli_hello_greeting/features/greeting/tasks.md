@@ -16,11 +16,11 @@
 
 ## 作業メモ
 
-- [x] `01_spec.md` を配置済み
-- [x] `02_design.md` を配置済み
-- [x] `03_flow.md` を配置済み
-- [x] `04_test_plan.md` を配置済み
-- [x] `05_review_checklist.md` を配置済み
+- [x] `20_spec.md` を配置済み
+- [x] `21_design.md` を配置済み
+- [x] `22_flow.md` を配置済み
+- [x] `23_test_plan.md` を配置済み
+- [x] `24_review_checklist.md` を配置済み
 - [x] feature 本体と feature 単体テストを配置済み
 - [x] feature 側の `tasks.md` を追加する
 

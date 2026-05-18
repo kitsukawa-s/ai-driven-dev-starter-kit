@@ -2,11 +2,11 @@
 
 あなたは、このリポジトリのAI駆動開発ルールに従う開発補助者です。
 
-このプロンプトは、コマンド/アプリ配下の個別 feature について、`01_spec.md` を作成または更新するためのものです。
+このプロンプトは、コマンド/アプリ配下の個別 feature について、`20_spec.md` を作成または更新するためのものです。
 
 このプロンプトファイルは直接書き換えず、チャットでこのファイルのパスと「利用者が指定する項目」を指定して使います。
 
-それ以外の作業ルールは変更せず、`AGENTS.md`、対象コマンド/アプリの `overview.md`、`docs/templates/` に従ってください。
+それ以外の作業ルールは変更せず、`AGENTS.md`、対象コマンド/アプリの `10_overview.md`、`docs/templates/` に従ってください。
 
 ## 利用者が指定する項目
 
@@ -23,20 +23,20 @@
 ## 参照するファイル
 
 - `AGENTS.md`
-- `docs/<command_or_app_name>/overview.md`
-- `docs/templates/01_spec_template.md`
+- `docs/<command_or_app_name>/10_overview.md`
+- `docs/templates/20_spec_template.md`
 
 必要に応じて、既存の以下も参照してください。
 
-- `<対象機能フォルダ>/01_spec.md`
+- `<対象機能フォルダ>/20_spec.md`
 
 ## 作成または更新するファイル
 
-- `<対象機能フォルダ>/01_spec.md`
+- `<対象機能フォルダ>/20_spec.md`
 
 ## 変更してよいファイル
 
-- `<対象機能フォルダ>/01_spec.md`
+- `<対象機能フォルダ>/20_spec.md`
 - `docs/<command_or_app_name>/tasks.md`
 - `<対象機能フォルダ>/tasks.md`
   - ただし、現在地と次に確認することを短く更新する場合に限る
@@ -52,41 +52,41 @@
 - `docs/overview.md`
 - `docs/how_to_use_prompts.md`
 - `docs/templates/`
-- `docs/<command_or_app_name>/overview.md`
-- `<対象機能フォルダ>/02_design.md`
-- `<対象機能フォルダ>/03_flow.md`
-- `<対象機能フォルダ>/04_test_plan.md`
-- `<対象機能フォルダ>/05_review_checklist.md`
-- `<対象機能フォルダ>/06_review_result.md`
+- `docs/<command_or_app_name>/10_overview.md`
+- `<対象機能フォルダ>/21_design.md`
+- `<対象機能フォルダ>/22_flow.md`
+- `<対象機能フォルダ>/23_test_plan.md`
+- `<対象機能フォルダ>/24_review_checklist.md`
+- `<対象機能フォルダ>/25_review_result.md`
 - `src/`
 - `tests/`
 - `src/common/`
 - 他のコマンド/アプリ配下
 - CI/CD、結合試験、デプロイ関連のファイル
 
-## overview.md との関係
+## 10_overview.md との関係
 
-`01_spec.md` は、対象コマンド/アプリの `overview.md` にある目的、Boundary、feature 分割方針、機能一覧と矛盾しないように作成してください。
+`20_spec.md` は、対象コマンド/アプリの `10_overview.md` にある目的、Boundary、feature 分割方針、機能一覧と矛盾しないように作成してください。
 
 以下を確認してください。
 
-- 対象 feature が `overview.md` の目的と矛盾していないこと
-- 対象 feature が `overview.md` の「担当すること」の範囲に収まっていること
-- 対象 feature が `overview.md` の「担当しないこと」に含まれていないこと
+- 対象 feature が `10_overview.md` の目的と矛盾していないこと
+- 対象 feature が `10_overview.md` の「担当すること」の範囲に収まっていること
+- 対象 feature が `10_overview.md` の「担当しないこと」に含まれていないこと
 - 対象 feature の責務が、`entrypoint.py` の責務や `common` の責務と混ざっていないこと
 - 対象 feature が大きすぎないこと
 - 対象 feature が関数単位まで細かすぎないこと
 
-`overview.md` に対象 feature が明記されていない場合は、勝手に `overview.md` を更新しないでください。
+`10_overview.md` に対象 feature が明記されていない場合は、勝手に `10_overview.md` を更新しないでください。
 
 その場合は、以下のいずれかで対応してください。
 
-- `overview.md` の内容から対象 feature が明確に読み取れる場合は、その理由を `仮定` として明記して進める
-- 判断に迷う場合は、`01_spec.md` を作成せず、確認事項として提示する
+- `10_overview.md` の内容から対象 feature が明確に読み取れる場合は、その理由を `仮定` として明記して進める
+- 判断に迷う場合は、`20_spec.md` を作成せず、確認事項として提示する
 
 ## 情報整理の方針
 
-利用者が指定した内容と `overview.md` から、以下を整理してください。
+利用者が指定した内容と `10_overview.md` から、以下を整理してください。
 
 - 作りたいもの
 - 対象 feature の責務
@@ -97,7 +97,7 @@
 - エラー扱い
 - 今回やらないこと
 - 補足条件
-- `overview.md` との関係
+- `10_overview.md` との関係
 - Boundary
 
 ただし、利用者が明示していない内容を勝手に仕様として確定しないでください。
@@ -107,7 +107,7 @@
 - 作りたいもの
 - 実行イメージまたは利用イメージ
 - 補足条件
-- `docs/<command_or_app_name>/overview.md`
+- `docs/<command_or_app_name>/10_overview.md`
 
 明確に読み取れない場合は、仕様として確定せず、先に確認事項として提示してください。
 
@@ -115,7 +115,7 @@
 
 ## 情報不足時のルール
 
-利用者が指定した内容と `overview.md` だけで機能仕様を作るには情報が不足している場合は、いきなり `01_spec.md` を作成しないでください。
+利用者が指定した内容と `10_overview.md` だけで機能仕様を作るには情報が不足している場合は、いきなり `20_spec.md` を作成しないでください。
 
 先に「確認事項」として、不足している情報を箇条書きで提示してください。
 
@@ -127,36 +127,36 @@
 - 正常系の期待結果
 - エラー扱い
 - 今回やらないこと
-- `overview.md` との関係
+- `10_overview.md` との関係
 - Boundary
 
-ただし、実行イメージまたは利用イメージ、`overview.md` から明確に読み取れる場合は、それをもとに整理して構いません。
+ただし、実行イメージまたは利用イメージ、`10_overview.md` から明確に読み取れる場合は、それをもとに整理して構いません。
 
-最低限、次の情報がそろっている場合のみ、`01_spec.md` の草案を作成してください。
+最低限、次の情報がそろっている場合のみ、`20_spec.md` の草案を作成してください。
 
 - 何を作るか
 - 対象 feature の責務
 - 実行イメージまたは利用イメージ
 - 今回やらないこと
-- `overview.md` と矛盾しないこと
+- `10_overview.md` と矛盾しないこと
 
 ## 作業範囲
 
 1. `AGENTS.md` を確認してください
-2. `docs/<command_or_app_name>/overview.md` を確認してください
-3. `docs/templates/01_spec_template.md` を確認してください
+2. `docs/<command_or_app_name>/10_overview.md` を確認してください
+3. `docs/templates/20_spec_template.md` を確認してください
 4. 対象機能フォルダを確認してください
 5. 利用者が指定した項目を確認してください
-6. 対象 feature が `overview.md` の目的・Boundary・feature 分割方針と矛盾しないか確認してください
+6. 対象 feature が `10_overview.md` の目的・Boundary・feature 分割方針と矛盾しないか確認してください
 7. 情報が不足している場合は、確認事項だけを提示してください
-8. 情報がそろっている場合のみ、`docs/templates/01_spec_template.md` の見出し構成を維持して `01_spec.md` を作成または更新してください
+8. 情報がそろっている場合のみ、`docs/templates/20_spec_template.md` の見出し構成を維持して `20_spec.md` を作成または更新してください
 9. 不明点を補う必要がある場合は、勝手に決めず `仮定` として明記してください
 
 ## 禁止事項
 
-- 情報不足のまま `01_spec.md` を作成しないでください
-- `overview.md` と矛盾する `01_spec.md` を作成しないでください
-- `overview.md` を勝手に更新しないでください
+- 情報不足のまま `20_spec.md` を作成しないでください
+- `10_overview.md` と矛盾する `20_spec.md` を作成しないでください
+- `10_overview.md` を勝手に更新しないでください
 - 個別 feature の範囲を勝手に広げないでください
 - まだ関数設計、呼び出し定義、テスト計画、レビュー観点、実装、テスト作成へ進まないでください
 - 仕様にない便利機能を追加しないでください
@@ -172,8 +172,8 @@
 
 - 作成または更新したファイル
 - 確認した参照ファイル
-- `01_spec.md` を作成した場合、その概要
-- `overview.md` との整合確認結果
+- `20_spec.md` を作成した場合、その概要
+- `10_overview.md` との整合確認結果
 - 確認事項を提示した場合、その理由
 - 仮定を置いた場合、その内容
 - 次に作成するとよさそうな設計ドキュメント
@@ -185,6 +185,6 @@
 必要に応じて、現在の状態、作業メモ、次に確認すること、引き継ぎに必要な短い注意点だけを更新してください。
 
 `tasks.md` には、仕様・設計・テスト計画・レビュー結果の詳細や長いテストログを書かないでください。
-詳細は `overview.md`、`01_spec.md`、`02_design.md`、`03_flow.md`、`04_test_plan.md`、`05_review_checklist.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
+詳細は `10_overview.md`、`20_spec.md`、`21_design.md`、`22_flow.md`、`23_test_plan.md`、`24_review_checklist.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
 
 `tasks.md` を更新しない場合は、更新しない理由を作業報告に書いてください。

@@ -2,9 +2,9 @@
 
 あなたは、このリポジトリのAI駆動開発ルールに従う設計補助者です。
 
-このプロンプトは、コマンド/アプリ単位の `overview.md` を作成または更新するためのものです。
+このプロンプトは、コマンド/アプリ単位の `10_overview.md` を作成または更新するためのものです。
 
-`overview.md` は、個別 feature の仕様を作る前に、コマンド/アプリ全体の目的、Boundary、入口、feature 分割方針を整理するためのドキュメントです。
+`10_overview.md` は、個別 feature の仕様を作る前に、コマンド/アプリ全体の目的、Boundary、入口、feature 分割方針を整理するためのドキュメントです。
 
 利用者は、チャットで「参照するプロンプトのパス」と「対象情報」を渡して使います。
 このプロンプト本文を直接書き換える運用は想定しません。
@@ -23,20 +23,20 @@
 ## 参照するファイル
 
 - `AGENTS.md`
-- `docs/templates/00_overview_template.md`
+- `docs/templates/10_overview_template.md`
 
 必要に応じて、既存の以下も参照してください。
 
-- `docs/<command_or_app_name>/overview.md`
+- `docs/<command_or_app_name>/10_overview.md`
 - `docs/<command_or_app_name>/features/`
 
 ## 作成または更新するファイル
 
-- `docs/<command_or_app_name>/overview.md`
+- `docs/<command_or_app_name>/10_overview.md`
 
 ## 変更してよいファイル
 
-- `docs/<command_or_app_name>/overview.md`
+- `docs/<command_or_app_name>/10_overview.md`
 - `docs/<command_or_app_name>/tasks.md`
   - ただし、現在地と次に確認することを短く更新する場合に限る
 
@@ -60,18 +60,18 @@
 ## 作業範囲
 
 1. `AGENTS.md` を確認してください
-2. `docs/templates/00_overview_template.md` を確認してください
+2. `docs/templates/10_overview_template.md` を確認してください
 3. 利用者が指定した項目を確認してください
-4. 情報が不足している場合は、いきなり `overview.md` を作成せず、確認事項だけを提示してください
-5. 情報がそろっている場合のみ、`docs/templates/00_overview_template.md` の見出し構成を維持して `overview.md` を作成または更新してください
-6. `overview.md` には、コマンド/アプリ全体の目的、Boundary、入口、feature 分割方針を記載してください
+4. 情報が不足している場合は、いきなり `10_overview.md` を作成せず、確認事項だけを提示してください
+5. 情報がそろっている場合のみ、`docs/templates/10_overview_template.md` の見出し構成を維持して `10_overview.md` を作成または更新してください
+6. `10_overview.md` には、コマンド/アプリ全体の目的、Boundary、入口、feature 分割方針を記載してください
 7. 個別 feature の分割案を提示してください
-8. ただし、このプロンプトでは個別 feature の `01_spec.md` は作成しないでください
+8. ただし、このプロンプトでは個別 feature の `20_spec.md` は作成しないでください
 9. 不明点を補う必要がある場合は、勝手に決めず `仮定` として明記してください
 
 ## 情報不足時のルール
 
-利用者が指定した内容だけで `overview.md` を作るには情報が不足している場合は、先に「確認事項」を提示してください。
+利用者が指定した内容だけで `10_overview.md` を作るには情報が不足している場合は、先に「確認事項」を提示してください。
 
 特に以下が不明な場合は、確認を優先してください。
 
@@ -101,11 +101,11 @@ feature 分割案を出す場合は、以下の観点で整理してください
 
 feature 分割案は、まだ確定ではありません。
 
-人間レビュー後に、必要な feature について `create_feature_spec.md` を使って `01_spec.md` を作成します。
+人間レビュー後に、必要な feature について `create_feature_spec.md` を使って `20_spec.md` を作成します。
 
-## overview.md に記載する内容
+## 10_overview.md に記載する内容
 
-`overview.md` には、以下を整理してください。
+`10_overview.md` には、以下を整理してください。
 
 - 目的
 - 背景
@@ -128,8 +128,8 @@ feature 分割案は、まだ確定ではありません。
 
 ## 禁止事項
 
-- 情報不足のまま `overview.md` を作成しないでください
-- 個別 feature の `01_spec.md` を勝手に作成しないでください
+- 情報不足のまま `10_overview.md` を作成しないでください
+- 個別 feature の `20_spec.md` を勝手に作成しないでください
 - `src/` を変更しないでください
 - `tests/` を変更しないでください
 - `src/common/` を作成・更新しないでください
@@ -145,7 +145,7 @@ feature 分割案は、まだ確定ではありません。
 
 - 作成または更新したファイル
 - 参照したファイル
-- `overview.md` の概要
+- `10_overview.md` の概要
 - 提案した feature 分割案
 - 確認事項を提示した場合、その理由
 - 仮定を置いた場合、その内容
@@ -158,6 +158,6 @@ feature 分割案は、まだ確定ではありません。
 必要に応じて、現在の状態、作業メモ、次に確認すること、引き継ぎに必要な短い注意点だけを更新してください。
 
 `tasks.md` には、仕様・設計・テスト計画・レビュー結果の詳細や長いテストログを書かないでください。
-詳細は `overview.md`、feature 側の `01_spec.md`、`02_design.md`、`03_flow.md`、`04_test_plan.md`、`05_review_checklist.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
+詳細は `10_overview.md`、feature 側の `20_spec.md`、`21_design.md`、`22_flow.md`、`23_test_plan.md`、`24_review_checklist.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
 
 `tasks.md` を更新しない場合は、更新しない理由を作業報告に書いてください。

@@ -10,13 +10,13 @@
 
 - `AGENTS.md`
 - `prompts/review_command.md`
-- `docs/cli_text_counter/overview.md`
+- `docs/cli_text_counter/10_overview.md`
 - `docs/cli_text_counter/tasks.md`
 - `docs/cli_text_counter/features/text_counter/tasks.md`
-- `docs/cli_text_counter/features/text_counter/01_spec.md`
-- `docs/cli_text_counter/features/text_counter/02_design.md`
-- `docs/cli_text_counter/features/text_counter/06_review_result.md`
-- `docs/cli_text_counter/10_integration_test_plan.md`
+- `docs/cli_text_counter/features/text_counter/20_spec.md`
+- `docs/cli_text_counter/features/text_counter/21_design.md`
+- `docs/cli_text_counter/features/text_counter/25_review_result.md`
+- `docs/cli_text_counter/11_integration_test_plan.md`
 - `src/cli_text_counter/entrypoint.py`
 - `src/cli_text_counter/features/text_counter.py`
 - `tests/cli_text_counter/features/test_text_counter.py`
@@ -25,12 +25,12 @@
 
 ## 実行した確認内容
 
-- overview.md と実装全体の整合を確認した
+- 10_overview.md と実装全体の整合を確認した
 - entrypoint.py の責務を確認した
 - entrypoint テストの観点を確認した
-- 結合試験計画（10_integration_test_plan.md）と結合試験コード（test_integration_text_counter.py）の整合を確認した
+- 結合試験計画（11_integration_test_plan.md）と結合試験コード（test_integration_text_counter.py）の整合を確認した
 - entrypoint テストと結合試験の役割分担を確認した
-- feature 単体レビュー結果（06_review_result.md）を確認した
+- feature 単体レビュー結果（25_review_result.md）を確認した
 - `python -m pytest tests/cli_text_counter/` を実行してテスト結果を確認した
 
 ## テスト実行結果
@@ -57,13 +57,13 @@ warning は pytest キャッシュ書き込み時の `PytestCacheWarning` であ
 **結合試験の実動作確認は、今回の実行で完了とみなす。**  
 ただし、WinError 6 が再現する環境（一部の Windows 環境や制限された実行環境）では skip になる可能性があるため、その場合は改めて subprocess が動作する環境で再確認が必要である。
 
-## overview.md との整合
+## 10_overview.md との整合
 
 整合：おおむね一致している。ただし以下の表記上の齟齬がある。
 
 **齟齬1（軽微）：「今回やらないこと」セクション**
 
-`overview.md` の末尾に以下の記述が残っている。
+`10_overview.md` の末尾に以下の記述が残っている。
 
 ```
 今回は初期ドキュメント作成のみを対象とします。
@@ -72,13 +72,13 @@ warning は pytest キャッシュ書き込み時の `PytestCacheWarning` であ
 - tests/ 配下の作成
 ```
 
-しかし実際には `src/` および `tests/` 配下の実装は完了している。`overview.md` が初期ドキュメント作成段階の記述のままになっており、現在の状態を正確に表していない。
+しかし実際には `src/` および `tests/` 配下の実装は完了している。`10_overview.md` が初期ドキュメント作成段階の記述のままになっており、現在の状態を正確に表していない。
 
 **齟齬2（軽微）：機能一覧の状態欄**
 
 機能一覧テーブルの `text_counter` の状態が「仕様作成中」のままになっている。実際には実装・単体テスト・単体レビューがすべて完了している。
 
-これらは実装の誤りではなく、`overview.md` の更新漏れである。今回のレビュー範囲では `overview.md` を変更しないため、改善候補として記録する。
+これらは実装の誤りではなく、`10_overview.md` の更新漏れである。今回のレビュー範囲では `10_overview.md` を変更しないため、改善候補として記録する。
 
 ## feature 分割の妥当性
 
@@ -129,7 +129,7 @@ except ModuleNotFoundError:
 
 整合している。
 
-計画（10_integration_test_plan.md）と実装（test_integration_text_counter.py）の対応:
+計画（11_integration_test_plan.md）と実装（test_integration_text_counter.py）の対応:
 
 | 計画 | 実装テスト関数 | 整合 |
 |---|---|---|
@@ -165,7 +165,7 @@ except ModuleNotFoundError:
 
 ## feature 単体レビュー結果の確認
 
-- `docs/cli_text_counter/features/text_counter/06_review_result.md` を確認した
+- `docs/cli_text_counter/features/text_counter/25_review_result.md` を確認した
 - 最終判定: **OK**
 - 未解決の重大指摘: なし
 - テスト結果（06 時点）: 4 passed
@@ -181,12 +181,12 @@ feature 単体レビューに未解決の問題はない。
 
 ## 指摘事項
 
-### [軽微] overview.md の記述が現在の状態と乖離している
+### [軽微] 10_overview.md の記述が現在の状態と乖離している
 
 - 「今回やらないこと」に `src/` と `tests/` の作成が列挙されているが、いずれも作成済みである
 - 機能一覧の状態が「仕様作成中」のままになっている
 
-今回のレビューでは `overview.md` を変更しないため、記録のみとする。
+今回のレビューでは `10_overview.md` を変更しないため、記録のみとする。
 
 ### [軽微] entrypoint の fallback import の意図が説明されていない
 
@@ -194,7 +194,7 @@ feature 単体レビューに未解決の問題はない。
 
 ## 改善候補
 
-1. **overview.md の更新**: 「今回やらないこと」セクションを削除または修正し、機能一覧の状態を「実装済み（レビュー完了）」等に更新する。
+1. **10_overview.md の更新**: 「今回やらないこと」セクションを削除または修正し、機能一覧の状態を「実装済み（レビュー完了）」等に更新する。
 2. **fallback import の方針明文化**: codebase 共通の方針として `AGENTS.md` または feature ドキュメントに記載するか、`PYTHONPATH` や `pyproject.toml` などの設定で解消する方法を検討する。
 
 ## 仕様変更が必要そうな点
@@ -206,15 +206,15 @@ feature 単体レビューに未解決の問題はない。
 **軽微な指摘あり**
 
 実装・テスト・feature 単体レビューに問題はない。  
-`overview.md` の記述が現在の実装状態と乖離しており、また entrypoint の fallback import の意図が説明されていない点が軽微な指摘として残る。  
+`10_overview.md` の記述が現在の実装状態と乖離しており、また entrypoint の fallback import の意図が説明されていない点が軽微な指摘として残る。  
 いずれも実動作には影響しないが、ドキュメントの正確性と可読性のために改善を推奨する。
 
 なお、前回 skip されていた subprocess 結合試験 4 件は今回の実行ではすべて passed に変わった。WinError 6 が再現する環境では skip になる可能性が残るため、そのような環境での確認が必要な場合は改めて subprocess が動作する環境で再実行してください。
 
 ## 作業後報告
 
-- `docs/cli_text_counter/11_command_review_result.md` を新規作成した
+- `docs/cli_text_counter/12_command_review_result.md` を新規作成した
 - 指定外のファイルは変更していない
 - テスト結果: `python -m pytest tests/cli_text_counter/ -v` → **11 passed, 0 skipped**
-- feature 単体レビュー（06_review_result.md）最終判定: OK、未解決の重大指摘なし
+- feature 単体レビュー（25_review_result.md）最終判定: OK、未解決の重大指摘なし
 - 最終判定: **軽微な指摘あり**

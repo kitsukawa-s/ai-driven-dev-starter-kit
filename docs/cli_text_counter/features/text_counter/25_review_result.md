@@ -10,14 +10,14 @@
 ## 参照したファイル
 
 - `AGENTS.md`
-- `docs/cli_text_counter/overview.md`
+- `docs/cli_text_counter/10_overview.md`
 - `docs/cli_text_counter/tasks.md`
 - `docs/cli_text_counter/features/text_counter/tasks.md`
-- `docs/cli_text_counter/features/text_counter/01_spec.md`
-- `docs/cli_text_counter/features/text_counter/02_design.md`
-- `docs/cli_text_counter/features/text_counter/03_flow.md`
-- `docs/cli_text_counter/features/text_counter/04_test_plan.md`
-- `docs/cli_text_counter/features/text_counter/05_review_checklist.md`
+- `docs/cli_text_counter/features/text_counter/20_spec.md`
+- `docs/cli_text_counter/features/text_counter/21_design.md`
+- `docs/cli_text_counter/features/text_counter/22_flow.md`
+- `docs/cli_text_counter/features/text_counter/23_test_plan.md`
+- `docs/cli_text_counter/features/text_counter/24_review_checklist.md`
 - `src/cli_text_counter/features/text_counter.py`
 - `tests/cli_text_counter/features/test_text_counter.py`
 
@@ -25,7 +25,7 @@
 
 - 仕様、関数設計、呼び出し定義、テスト計画、レビュー観点を読み直した
 - feature 実装が `count_characters(text: str) -> int` として実装されていることを確認した
-- feature 単体テストが `04_test_plan.md` の主要観点を確認していることを確認した
+- feature 単体テストが `23_test_plan.md` の主要観点を確認していることを確認した
 - feature にCLI引数解析、標準出力、終了コードの処理が入っていないことを確認した
 - `src/common/` へ共通化していないことを確認した
 

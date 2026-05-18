@@ -95,4 +95,4 @@ command/app 全体の最終確認は `prompts/review_command.md` に委ねます
 
 ## 補足
 
-レビュー結果はこのファイルではなく、必要になった時点で `06_review_result.md` に記録します。
+レビュー結果はこのファイルではなく、必要になった時点で `25_review_result.md` に記録します。

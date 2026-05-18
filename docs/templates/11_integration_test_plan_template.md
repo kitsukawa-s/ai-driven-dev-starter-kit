@@ -5,7 +5,7 @@
 - コマンド/アプリ名: `<command_or_app_name>`
 - short_name: `<short_name>`
 - 入口ファイル: `src/<command_or_app_name>/entrypoint.py`
-- 対象ドキュメント: `docs/<command_or_app_name>/overview.md`
+- 対象ドキュメント: `docs/<command_or_app_name>/10_overview.md`
 
 `<short_name>` は、単一 feature の command/app では feature 名を使います。
 複数 feature を束ねる command/app では、command/app を短く表す名前を使います。
@@ -22,7 +22,7 @@ feature 単体の詳細なロジックは、各 feature の単体試験で確認
 - CLI引数や入力が、適切な feature に渡ること
 - feature の結果が、期待する出力形式で返ること
 - エラー時に、コマンド/アプリとして期待する扱いになること
-- `overview.md` に記載された担当範囲から外れていないこと
+- `10_overview.md` に記載された担当範囲から外れていないこと
 
 ## 対象範囲
 
@@ -42,13 +42,13 @@ feature 単体の詳細なロジックは、各 feature の単体試験で確認
 
 ## 参照するドキュメント
 
-- `docs/<command_or_app_name>/overview.md`
+- `docs/<command_or_app_name>/10_overview.md`
 
 対象 feature:
 
 | feature | 参照ドキュメント |
 |---|---|
-| `<feature_name>` | `docs/<command_or_app_name>/features/<feature_name>/01_spec.md` |
+| `<feature_name>` | `docs/<command_or_app_name>/features/<feature_name>/20_spec.md` |
 
 ## 対象 feature 一覧
 
@@ -78,10 +78,10 @@ feature 単体の詳細なロジックは、各 feature の単体試験で確認
 
 ## Boundary確認
 
-### overview.md との整合
+### 10_overview.md との整合
 
-- `overview.md` の「担当すること」に含まれる範囲であること
-- `overview.md` の「担当しないこと」に含まれる処理を試験対象にしていないこと
+- `10_overview.md` の「担当すること」に含まれる範囲であること
+- `10_overview.md` の「担当しないこと」に含まれる処理を試験対象にしていないこと
 - feature 分割方針と矛盾していないこと
 
 ### entrypoint と features の責務分担
@@ -115,7 +115,7 @@ feature 単体の詳細なロジックは、各 feature の単体試験で確認
 
 ## レビュー観点
 
-- `overview.md` と矛盾していないこと
+- `10_overview.md` と矛盾していないこと
 - entrypoint から feature を呼び出す流れを確認できること
 - feature 単体試験と重複しすぎていないこと
 - 結合試験の範囲が広がりすぎていないこと

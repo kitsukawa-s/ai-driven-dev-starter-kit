@@ -8,7 +8,7 @@
 
 feature 単体の詳細ロジックは、各 feature の単体試験で確認します。
 
-結合試験では、entrypoint、feature 呼び出し、入出力、終了コード、エラー時の扱い、`overview.md` との整合を確認します。
+結合試験では、entrypoint、feature 呼び出し、入出力、終了コード、エラー時の扱い、`10_overview.md` との整合を確認します。
 
 このプロンプトファイルは直接書き換えず、チャットでこのファイルのパスと「利用者が指定する項目」を指定して使います。
 
@@ -21,27 +21,27 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 利用者は、チャットで以下を指定します。
 
 - コマンド/アプリ名: `<command_or_app_name>`
-- 対象 overview: `docs/<command_or_app_name>/overview.md`
-- 対象 結合試験計画: `docs/<command_or_app_name>/10_integration_test_plan.md`
+- 対象 overview: `docs/<command_or_app_name>/10_overview.md`
+- 対象 結合試験計画: `docs/<command_or_app_name>/11_integration_test_plan.md`
 - 対象 entrypoint: `src/<command_or_app_name>/entrypoint.py`
 - 作成または更新するテストファイル: `tests/<command_or_app_name>/test_integration_<short_name>.py`
-- 対象 feature: `必要に応じて feature 名を書く。全体対象の場合は「10_integration_test_plan.md に従う」`
+- 対象 feature: `必要に応じて feature 名を書く。全体対象の場合は「11_integration_test_plan.md に従う」`
 - short_name: `単一 feature の command/app では feature 名。複数 feature を束ねる command/app では command/app を短く表す名前`
 - 補足条件: `必要に応じて書く。なければ「なし」`
 
 ## 参照するファイル
 
 - `AGENTS.md`
-- `docs/<command_or_app_name>/overview.md`
-- `docs/<command_or_app_name>/10_integration_test_plan.md`
+- `docs/<command_or_app_name>/10_overview.md`
+- `docs/<command_or_app_name>/11_integration_test_plan.md`
 - `src/<command_or_app_name>/entrypoint.py`
 
 必要に応じて、以下も参照してください。
 
-- `docs/<command_or_app_name>/features/<feature_name>/01_spec.md`
-- `docs/<command_or_app_name>/features/<feature_name>/02_design.md`
-- `docs/<command_or_app_name>/features/<feature_name>/03_flow.md`
-- `docs/<command_or_app_name>/features/<feature_name>/04_test_plan.md`
+- `docs/<command_or_app_name>/features/<feature_name>/20_spec.md`
+- `docs/<command_or_app_name>/features/<feature_name>/21_design.md`
+- `docs/<command_or_app_name>/features/<feature_name>/22_flow.md`
+- `docs/<command_or_app_name>/features/<feature_name>/23_test_plan.md`
 - `src/<command_or_app_name>/features/<feature_name>.py`
 - `tests/<command_or_app_name>/features/test_<feature_name>.py`
 
@@ -67,8 +67,8 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 - `docs/overview.md`
 - `docs/how_to_use_prompts.md`
 - `docs/templates/`
-- `docs/<command_or_app_name>/overview.md`
-- `docs/<command_or_app_name>/10_integration_test_plan.md`
+- `docs/<command_or_app_name>/10_overview.md`
+- `docs/<command_or_app_name>/11_integration_test_plan.md`
 - `docs/<command_or_app_name>/features/`
 - `src/`
 - `src/common/`
@@ -89,8 +89,8 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 ## 作業範囲
 
 1. `AGENTS.md` を確認してください
-2. `docs/<command_or_app_name>/overview.md` を確認してください
-3. `docs/<command_or_app_name>/10_integration_test_plan.md` を確認してください
+2. `docs/<command_or_app_name>/10_overview.md` を確認してください
+3. `docs/<command_or_app_name>/11_integration_test_plan.md` を確認してください
 4. `src/<command_or_app_name>/entrypoint.py` を確認してください
 5. 必要に応じて対象 feature の仕様、設計、単体テストを確認してください
 6. 結合試験計画に沿って、`tests/<command_or_app_name>/test_integration_<short_name>.py` を作成または更新してください
@@ -107,8 +107,8 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 - CLI引数や入力が feature に渡ること
 - feature の結果が、標準出力や終了コードに反映されること
 - 異常系で、コマンド/アプリとして期待する扱いになること
-- `overview.md` の Boundary と矛盾していないこと
-- `10_integration_test_plan.md` の観点に対応していること
+- `10_overview.md` の Boundary と矛盾していないこと
+- `11_integration_test_plan.md` の観点に対応していること
 
 ## 単体試験との分担
 
@@ -116,7 +116,7 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 
 feature 内部の詳細は、以下で確認します。
 
-- `docs/<command_or_app_name>/features/<feature_name>/04_test_plan.md`
+- `docs/<command_or_app_name>/features/<feature_name>/23_test_plan.md`
 - `tests/<command_or_app_name>/features/test_<feature_name>.py`
 
 結合試験では、entrypoint と feature の接続、入出力、終了コード、エラー時の扱いを中心に確認してください。
@@ -149,12 +149,12 @@ feature 内部の詳細は、以下で確認します。
 - 標準出力またはレスポンス
 - 外部依存の有無
 
-ただし、`overview.md`、`10_integration_test_plan.md`、`entrypoint.py`、feature の設計ドキュメントから明確に読み取れる場合は、それをもとに整理して構いません。
+ただし、`10_overview.md`、`11_integration_test_plan.md`、`entrypoint.py`、feature の設計ドキュメントから明確に読み取れる場合は、それをもとに整理して構いません。
 
 ## 禁止事項
 
 - 情報不足のまま結合試験を実装しないでください
-- `10_integration_test_plan.md` と矛盾するテストを作成しないでください
+- `11_integration_test_plan.md` と矛盾するテストを作成しないでください
 - feature 単体試験で確認すべき詳細ロジックを、結合試験に過剰に持ち込まないでください
 - テストを通すために `src/` を変更しないでください
 - `entrypoint.py` や feature 実装を変更しないでください
@@ -180,8 +180,8 @@ feature 内部の詳細は、以下で確認します。
 - 対象 feature
 - 主な正常系
 - 主な異常系
-- `10_integration_test_plan.md` との対応
-- `overview.md` との整合確認結果
+- `11_integration_test_plan.md` との対応
+- `10_overview.md` との整合確認結果
 - テストを実行した場合、そのコマンドと結果
 - テストを実行できなかった場合、その理由
 - 確認事項を提示した場合、その理由
@@ -194,6 +194,6 @@ feature 内部の詳細は、以下で確認します。
 必要に応じて、現在の状態、作業メモ、次に確認すること、引き継ぎに必要な短い注意点だけを更新してください。
 
 `tasks.md` には、仕様・設計・テスト計画・レビュー結果の詳細や長いテストログを書かないでください。
-詳細は `overview.md`、`01_spec.md`、`02_design.md`、`03_flow.md`、`04_test_plan.md`、`05_review_checklist.md`、`10_integration_test_plan.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
+詳細は `10_overview.md`、`20_spec.md`、`21_design.md`、`22_flow.md`、`23_test_plan.md`、`24_review_checklist.md`、`11_integration_test_plan.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
 
 `tasks.md` を更新しない場合は、更新しない理由を作業報告に書いてください。

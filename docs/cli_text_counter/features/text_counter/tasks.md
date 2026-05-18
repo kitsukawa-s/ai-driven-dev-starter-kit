@@ -18,13 +18,13 @@
 ## 作業メモ
 
 - [x] feature 用の `tasks.md` を `text_counter` 配下に配置する
-- [x] `01_spec.md` を作成する
+- [x] `20_spec.md` を作成する
 - [x] `count_characters` は feature 名ではなく、実装時の関数名候補として扱う
-- [x] 空文字列と文字数の数え方を `01_spec.md` に反映する
-- [x] `02_design.md` を作成する
-- [x] `03_flow.md` を作成する
-- [x] `04_test_plan.md` を作成する
-- [x] `05_review_checklist.md` を作成する
+- [x] 空文字列と文字数の数え方を `20_spec.md` に反映する
+- [x] `21_design.md` を作成する
+- [x] `22_flow.md` を作成する
+- [x] `23_test_plan.md` を作成する
+- [x] `24_review_checklist.md` を作成する
 - [x] feature 本体を作成する
 - [x] feature 単体テストを作成する
 - [x] feature 単体テストの結果を確認する
@@ -37,5 +37,5 @@
 ## 注意点
 
 - `tasks.md` には現在の作業状態と次の一手だけを短く書きます。
-- 仕様の詳細は `01_spec.md` に書きます。
-- レビュー結果は `06_review_result.md` に記録します。
+- 仕様の詳細は `20_spec.md` に書きます。
+- レビュー結果は `25_review_result.md` に記録します。

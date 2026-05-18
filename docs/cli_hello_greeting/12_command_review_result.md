@@ -3,21 +3,21 @@
 ## レビュー対象
 
 - コマンド/アプリ名: `cli_hello_greeting`
-- 対象 overview: `docs/cli_hello_greeting/overview.md`
+- 対象 overview: `docs/cli_hello_greeting/10_overview.md`
 - 対象 entrypoint: `src/cli_hello_greeting/entrypoint.py`
-- 結合試験計画: `docs/cli_hello_greeting/10_integration_test_plan.md`
+- 結合試験計画: `docs/cli_hello_greeting/11_integration_test_plan.md`
 - 結合試験: `tests/cli_hello_greeting/test_integration_greeting.py`
 
 ## 参照したファイル
 
-- `docs/cli_hello_greeting/overview.md`
-- `docs/cli_hello_greeting/10_integration_test_plan.md`
-- `docs/cli_hello_greeting/features/greeting/06_review_result.md`
-- `docs/cli_hello_greeting/features/greeting/01_spec.md`
-- `docs/cli_hello_greeting/features/greeting/02_design.md`
-- `docs/cli_hello_greeting/features/greeting/03_flow.md`
-- `docs/cli_hello_greeting/features/greeting/04_test_plan.md`
-- `docs/cli_hello_greeting/features/greeting/05_review_checklist.md`
+- `docs/cli_hello_greeting/10_overview.md`
+- `docs/cli_hello_greeting/11_integration_test_plan.md`
+- `docs/cli_hello_greeting/features/greeting/25_review_result.md`
+- `docs/cli_hello_greeting/features/greeting/20_spec.md`
+- `docs/cli_hello_greeting/features/greeting/21_design.md`
+- `docs/cli_hello_greeting/features/greeting/22_flow.md`
+- `docs/cli_hello_greeting/features/greeting/23_test_plan.md`
+- `docs/cli_hello_greeting/features/greeting/24_review_checklist.md`
 - `src/cli_hello_greeting/entrypoint.py`
 - `src/cli_hello_greeting/features/greeting.py`
 - `tests/cli_hello_greeting/test_entrypoint_greeting.py`
@@ -72,12 +72,12 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 
 結果: 4 passed
 
-## overview.md との整合
+## 10_overview.md との整合
 
 整合しています。
 
-- `overview.md` に記載された目的、入口、feature 分割、entrypoint の責務は現在の実装と整合しています。
-- 結合試験は機能要件ではなく、command/app 単位の確認として `10_integration_test_plan.md` で扱う方針になっています。
+- `10_overview.md` に記載された目的、入口、feature 分割、entrypoint の責務は現在の実装と整合しています。
+- 結合試験は機能要件ではなく、command/app 単位の確認として `11_integration_test_plan.md` で扱う方針になっています。
 
 ## feature 分割の妥当性
 
@@ -105,7 +105,7 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 
 整合しています。
 
-- `10_integration_test_plan.md` は subprocess による `entrypoint.py` 実行確認を中心にしています。
+- `11_integration_test_plan.md` は subprocess による `entrypoint.py` 実行確認を中心にしています。
 - feature 詳細ロジックの再検証は結合試験の対象外にしています。
 
 ## 結合試験実装との整合
@@ -118,7 +118,7 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 
 ## feature 単体レビュー結果の確認
 
-`docs/cli_hello_greeting/features/greeting/06_review_result.md` の判定は `OK` です。
+`docs/cli_hello_greeting/features/greeting/25_review_result.md` の判定は `OK` です。
 
 未解決の重大指摘はありません。
 
@@ -149,6 +149,6 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 
 ## 作業後報告
 
-- 作成したファイル: `docs/cli_hello_greeting/11_command_review_result.md`
+- 作成したファイル: `docs/cli_hello_greeting/12_command_review_result.md`
 - pytest 結果: `python -m pytest` は `python.exe` 起動エラー。利用可能な Python 実行パスでは import mismatch は解消済みだが、subprocess の Windows ハンドルエラーで一部失敗
 - 気になる点: subprocess を使う結合試験の環境依存

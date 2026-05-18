@@ -27,7 +27,7 @@ AI駆動開発スターターキット13の改善検討として、`cli_text_cou
 - 責務分担: feature は機能固有ロジック、entrypoint はCLI引数・feature呼び出し・標準出力・終了コードに限定する
 - テスト範囲: feature 単体テスト、entrypoint テスト、結合試験の役割を分ける
 - 結合試験: feature 内部の詳細ロジックを過剰に再確認しない
-- レビュー結果: `05_review_checklist.md` ではなく `06_review_result.md`、command/app は `11_command_review_result.md` に記録する
+- レビュー結果: `24_review_checklist.md` ではなく `25_review_result.md`、command/app は `12_command_review_result.md` に記録する
 - 再レビュー: 既存レビュー結果をそのまま採用せず、現在のファイル群を読み直す
 - 共通化: 候補があっても `src/common/` へ勝手に切り出さず、提案にとどめる
 - 標準命名: `test_entrypoint_<short_name>.py`、`test_integration_<short_name>.py` の命名ルール
@@ -85,7 +85,7 @@ AIが仮定して進めると体験や仕様がぶれやすいものは、人間
 - 衝突時は、発生した問題、衝突ファイル、指定パス、標準命名との差分、代替案、推奨案、人間判断が必要な点を報告する
 - entrypoint テストと結合試験で同じ観点を過剰に重ねない
 - 結合試験は subprocess などで command/app としての接続を確認するが、feature 単体ロジックは再検証しすぎない
-- レビュー時は古い `06_review_result.md` や `11_command_review_result.md` の判定をそのまま採用しない
+- レビュー時は古い `25_review_result.md` や `12_command_review_result.md` の判定をそのまま採用しない
 - レビュー依頼だけの場合、実装ファイルやテストファイルを変更しない
 - feature 単体レビューでは command/app 全体の最終判定をしない
 - command/app 全体レビューでは feature 単体レビュー結果も読む

@@ -23,21 +23,21 @@ tests/<command_or_app_name>/features/test_<feature_name>.py
 ```text
 docs/
   <command_or_app_name>/
-    overview.md
-    10_integration_test_plan.md
-    11_command_review_result.md
+    10_overview.md
+    11_integration_test_plan.md
+    12_command_review_result.md
     features/
       <feature_name>/
-        01_spec.md
-        02_design.md
-        03_flow.md
-        04_test_plan.md
-        05_review_checklist.md
-        06_review_result.md
+        20_spec.md
+        21_design.md
+        22_flow.md
+        23_test_plan.md
+        24_review_checklist.md
+        25_review_result.md
 ```
 
-`06_review_result.md` は、feature 単体レビューを行った場合に作成します。
-`11_command_review_result.md` は、command/app 全体レビューを行った場合に作成します。
+`25_review_result.md` は、feature 単体レビューを行った場合に作成します。
+`12_command_review_result.md` は、command/app 全体レビューを行った場合に作成します。
 まだレビューしていない場合は、無理に作成しません。
 
 ---
@@ -46,18 +46,18 @@ docs/
 
 | ファイル | 役割 |
 |---|---|
-| `overview.md` | コマンド/アプリ全体の目的、入口、機能一覧、責務分担を書く |
-| `10_integration_test_plan.md` | command/app 単位の結合試験計画を書く |
-| `11_command_review_result.md` | command/app 全体レビュー結果を書く |
-| `01_spec.md` | feature の要件・仕様を書く |
-| `02_design.md` | 関数単位の責務、入力、出力、エラー方針を書く |
-| `03_flow.md` | 関数同士の呼び出し順、依存関係、全体フローを書く |
-| `04_test_plan.md` | feature 単体テストの観点を書く |
-| `05_review_checklist.md` | feature 単体レビュー観点を書く。レビュー結果は書き込まない |
-| `06_review_result.md` | feature 単体レビュー結果、指摘事項、最終判定を書く |
+| `10_overview.md` | コマンド/アプリ全体の目的、入口、機能一覧、責務分担を書く |
+| `11_integration_test_plan.md` | command/app 単位の結合試験計画を書く |
+| `12_command_review_result.md` | command/app 全体レビュー結果を書く |
+| `20_spec.md` | feature の要件・仕様を書く |
+| `21_design.md` | 関数単位の責務、入力、出力、エラー方針を書く |
+| `22_flow.md` | 関数同士の呼び出し順、依存関係、全体フローを書く |
+| `23_test_plan.md` | feature 単体テストの観点を書く |
+| `24_review_checklist.md` | feature 単体レビュー観点を書く。レビュー結果は書き込まない |
+| `25_review_result.md` | feature 単体レビュー結果、指摘事項、最終判定を書く |
 
-`06_review_result.md` は feature 単体の仕様、設計、実装、単体テストを確認するためのレビュー結果です。
-`11_command_review_result.md` は overview、entrypoint、結合試験、全体テスト、feature 単体レビュー結果を確認するためのレビュー結果です。
+`25_review_result.md` は feature 単体の仕様、設計、実装、単体テストを確認するためのレビュー結果です。
+`12_command_review_result.md` は overview、entrypoint、結合試験、全体テスト、feature 単体レビュー結果を確認するためのレビュー結果です。
 
 ---
 
@@ -67,14 +67,14 @@ docs/
 
 | 作成するファイル | 参照するテンプレート |
 |---|---|
-| `overview.md` | `docs/templates/00_overview_template.md` |
-| `01_spec.md` | `docs/templates/01_spec_template.md` |
-| `02_design.md` | `docs/templates/02_design_template.md` |
-| `03_flow.md` | `docs/templates/03_flow_template.md` |
-| `04_test_plan.md` | `docs/templates/04_test_plan_template.md` |
-| `05_review_checklist.md` | `docs/templates/05_review_checklist_template.md` |
-| `10_integration_test_plan.md` | `docs/templates/10_integration_test_plan_template.md` |
-| `11_command_review_result.md` | `docs/templates/11_command_review_result_template.md` |
+| `10_overview.md` | `docs/templates/10_overview_template.md` |
+| `20_spec.md` | `docs/templates/20_spec_template.md` |
+| `21_design.md` | `docs/templates/21_design_template.md` |
+| `22_flow.md` | `docs/templates/22_flow_template.md` |
+| `23_test_plan.md` | `docs/templates/23_test_plan_template.md` |
+| `24_review_checklist.md` | `docs/templates/24_review_checklist_template.md` |
+| `11_integration_test_plan.md` | `docs/templates/11_integration_test_plan_template.md` |
+| `12_command_review_result.md` | `docs/templates/12_command_review_result_template.md` |
 
 ---
 
@@ -98,10 +98,10 @@ feature の単体テストは `tests/<command_or_app_name>/features/test_<featur
 
 ## テスト計画と結合試験計画
 
-`04_test_plan.md` は feature 単体テストの計画です。
+`23_test_plan.md` は feature 単体テストの計画です。
 feature の詳細ロジック、正常系、異常系、境界値などを確認します。
 
-`10_integration_test_plan.md` は command/app 単位の結合試験計画です。
+`11_integration_test_plan.md` は command/app 単位の結合試験計画です。
 `entrypoint.py` から feature を呼び出したときの接続、入出力、終了コード、エラー時の扱いを確認します。
 
 結合試験は常に必須ではありません。entrypoint から feature を束ねて確認する必要がある場合に扱います。

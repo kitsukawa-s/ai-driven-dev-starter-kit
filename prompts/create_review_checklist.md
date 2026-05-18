@@ -16,22 +16,22 @@
 ## 参照するファイル
 
 - `AGENTS.md`
-- `<対象機能フォルダ>/01_spec.md`
-- `<対象機能フォルダ>/02_design.md`
-- `<対象機能フォルダ>/03_flow.md`
-- `<対象機能フォルダ>/04_test_plan.md`
-- `docs/templates/05_review_checklist_template.md`
+- `<対象機能フォルダ>/20_spec.md`
+- `<対象機能フォルダ>/21_design.md`
+- `<対象機能フォルダ>/22_flow.md`
+- `<対象機能フォルダ>/23_test_plan.md`
+- `docs/templates/24_review_checklist_template.md`
 
 ## 作成または更新するファイル
 
-- `<対象機能フォルダ>/05_review_checklist.md`
+- `<対象機能フォルダ>/24_review_checklist.md`
 
-`05_review_checklist.md` はレビュー観点の定義です。
-レビュー結果や指摘事項は書き込まず、実装後レビューでは `<対象機能フォルダ>/06_review_result.md` に記録してください。
+`24_review_checklist.md` はレビュー観点の定義です。
+レビュー結果や指摘事項は書き込まず、実装後レビューでは `<対象機能フォルダ>/25_review_result.md` に記録してください。
 
 ## 変更してよいファイル
 
-- `<対象機能フォルダ>/05_review_checklist.md`
+- `<対象機能フォルダ>/24_review_checklist.md`
 - `docs/<command_or_app_name>/tasks.md`
 - `<対象機能フォルダ>/tasks.md`
   - ただし、現在地と次に確認することを短く更新する場合に限る
@@ -43,11 +43,11 @@
 - このプロンプトファイル
 - `AGENTS.md`
 - `docs/templates/`
-- `<対象機能フォルダ>/01_spec.md`
-- `<対象機能フォルダ>/02_design.md`
-- `<対象機能フォルダ>/03_flow.md`
-- `<対象機能フォルダ>/04_test_plan.md`
-- `<対象機能フォルダ>/06_review_result.md`
+- `<対象機能フォルダ>/20_spec.md`
+- `<対象機能フォルダ>/21_design.md`
+- `<対象機能フォルダ>/22_flow.md`
+- `<対象機能フォルダ>/23_test_plan.md`
+- `<対象機能フォルダ>/25_review_result.md`
 - 実装ファイル
 - テストファイル
 - CI/CD、結合試験、デプロイ関連のファイル
@@ -56,7 +56,7 @@
 
 1. 仕様・関数設計・関数呼び出し定義・テスト設計を確認してください
 2. テスト設計までに不足や矛盾がないか簡潔にレビューしてください
-3. `docs/templates/05_review_checklist_template.md` の見出し構成を維持して `05_review_checklist.md` を作成または更新してください
+3. `docs/templates/24_review_checklist_template.md` の見出し構成を維持して `24_review_checklist.md` を作成または更新してください
 
 ## 禁止事項
 
@@ -73,6 +73,6 @@
 必要に応じて、現在の状態、作業メモ、次に確認すること、引き継ぎに必要な短い注意点だけを更新してください。
 
 `tasks.md` には、仕様・設計・テスト計画・レビュー結果の詳細や長いテストログを書かないでください。
-詳細は `01_spec.md`、`02_design.md`、`03_flow.md`、`04_test_plan.md`、`05_review_checklist.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
+詳細は `20_spec.md`、`21_design.md`、`22_flow.md`、`23_test_plan.md`、`24_review_checklist.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
 
 `tasks.md` を更新しない場合は、更新しない理由を作業報告に書いてください。

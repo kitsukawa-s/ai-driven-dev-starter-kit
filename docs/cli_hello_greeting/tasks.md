@@ -16,7 +16,7 @@
 
 ## 作業メモ
 
-- [x] `docs/cli_hello_greeting/overview.md` を配置済み
+- [x] `docs/cli_hello_greeting/10_overview.md` を配置済み
 - [x] `docs/cli_hello_greeting/features/greeting/` 配下の機能ドキュメントを配置済み
 - [x] `src/cli_hello_greeting/` 配下の実装を配置済み
 - [x] `tests/cli_hello_greeting/` 配下のテストを配置済み
@@ -30,5 +30,5 @@
 ## 注意点
 
 - `tasks.md` には現在の作業状態と次の一手だけを短く書きます。
-- 仕様の詳細は `overview.md` や feature 配下の専用ファイルに記録します。
+- 仕様の詳細は `10_overview.md` や feature 配下の専用ファイルに記録します。
 - 設計、テスト計画、レビュー結果の詳細は、それぞれの専用ファイルに記録します。

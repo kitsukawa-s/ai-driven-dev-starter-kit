@@ -39,7 +39,7 @@ cli_hello_greeting / greeting
 今回は対象外です。
 
 entrypoint の確認は `tests/cli_hello_greeting/test_entrypoint_greeting.py` で扱います。
-command/app 単位の結合試験は `docs/cli_hello_greeting/10_integration_test_plan.md` と `tests/cli_hello_greeting/test_integration_greeting.py` で扱います。
+command/app 単位の結合試験は `docs/cli_hello_greeting/11_integration_test_plan.md` と `tests/cli_hello_greeting/test_integration_greeting.py` で扱います。
 
 ## 今回テストしないこと
 

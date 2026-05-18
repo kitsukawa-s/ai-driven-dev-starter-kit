@@ -8,7 +8,7 @@
 
 - `src/cli_simple_calculator/entrypoint.py`
 
-現時点ではチュートリアル初期状態として、overview.md と calculator feature の 01_spec.md を配置しています。
+現時点ではチュートリアル初期状態として、10_overview.md と calculator feature の 20_spec.md を配置しています。
 
 ## 機能一覧
 

@@ -8,11 +8,11 @@
 
 ## 参照したファイル
 
-- `docs/cli_hello_greeting/features/greeting/01_spec.md`
-- `docs/cli_hello_greeting/features/greeting/02_design.md`
-- `docs/cli_hello_greeting/features/greeting/03_flow.md`
-- `docs/cli_hello_greeting/features/greeting/04_test_plan.md`
-- `docs/cli_hello_greeting/features/greeting/05_review_checklist.md`
+- `docs/cli_hello_greeting/features/greeting/20_spec.md`
+- `docs/cli_hello_greeting/features/greeting/21_design.md`
+- `docs/cli_hello_greeting/features/greeting/22_flow.md`
+- `docs/cli_hello_greeting/features/greeting/23_test_plan.md`
+- `docs/cli_hello_greeting/features/greeting/24_review_checklist.md`
 - `src/cli_hello_greeting/features/greeting.py`
 - `tests/cli_hello_greeting/features/test_greeting.py`
 - 関連確認: `src/cli_hello_greeting/entrypoint.py`
@@ -23,7 +23,7 @@
 - feature 仕様と `create_greeting` 実装の整合を確認
 - 関数設計と実装の責務分担を確認
 - 呼び出し定義と entrypoint から feature への接続方針を確認
-- feature 単体テストが `04_test_plan.md` の主要観点を確認していることを確認
+- feature 単体テストが `23_test_plan.md` の主要観点を確認していることを確認
 - `src/common/` へ勝手に共通化していないことを確認
 
 ## テスト実行結果
@@ -66,7 +66,7 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 整合しています。
 
 - 英字名、日本語名、空文字、空白のみの feature 単体テストがあります。
-- `04_test_plan.md` は feature 単体テストに限定され、entrypoint 観点は `tests/cli_hello_greeting/test_entrypoint_greeting.py` 側へ分かれています。
+- `23_test_plan.md` は feature 単体テストに限定され、entrypoint 観点は `tests/cli_hello_greeting/test_entrypoint_greeting.py` 側へ分かれています。
 
 ## feature 実装と feature 単体テストの確認結果
 
@@ -77,7 +77,7 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 ## entrypoint や結合試験との責務分担に関する気づき
 
 - feature 単体レビューでは、entrypoint と結合試験の最終判定は行いません。
-- entrypoint と結合試験を含む command/app 全体の確認は `docs/cli_hello_greeting/11_command_review_result.md` に委ねます。
+- entrypoint と結合試験を含む command/app 全体の確認は `docs/cli_hello_greeting/12_command_review_result.md` に委ねます。
 
 ## 指定外変更・AIアドリブの有無
 
@@ -103,6 +103,6 @@ C:\Users\aricy\AppData\Local\Python\bin\python.exe -m pytest tests\cli_hello_gre
 
 ## 作業後報告
 
-- 作成したファイル: `docs/cli_hello_greeting/features/greeting/06_review_result.md`
+- 作成したファイル: `docs/cli_hello_greeting/features/greeting/25_review_result.md`
 - command/app 全体レビューに委ねる事項: entrypoint、結合試験、全体 pytest 結果
 - 仕様確認が必要な点: なし
