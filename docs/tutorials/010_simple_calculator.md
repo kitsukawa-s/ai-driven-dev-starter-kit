@@ -395,6 +395,19 @@ docs/cli_simple_calculator/12_command_review_result.md
 docs/cli_simple_calculator/tasks.md
 ```
 
+### レビュー判定が OK 以外だった場合
+
+`12_command_review_result.md` の判定が `軽微な指摘あり`、`要修正`、`要仕様確認` だった場合は、すぐにAIへ修正を依頼しないでください。
+
+1. `12_command_review_result.md` を人間が確認する
+2. 反映する指摘と保留する指摘を人間が判断する
+3. 反映する場合は、別のチャットでAIに修正を依頼する
+4. 修正後に `python -m pytest` を実行する
+5. 必要に応じて `prompts/review_command.md` で再レビューする
+
+`feature 単体レビュー（25_review_result.md）` の判定が OK 以外だった場合も、同じ流れで対応します。
+`prompts/review_feature.md` で再レビューするか、`prompts/review_command.md` に委ねるかは、指摘の内容に応じて判断してください。
+
 ---
 
 ## 進めるときの注意
