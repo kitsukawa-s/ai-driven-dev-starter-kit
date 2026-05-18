@@ -55,7 +55,8 @@ ai-driven-dev-starter-kit/
 │  │  ├─ 23_test_plan_template.md
 │  │  ├─ 24_review_checklist_template.md
 │  │  ├─ 11_integration_test_plan_template.md
-│  │  └─ 12_command_review_result_template.md
+│  │  ├─ 12_command_review_result_template.md
+│  │  └─ 30_common_proposal_template.md
 │  ├─ tutorials/
 │  │  ├─ 010_simple_calculator.md
 │  │  └─ 020_create_new_sample_from_scratch.md
@@ -243,6 +244,7 @@ entrypoint と結合試験まで含めた最終確認は `review_command.md` で
 
 ただし、AIは人間の明示指示なしに `src/common/` を作成・更新しません。
 共通化候補がある場合は、設計書、レビュー結果、作業報告に提案として記録します。
+提案をまとめる場合は、`docs/templates/30_common_proposal_template.md` を使います。
 
 ---
 

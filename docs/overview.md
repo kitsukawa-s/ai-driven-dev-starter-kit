@@ -75,6 +75,7 @@ docs/
 | `24_review_checklist.md` | `docs/templates/24_review_checklist_template.md` |
 | `11_integration_test_plan.md` | `docs/templates/11_integration_test_plan_template.md` |
 | `12_command_review_result.md` | `docs/templates/12_command_review_result_template.md` |
+| `30_common_proposal.md` | `docs/templates/30_common_proposal_template.md` |
 
 ---
 
@@ -136,6 +137,7 @@ feature の詳細ロジック、正常系、異常系、境界値などを確認
 
 ただし、AIは人間の明示指示なしに `src/common/` を作成・更新しません。
 共通化候補がある場合は、設計書、レビュー結果、または作業報告に提案として記録します。
+提案をまとめる場合は、`docs/templates/30_common_proposal_template.md` を使います。
 
 ---
 
