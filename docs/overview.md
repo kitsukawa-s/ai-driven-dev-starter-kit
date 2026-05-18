@@ -96,6 +96,28 @@ feature の単体テストは `tests/<command_or_app_name>/features/test_<featur
 
 ---
 
+## feature フォルダ名の番号プレフィックス
+
+単純なアプリでは、feature フォルダ名は `text_counter` のように機能名だけで構いません。
+
+処理順・呼び出し順・パイプライン順が重要な場合は、`010_`、`020_` のような番号プレフィックスを付けてもよいです。
+
+```text
+docs/<command_or_app_name>/features/
+├─ 010_load_inputs/
+├─ 020_normalize_data/
+├─ 030_compare_items/
+└─ 040_output_result/
+```
+
+番号プレフィックスは、人間とAIが処理順を共有しやすくするためのものです。以下の点に注意してください。
+
+- Python の実装ファイル名やモジュール名まで番号付きにする必要はない
+- 番号付き feature フォルダを使う場合も、フォルダ内のドキュメント番号体系（`20_spec.md` など）は変わらない
+- `tasks.md` は番号なしのまま現在地メモとして扱う
+
+---
+
 ## テスト計画と結合試験計画
 
 `23_test_plan.md` は feature 単体テストの計画です。

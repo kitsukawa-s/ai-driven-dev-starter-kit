@@ -153,6 +153,20 @@ src/<command_or_app_name>/features/<feature_name>.py
 tests/<command_or_app_name>/features/test_<feature_name>.py
 ```
 
+処理順・呼び出し順・パイプライン順が重要な場合は、feature フォルダ名に番号プレフィックスを付けてもよいです。
+
+```text
+docs/<command_or_app_name>/features/
+├─ 010_load_inputs/
+├─ 020_normalize_data/
+├─ 030_compare_items/
+└─ 040_output_result/
+```
+
+番号プレフィックスは、人間とAIが処理順を共有しやすくするためのものです。
+Python の実装ファイル名やモジュール名まで番号付きにする必要はありません。
+番号付き feature フォルダを使う場合も、フォルダ内のドキュメント番号体系（`20_spec.md` など）は変わりません。
+
 `tasks.md` は作業状態を引き継ぐための現在地メモです。
 command/app 単位の `docs/<command_or_app_name>/tasks.md` には全体の作業状態を、feature 単位の `docs/<command_or_app_name>/features/<feature_name>/tasks.md` には個別機能の作業状態を短く記録します。
 仕様、設計、テスト計画、レビュー結果の代わりにはしません。
