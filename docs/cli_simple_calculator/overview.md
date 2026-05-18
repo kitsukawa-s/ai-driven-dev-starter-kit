@@ -8,7 +8,7 @@
 
 - `src/cli_simple_calculator/entrypoint.py`
 
-現時点では仕様書のみを用意しており、実装ファイルはまだ作成していません。
+現時点ではチュートリアル初期状態として、overview.md と calculator feature の 01_spec.md を配置しています。
 
 ## 機能一覧
 

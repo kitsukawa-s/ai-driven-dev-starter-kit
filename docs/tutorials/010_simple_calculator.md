@@ -5,6 +5,9 @@
 チュートリアル専用プロンプトは使いません。
 `prompts/` 直下の汎用プロンプトを参照し、チャットで「参照するプロンプトのパス」と「対象機能情報」を渡して進めます。
 
+標準 `prompts/*.md` には、変更してよい範囲、変更してはいけない範囲、`tasks.md` 更新、レビュー結果の記録先、feature / entrypoint / 結合試験の責務分担などの共通ルールが入っています。
+チャットでは、参照するプロンプト、対象情報、今回だけの補足条件を短く渡します。詳しくは `docs/how_to_use_prompts.md` の「短いチャット指示の書き方」を参照してください。
+
 ---
 
 ## 前提
@@ -33,6 +36,11 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 - `tests/cli_simple_calculator/test_integration_calculator.py`
 - `tests/cli_simple_calculator/features/test_calculator.py`
 
+また、各ステップの作業後に、必要に応じて以下の現在地メモを短く更新します。
+
+- `docs/cli_simple_calculator/tasks.md`
+- `docs/cli_simple_calculator/features/calculator/tasks.md`
+
 `prompts/*.md` は直接編集しません。
 必要な情報は、各ステップのチャット例としてAIに渡します。
 
@@ -43,23 +51,31 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 チュートリアル開始時は、`docs/cli_simple_calculator/tasks.md` を確認して、command/app 全体の現在地を把握します。
 feature 作業に入る前は、`docs/cli_simple_calculator/features/calculator/tasks.md` を確認して、個別機能の現在地を把握します。
 
-作業後は、必要に応じて `tasks.md` の「現在の状態」や「次に確認すること」だけを短く更新します。
-仕様、設計、レビュー結果の詳細は `tasks.md` には書かず、それぞれの専用ファイルに記録します。
+作業後は、各 `prompts/*.md` の「作業後の tasks.md 更新」ルールに従います。
+そのため、チャット側で毎回 `tasks.md` 更新ルールを長く書く必要はありません。
+更新する場合は、`tasks.md` の「現在の状態」や「次に確認すること」だけを短く更新します。
+仕様、設計、テスト計画、レビュー結果の詳細や長いテストログは `tasks.md` には書かず、それぞれの専用ファイルに記録します。
+以降の「作成または更新されるファイル」に含まれる `tasks.md` は、現在地メモとして必要最小限更新されるファイルです。
 
 ---
 
-## 1. サンプル機能を確認する
+## 1. 完成済みサンプルで構成を確認する（任意・初回向け）
 
-まず、完成済みサンプル `cli_hello_greeting` を読み、仕様、設計、実装、テストの対応関係を確認します。
+まず、完成済みサンプル `cli_hello_greeting` を使って、docs / src / tests の対応関係を確認します。
+これはAIにサンプルを学習させて次の実装へ流用させるためではなく、利用者がスターターキットの構成を理解するための任意ステップです。
+
+すでに構成を理解している場合や、2回目以降に進める場合は、このステップをスキップして `2. 関数設計を作成する` から始めても構いません。
 
 チャット例:
 
 ```text
-AGENTS.md を確認したうえで、完成済みサンプルを読んでください。
+AGENTS.md を確認したうえで、完成済みサンプルの docs / src / tests の対応関係を説明してください。
 
 確認対象:
 - docs/cli_hello_greeting/overview.md
+- docs/cli_hello_greeting/tasks.md
 - docs/cli_hello_greeting/features/greeting/
+- docs/cli_hello_greeting/features/greeting/tasks.md
 - src/cli_hello_greeting/
 - tests/cli_hello_greeting/
 
@@ -96,6 +112,8 @@ prompts/create_function_design.md を参照してください。
 
 ```text
 docs/cli_simple_calculator/features/calculator/02_design.md
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -120,13 +138,15 @@ prompts/create_function_call_flow.md を参照してください。
 
 ```text
 docs/cli_simple_calculator/features/calculator/03_flow.md
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
 
 ## 4. テスト計画を作成する
 
-`prompts/create_test_design.md` を参照して、単体テストの観点を整理します。
+`prompts/create_test_design.md` を参照して、feature 単体テストの観点を整理します。
 
 チャット例:
 
@@ -137,13 +157,15 @@ prompts/create_test_design.md を参照してください。
 コマンド/アプリ名: cli_simple_calculator
 対象機能名: calculator
 作りたいもの: 2つの整数を足し算するシンプルな計算機
-補足条件: tests/cli_simple_calculator/ 配下に置く前提で整理してください。
+補足条件: feature 単体テストは tests/cli_simple_calculator/features/test_calculator.py に置く前提で整理してください。entrypoint の引数解析、標準出力、終了コードは後続の entrypoint テストで扱ってください。
 ```
 
 作成または更新されるファイル:
 
 ```text
 docs/cli_simple_calculator/features/calculator/04_test_plan.md
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -171,6 +193,8 @@ prompts/create_review_checklist.md を参照してください。
 
 ```text
 docs/cli_simple_calculator/features/calculator/05_review_checklist.md
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -190,7 +214,7 @@ prompts/implement_feature.md を参照してください。
 実装ファイル: src/cli_simple_calculator/features/calculator.py
 テストファイル: tests/cli_simple_calculator/features/test_calculator.py
 作りたいもの: 2つの整数を足し算するシンプルな計算機
-補足条件: Python標準ライブラリのみを使ってください。entrypoint.py と test_entrypoint_calculator.py は作成しないでください。
+補足条件: なし
 ```
 
 作成または更新されるファイル:
@@ -198,6 +222,8 @@ prompts/implement_feature.md を参照してください。
 ```text
 src/cli_simple_calculator/features/calculator.py
 tests/cli_simple_calculator/features/test_calculator.py
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -225,6 +251,8 @@ short_name: calculator
 ```text
 src/cli_simple_calculator/entrypoint.py
 tests/cli_simple_calculator/test_entrypoint_calculator.py
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -255,6 +283,8 @@ prompts/create_integration_test_plan.md を参照してください。
 
 ```text
 docs/cli_simple_calculator/10_integration_test_plan.md
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -279,16 +309,14 @@ prompts/implement_integration_test.md を参照してください。
 short_name: calculator
 補足条件:
 - 結合試験は 10_integration_test_plan.md に従い、subprocess による entrypoint.py の実行確認を中心にしてください。
-- feature 単体の詳細ロジックは再検証しないでください。
-- 指定した出力先パスを変更しないでください。
-- pytest の import mismatch やファイル名衝突が発生した場合は、勝手に別名ファイルを作成せず、確認事項として報告してください。
-- src、docs、prompts、src/common は変更しないでください。
 ```
 
 作成または更新されるファイル:
 
 ```text
 tests/cli_simple_calculator/test_integration_calculator.py
+docs/cli_simple_calculator/tasks.md
+docs/cli_simple_calculator/features/calculator/tasks.md
 ```
 
 ---
@@ -328,6 +356,13 @@ prompts/review_feature.md を参照してください。
 補足条件: レビューだけ行い、実装ファイルとテストファイルは変更しないでください。
 ```
 
+作成または更新されるファイル:
+
+```text
+docs/cli_simple_calculator/features/calculator/06_review_result.md
+docs/cli_simple_calculator/features/calculator/tasks.md
+```
+
 ---
 
 ## 12. command/app 全体レビューを行う
@@ -353,12 +388,22 @@ short_name: calculator
 補足条件: レビューだけ行い、レビュー結果ファイル以外は変更しないでください。
 ```
 
+作成または更新されるファイル:
+
+```text
+docs/cli_simple_calculator/11_command_review_result.md
+docs/cli_simple_calculator/tasks.md
+```
+
 ---
 
 ## 進めるときの注意
 
 - `prompts/*.md` は直接編集しません
-- チャットで、参照するプロンプトのパスと対象機能情報を渡します
+- チャットでは、参照するプロンプトのパス、対象情報、今回だけの補足条件を渡します
+- 共通ルールは標準 `prompts/*.md` 側に寄せているため、毎回長く書き直す必要はありません
+- `tasks.md` 更新は、各 `prompts/*.md` の作業後ルールに従います
+- 人間判断が必要な仕様は、補足条件として明示します
 - 仕様にない便利機能は追加しません
 - `entrypoint.py` は薄く保ちます
 - feature 実装と entrypoint 実装は別のプロンプトで扱います

@@ -42,6 +42,59 @@ prompts/create_function_design.md を参照してください。
 
 ---
 
+## 短いチャット指示の書き方
+
+標準プロンプトには、作業範囲、変更してよいファイル、変更してはいけないファイル、`tasks.md` の扱い、`src/common/` を勝手に触らないこと、レビュー結果の記録先、feature / entrypoint / 結合試験の責務分担などの共通ルールが含まれています。
+
+そのため、チャットでは毎回すべてのルールを書き直すのではなく、今回固有の情報を中心に渡します。
+
+チャットで渡す主な情報:
+
+- command/app 名
+- feature 名
+- 対象フォルダ
+- 実装ファイル
+- テストファイル
+- 作りたいもの
+- 実行イメージ
+- 今回やらないこと
+- 補足条件
+
+標準プロンプトに任せてよい内容の例:
+
+- 指定外ファイルを変更しない
+- `tasks.md` には現在地と次の一手だけを短く書く
+- `src/common/` を勝手に作成・更新しない
+- レビュー結果を `06_review_result.md` や `11_command_review_result.md` に書く
+- feature / entrypoint / 結合試験の責務を分ける
+
+一方で、仕様判断に関わることは人間がチャットで明示します。たとえば、空文字列をどう扱うか、文字数をどう数えるか、fallback import を方針化するか、skip されたテストを成功扱いしてよいか、などです。
+
+短いチャット指示の例:
+
+```text
+prompts/implement_feature.md を参照してください。
+
+対象機能フォルダ: docs/<command_or_app_name>/features/<feature_name>/
+コマンド/アプリ名: <command_or_app_name>
+対象機能名: <feature_name>
+実装ファイル: src/<command_or_app_name>/features/<feature_name>.py
+テストファイル: tests/<command_or_app_name>/features/test_<feature_name>.py
+作りたいもの: <今回作りたい機能>
+補足条件: なし
+```
+
+仕様として迷いやすい点がある場合は、`補足条件` に短く追加します。
+
+```text
+補足条件:
+- 空文字列は有効な入力として扱ってください。
+- 文字数は Python の len() 相当で数えてください。
+- レビューだけ行い、実装ファイルとテストファイルは変更しないでください。
+```
+
+---
+
 ## 汎用プロンプト一覧
 
 | プロンプト | 用途 | 主な出力先 |
