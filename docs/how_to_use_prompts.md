@@ -107,6 +107,7 @@ prompts/implement_feature.md を参照してください。
 | `prompts/create_review_checklist.md` | feature 単体レビュー観点を作成する | `<対象機能フォルダ>/24_review_checklist.md` |
 | `prompts/create_integration_test_plan.md` | command/app 単位の結合試験計画を作成する | `docs/<command_or_app_name>/11_integration_test_plan.md` |
 | `prompts/implement_feature.md` | feature 本体と feature 単体テストを作成する | 指定された feature 実装ファイル、feature 単体テストファイル |
+| `prompts/review_feature_source.md` | feature 実装直後のソースレビューを行う（中間チェック。修正はしない） | チャットで報告（ファイル出力なし） |
 | `prompts/implement_entrypoint.md` | `entrypoint.py` と entrypoint のテストを作成する | `src/<command_or_app_name>/entrypoint.py`、`tests/<command_or_app_name>/test_entrypoint_<short_name>.py` |
 | `prompts/implement_integration_test.md` | 結合試験を実装する | `tests/<command_or_app_name>/test_integration_<short_name>.py` |
 | `prompts/review_feature.md` | feature 単体レビューを行う | `<対象機能フォルダ>/25_review_result.md` |
@@ -115,6 +116,8 @@ prompts/implement_feature.md を参照してください。
 ---
 
 ## review_feature と review_command の役割分担
+
+`prompts/review_feature_source.md` は feature 実装直後の中間チェック用です。`implement_feature.md` 直後に、実装ファイルと単体テストファイルを仕様・設計・テスト計画と照合します。修正候補はチャットで報告するだけで、ファイルは変更しません。`25_review_result.md` も作成しません。
 
 `prompts/review_feature.md` は feature 単体レビュー用です。主に feature 配下の `20_spec.md` から `24_review_checklist.md`、feature 実装、feature 単体テストを確認し、結果を `<対象機能フォルダ>/25_review_result.md` に記録します。
 

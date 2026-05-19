@@ -228,7 +228,37 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 
 ---
 
-## 7. entrypoint.py と entrypoint テストを作成する
+## 7. feature ソースレビューを行う
+
+`prompts/review_feature_source.md` を参照して、feature 実装ファイルと feature 単体テストファイルを対象にソースレビューを行います。
+
+このステップでは問題を見つけてもファイルを修正しません。修正候補と確認結果をチャットで報告します。
+`25_review_result.md` は作成しません。正式なレビュー結果ファイルはステップ 12 で作成します。
+
+チャット例:
+
+```text
+prompts/review_feature_source.md を参照してください。
+
+対象機能フォルダ: docs/cli_simple_calculator/features/calculator/
+コマンド/アプリ名: cli_simple_calculator
+対象機能名: calculator
+実装ファイル: src/cli_simple_calculator/features/calculator.py
+テストファイル: tests/cli_simple_calculator/features/test_calculator.py
+補足条件: ソースレビューだけ行い、実装ファイル、テストファイル、docs、tasks.md は変更しないでください。
+```
+
+作成または更新されるファイル:
+
+```text
+なし
+```
+
+このステップでは、チャットでレビュー結果を報告するだけです。
+
+---
+
+## 8. entrypoint.py と entrypoint テストを作成する
 
 `prompts/implement_entrypoint.md` を参照して、CLI入口と entrypoint のテストを作成します。
 
@@ -257,7 +287,7 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 
 ---
 
-## 8. 結合試験計画を作成する
+## 9. 結合試験計画を作成する
 
 `prompts/create_integration_test_plan.md` を参照して、command/app 単位の結合試験計画を作成します。
 
@@ -289,7 +319,7 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 
 ---
 
-## 9. 結合試験を実装する
+## 10. 結合試験を実装する
 
 `prompts/implement_integration_test.md` を参照して、結合試験を実装します。
 
@@ -321,7 +351,7 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 
 ---
 
-## 10. テストを実行する
+## 11. テストを実行する
 
 実装後、feature 単体テスト、entrypoint テスト、結合試験をまとめて実行します。
 
@@ -333,7 +363,7 @@ python -m pytest
 
 ---
 
-## 11. feature 単体レビューを行う
+## 12. feature 単体レビューを行う
 
 `prompts/review_feature.md` を参照して、feature 単体レビューを行います。
 
@@ -365,7 +395,7 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 
 ---
 
-## 12. command/app 全体レビューを行う
+## 13. command/app 全体レビューを行う
 
 `prompts/review_command.md` を参照して、command/app 全体レビューを行います。
 
@@ -420,6 +450,7 @@ docs/cli_simple_calculator/tasks.md
 - 仕様にない便利機能は追加しません
 - `entrypoint.py` は薄く保ちます
 - feature 実装と entrypoint 実装は別のプロンプトで扱います
+- feature ソースレビュー（ステップ 7）では修正しません。修正候補がある場合は人間が判断してから別作業でAIに依頼します
 - feature 単体レビューと command/app 全体レビューは別のプロンプトで扱います
 - 共通化候補があっても、勝手に `src/common/` へ切り出しません
 - 結合試験は計画があり必要な場合だけ扱います

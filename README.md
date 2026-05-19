@@ -59,7 +59,8 @@ ai-driven-dev-starter-kit/
 │  │  └─ 30_common_proposal_template.md
 │  ├─ tutorials/
 │  │  ├─ 010_simple_calculator.md
-│  │  └─ 020_create_new_sample_from_scratch.md
+│  │  ├─ 020_create_new_sample_from_scratch.md
+│  │  └─ 030_update_existing_feature.md
 │  ├─ cli_hello_greeting/
 │  │  ├─ 10_overview.md
 │  │  ├─ tasks.md
@@ -106,6 +107,7 @@ ai-driven-dev-starter-kit/
 │  ├─ implement_feature.md
 │  ├─ implement_entrypoint.md
 │  ├─ implement_integration_test.md
+│  ├─ review_feature_source.md
 │  ├─ review_feature.md
 │  └─ review_command.md
 ├─ src/
@@ -226,11 +228,13 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 
 ## レビューの位置づけ
 
-レビューは2段階で扱います。
+レビューは段階的に扱います。
 
+- feature ソースレビュー: `prompts/review_feature_source.md` を使い、実装直後にソースコードの問題をチャットで報告します。ファイルは変更しません。
 - feature 単体レビュー: `prompts/review_feature.md` を使い、結果を `<対象機能フォルダ>/25_review_result.md` に記録します
 - command/app 全体レビュー: `prompts/review_command.md` を使い、結果を `docs/<command_or_app_name>/12_command_review_result.md` に記録します
 
+`review_feature_source.md` は implement_feature.md 直後の中間チェックです。修正は行わず、修正候補を報告するだけです。
 `review_feature.md` は feature の仕様、設計、実装、単体テストに集中します。
 entrypoint と結合試験まで含めた最終確認は `review_command.md` で扱います。
 
@@ -283,16 +287,17 @@ entrypoint と結合試験まで含めた最終確認は `review_command.md` で
 
 ## チュートリアル
 
-`docs/tutorials/` に、以下の2つのチュートリアルを配置しています。
+`docs/tutorials/` に、以下のチュートリアルを配置しています。
 
 | ファイル | 目的 |
 |---|---|
 | `010_simple_calculator.md` | 既存の初期状態サンプル（cli_simple_calculator）を使って進める。単一 feature の設計・実装・テスト・レビューを体験する。 |
 | `020_create_new_sample_from_scratch.md` | 新しいサンプルを1から作る。複数 feature に分ける 10_overview.md の作り方と、docs / features / tasks.md の初期構造を体験する。 |
+| `030_update_existing_feature.md` | 実装済み feature に対して、仕様変更・軽微な機能追加・バグ修正・レビュー指摘反映を安全に行う流れを確認する。 |
 
 `cli_text_tools` はリポジトリに最初から配置されているサンプルではありません。020 チュートリアルの中で読者が作成する題材です。
 
-どちらも `prompts/` 直下の汎用プロンプトを参照し、チャットで対象機能情報を渡して進めます。
+いずれも `prompts/` 直下の汎用プロンプトを参照し、チャットで対象機能情報を渡して進めます。
 
 ---
 

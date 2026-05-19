@@ -329,6 +329,7 @@ prompts/create_function_call_flow.md → 22_flow.md を作成する
 prompts/create_test_design.md        → 23_test_plan.md を作成する
 prompts/create_review_checklist.md   → 24_review_checklist.md を作成する
 prompts/implement_feature.md         → feature 実装と単体テストを作成する
+prompts/review_feature_source.md     → 実装直後のソースレビューを行う（修正はしない。修正候補をチャットで報告）
 prompts/review_feature.md            → feature 単体レビューを行い 25_review_result.md を作成する
 ```
 
