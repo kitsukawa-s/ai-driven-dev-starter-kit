@@ -65,7 +65,11 @@ ai-driven-dev-starter-kit/
 │  │  ├─ 24_review_checklist_template.md
 │  │  ├─ 11_integration_test_plan_template.md
 │  │  ├─ 12_command_review_result_template.md
-│  │  └─ 30_common_proposal_template.md
+│  │  ├─ 30_common_proposal_template.md
+│  │  ├─ 30_common_design_index_template.md
+│  │  ├─ 31_file_design_template.md
+│  │  ├─ 32_data_design_template.md
+│  │  └─ 33_db_design_template.md
 │  ├─ tutorials/
 │  │  ├─ 010_simple_calculator.md
 │  │  ├─ 020_create_new_sample_from_scratch.md
@@ -113,6 +117,10 @@ ai-driven-dev-starter-kit/
 │  ├─ create_test_design.md
 │  ├─ create_review_checklist.md
 │  ├─ create_integration_test_plan.md
+│  ├─ create_common_design_index.md
+│  ├─ create_file_design.md
+│  ├─ create_data_design.md
+│  ├─ create_db_design.md
 │  ├─ implement_feature.md
 │  ├─ implement_entrypoint.md
 │  ├─ implement_integration_test.md
@@ -248,6 +256,25 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 entrypoint と結合試験まで含めた最終確認は `review_command.md` で扱います。
 
 既存のレビュー結果がある場合でも、古い判定をそのまま採用せず、現在のファイル群を読み直して再レビューします。
+
+---
+
+## 共通設計書の位置づけ
+
+DB設計、ファイル設計、共通データ設計など、複数 feature にまたがる設計は、feature 個別の設計書に分散させず、`docs/<command_or_app_name>/common_design/` 配下にまとめます。
+
+feature 個別の `21_design.md` では、必要に応じて共通設計書を参照します。
+
+共通設計書は、人間が直接作成しても構いません。AIに作成させる場合は、対応する `prompts/create_*_design.md` を使用します。
+
+| 設計書 | ひな形 | 作成プロンプト | 内容 |
+|---|---|---|---|
+| `common_design/30_common_design_index.md` | `30_common_design_index_template.md` | `create_common_design_index.md` | 共通設計書の目次・feature 対応表 |
+| `common_design/31_file_design.md` | `31_file_design_template.md` | `create_file_design.md` | 入出力・中間ファイル・ディレクトリ構成 |
+| `common_design/32_data_design.md` | `32_data_design_template.md` | `create_data_design.md` | 共通データ項目・ID体系・ステータス |
+| `common_design/33_db_design.md` | `33_db_design_template.md` | `create_db_design.md` | DB種別・テーブル・カラム・制約・トランザクション方針 |
+
+`common_design/` は必要になった場合に追加する拡張です。すべてのコマンド/アプリで必須ではありません。
 
 ---
 

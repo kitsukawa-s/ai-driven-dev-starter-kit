@@ -1,0 +1,93 @@
+# DB設計書を作成してください
+
+あなたは、このリポジトリのAI駆動開発ルールに従う開発補助者です。
+
+このプロンプトファイルは直接書き換えず、チャットでこのファイルのパスと下の「利用者が指定する項目」を指定して使います。
+それ以外の作業ルールは変更せず、`AGENTS.md` と `docs/templates/` に従ってください。
+
+## 利用者が指定する項目
+
+- コマンド/アプリ名: `<command_or_app_name>`
+- 対象 overview: `docs/<command_or_app_name>/10_overview.md`
+- 共通設計書一覧: `docs/<command_or_app_name>/common_design/30_common_design_index.md`
+- DB設計書: `docs/<command_or_app_name>/common_design/33_db_design.md`
+- 補足条件: `必要に応じて書く。なければ「なし」`
+
+## 参照するファイル
+
+- `AGENTS.md`
+- `docs/<command_or_app_name>/10_overview.md`
+- `docs/<command_or_app_name>/common_design/30_common_design_index.md`（存在する場合）
+- `docs/<command_or_app_name>/common_design/32_data_design.md`（存在する場合）
+- `docs/templates/33_db_design_template.md`
+- 必要に応じて `docs/<command_or_app_name>/features/*/20_spec.md`
+
+## 作成または更新するファイル
+
+- `docs/<command_or_app_name>/common_design/33_db_design.md`
+
+## 変更してよいファイル
+
+- `docs/<command_or_app_name>/common_design/33_db_design.md`
+- `docs/<command_or_app_name>/common_design/30_common_design_index.md`
+  - DB設計書の状態欄を更新する場合に限る
+- `docs/<command_or_app_name>/tasks.md`
+  - ただし、現在地と次に確認することを短く更新する場合に限る
+
+## 変更してはいけないファイル
+
+変更してよいファイルに記載した `tasks.md` の必要最小限の更新は例外です。
+
+- このプロンプトファイル
+- `AGENTS.md`
+- `docs/templates/`
+- `src/`
+- `tests/`
+- feature 個別設計（`docs/<command_or_app_name>/features/*/`）
+- `prompts/`
+
+## 作業範囲
+
+1. `10_overview.md` を確認して、DBが必要かどうかを判断してください
+2. 必要に応じて `32_data_design.md` を参照し、テーブル・カラム候補を整理してください
+3. 必要に応じて feature の `20_spec.md` を参照し、テーブル要件を補完してください
+4. `docs/templates/33_db_design_template.md` の見出し構成を維持して `33_db_design.md` を作成または更新してください
+5. 不明なDB種別、テーブル設計、トランザクション方針は、勝手に補完せず未決事項として記録してください
+
+## 重要ルール
+
+- DB設計は feature 個別設計に分散させないでください
+  - テーブル、カラム、制約、インデックスはこの設計書に集約し、feature 個別設計からは参照する形にしてください
+- DB種別（SQLite / PostgreSQL / MySQL など）が未確定の場合、AI判断で勝手に決定しないでください
+  - 未決事項として記録し、人間判断に回してください
+- 既存のDB設計書がある場合、既存の定義を破壊的に変更しないでください
+  - テーブル削除、カラム削除、型変更などの破壊的変更が必要だと判断した場合は、変更候補として報告してください
+- DBを利用する feature は、このDB設計書の範囲内で設計・実装する前提です
+  - 設計書に定義されていないテーブル・カラムをAIが勝手に追加しないでください
+
+## 禁止事項
+
+- feature 個別の `21_design.md` にDBテーブル・カラムを定義しないでください
+- `src/`、`tests/` を変更しないでください
+- DB種別が未確定の場合、AI判断で勝手に選定しないでください
+- 既存のDB設計書を破壊的に変更しないでください
+- DBを使うサンプル実装を勝手に作成しないでください
+
+## 作業後の tasks.md 更新
+
+作業後は、対象 command/app の `tasks.md` を必ず確認してください。
+
+必要に応じて、現在の状態、次に確認すること、引き継ぎに必要な短い注意点だけを更新してください。
+
+`tasks.md` を更新しない場合は、更新しない理由を作業報告に書いてください。
+
+## 作業後の報告
+
+作業後に、以下を簡潔に報告してください。
+
+- 作成または更新したファイル
+- 参照したファイル
+- 定義したテーブル一覧
+- 未決事項の有無（特にDB種別の選定状況）
+- 破壊的変更の候補がある場合はその内容
+- feature 個別設計が参照すべき箇所の案内（該当する場合）

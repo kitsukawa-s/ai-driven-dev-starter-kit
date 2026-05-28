@@ -70,6 +70,18 @@
 |---|---|---|---|
 | `<feature_name>` |  | `docs/<command_or_app_name>/features/<feature_name>/` | 未着手 / 設計中 / 実装中 / 完了 |
 
+## 共通設計書
+
+複数 feature にまたがる設計が必要な場合は、`common_design/` 配下に作成してください。
+不要な場合は「今回は対象外」と記載してください。
+
+| 設計書 | 内容 | 利用する feature | 状態 |
+|---|---|---|---|
+| `common_design/30_common_design_index.md` | 共通設計書一覧 | 全体 | 未定 |
+| `common_design/31_file_design.md` | ファイル設計 | 未定 | 未定 |
+| `common_design/32_data_design.md` | 共通データ設計 | 未定 | 未定 |
+| `common_design/33_db_design.md` | DB設計 | 未定 | 未定 |
+
 ## feature 分割方針
 
 feature をどの単位で分けるかを記載します。
