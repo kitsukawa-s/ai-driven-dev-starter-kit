@@ -25,6 +25,11 @@
 どちらも `prompts/` の汎用プロンプトを使う方針は同じです。
 010 を先に進めてプロンプトの使い方に慣れてからこのチュートリアルに取り組むと、よりスムーズです。
 
+なお、このチュートリアルには複数 feature を束ねる entrypoint の完成見本は含まれていません。
+entrypoint 実装まで進める場合は、`010_simple_calculator.md` や既存サンプルの実装を参考にしてください。
+既存の完成サンプル（`cli_hello_greeting`・`cli_text_counter`）は単一 feature の完成形例であり、複数 feature を束ねる完成例ではありません。
+複数 feature を持つ command/app の完成サンプルは、今後の改善候補として検討中です。
+
 ---
 
 ## 前提

@@ -134,6 +134,20 @@ feature 側が未実装、または設計と矛盾している場合は、勝手
 
 その場合は、entrypoint 実装を止め、確認事項として報告してください。
 
+## 複数 feature を束ねる場合
+
+command/app が複数 feature を持つ場合は、以下の方針で実装してください。
+
+- `argparse` の `subparsers` を使い、サブコマンド名と feature 呼び出しを1対1で対応させます
+- サブコマンド名・引数名は `10_overview.md` の機能一覧・実行イメージに従います
+- `10_overview.md` に記載のないサブコマンドや引数を勝手に追加しないでください
+- 判断できない場合は、確認事項として報告し、実装で勝手に決めないでください
+
+単一 feature の command/app では、無理に `subparsers` を使わず、通常の引数解析に従ってください。
+
+複数 feature を束ねる entrypoint の完成サンプルはこのリポジトリには含まれていません。
+参考にする場合は、既存の単一 feature サンプル（`cli_hello_greeting` など）の実装方針を応用してください。
+
 ## テスト実装の方針
 
 `test_entrypoint_<short_name>.py` では、entrypoint の責務を確認してください。
