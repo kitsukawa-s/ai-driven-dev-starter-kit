@@ -1,0 +1,69 @@
+# バグ報告書を作成または更新してください
+
+このプロンプトは、バグ報告をもとに `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md` を作成または更新するためのものです。
+
+このプロンプトファイルは直接書き換えず、チャットでこのファイルのパスと下の「利用者が指定する項目」を指定して使います。
+それ以外の作業ルールは変更せず、`AGENTS.md` と `docs/templates/` に従ってください。
+
+---
+
+## 利用者が指定する項目
+
+- 対象 command/app: `<command_or_app_name>`
+- 対象 feature: `<feature_name>`
+- バグID: `<bug_id>`（例: `bug_001`）
+- バグ報告書の出力先: `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md`
+- バグ報告の内容: チャットで提供された報告内容（現象、ログ、再現手順など）
+- 補足条件: `必要に応じて書く。なければ「なし」`
+
+## 参照するファイル
+
+- `AGENTS.md`
+- `docs/templates/10_bug_report_template.md`
+- 利用者がチャットで提供したバグ報告内容
+
+## 変更してよいファイル
+
+- `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md`（新規作成または更新）
+
+## 変更してはいけないファイル
+
+- このプロンプトファイル
+- `AGENTS.md`
+- `README.md`
+- `docs/templates/`
+- `prompts/`
+- `src/`（実装コードは一切変更しない）
+- `tests/`（テストコードは一切変更しない）
+- `docs/<command_or_app_name>/features/` 配下の既存ドキュメント
+- `docs/<command_or_app_name>/bugs/<bug_id>/20_bug_investigation.md`
+- `docs/<command_or_app_name>/bugs/<bug_id>/30_bug_fix_plan.md`
+
+---
+
+## 作業範囲
+
+1. `docs/templates/10_bug_report_template.md` を参照してください
+2. `docs/<command_or_app_name>/bugs/<bug_id>/` フォルダが存在しない場合は作成してください
+3. 利用者が提供したバグ報告をもとに `10_bug_report.md` を作成または更新してください
+4. 不足している情報がある場合は、削除せず「不足情報」セクションに記録してください
+5. この段階では原因を断定しないでください
+6. この段階では修正しないでください
+
+## 禁止事項
+
+- 原因を断定しないでください
+- 実装コード（`src/`）を変更しないでください
+- テストコード（`tests/`）を変更しないでください
+- 仕様・設計・テスト計画（`docs/<command_or_app_name>/features/`）を変更しないでください
+- `20_bug_investigation.md` や `30_bug_fix_plan.md` を先取りして作成しないでください
+- バグ報告の範囲を超えて、調査内容や修正内容を書かないでください
+
+## 作業後の報告
+
+作業後に、以下を簡潔に報告してください。
+
+- 作成または更新したファイル
+- バグ報告の概要
+- 不足している情報の一覧（なければ「なし」）
+- 次にやること（`prompts/investigate_bug.md` を使った原因調査）

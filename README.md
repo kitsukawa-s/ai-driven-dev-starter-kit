@@ -26,6 +26,7 @@ AIには小さな機能単位で実装を依頼し、人間が段階的に確認
 - feature 単体レビューと command/app 全体レビューを分ける流れ
 - `10_overview.md` を起点に、コマンド/アプリ全体と feature 分割を整理する流れ
 - 必要に応じて、entrypoint から feature を束ねる結合試験計画を作る流れ
+- バグをいきなり修正せず、報告 → 調査 → 修正計画 → 承認 → 実装の順に進む流れ
 
 ---
 
@@ -60,15 +61,19 @@ ai-driven-dev-starter-kit/
 │  │  └─ README.md
 │  ├─ templates/
 │  │  ├─ 10_overview_template.md
+│  │  ├─ 10_bug_report_template.md
 │  │  ├─ tasks_template.md
 │  │  ├─ 20_spec_template.md
+│  │  ├─ 20_bug_investigation_template.md
 │  │  ├─ 21_design_template.md
 │  │  ├─ 22_flow_template.md
 │  │  ├─ 23_test_plan_template.md
 │  │  ├─ 24_review_checklist_template.md
 │  │  ├─ 11_integration_test_plan_template.md
 │  │  ├─ 12_command_review_result_template.md
+│  │  ├─ 25_review_result_template.md
 │  │  ├─ 30_common_proposal_template.md
+│  │  ├─ 30_bug_fix_plan_template.md
 │  │  ├─ 30_common_design_index_template.md
 │  │  ├─ 31_file_design_template.md
 │  │  ├─ 32_data_design_template.md
@@ -103,15 +108,20 @@ ai-driven-dev-starter-kit/
 │     ├─ tasks.md
 │     ├─ 11_integration_test_plan.md
 │     ├─ 12_command_review_result.md
-│     └─ features/
-│        └─ text_counter/
-│           ├─ tasks.md
-│           ├─ 20_spec.md
-│           ├─ 21_design.md
-│           ├─ 22_flow.md
-│           ├─ 23_test_plan.md
-│           ├─ 24_review_checklist.md
-│           └─ 25_review_result.md
+│     ├─ features/
+│     │  └─ text_counter/
+│     │     ├─ tasks.md
+│     │     ├─ 20_spec.md
+│     │     ├─ 21_design.md
+│     │     ├─ 22_flow.md
+│     │     ├─ 23_test_plan.md
+│     │     ├─ 24_review_checklist.md
+│     │     └─ 25_review_result.md
+│     └─ bugs/                          ← バグ修正フローで使う
+│        └─ <bug_id>/
+│           ├─ 10_bug_report.md
+│           ├─ 20_bug_investigation.md
+│           └─ 30_bug_fix_plan.md
 ├─ prompts/
 │  ├─ create_overview.md
 │  ├─ create_feature_spec.md
@@ -129,7 +139,11 @@ ai-driven-dev-starter-kit/
 │  ├─ implement_integration_test.md
 │  ├─ review_feature_source.md
 │  ├─ review_feature.md
-│  └─ review_command.md
+│  ├─ review_command.md
+│  ├─ create_bug_report.md
+│  ├─ investigate_bug.md
+│  ├─ create_bug_fix_plan.md
+│  └─ implement_bug_fix.md
 ├─ src/
 │  ├─ common/
 │  │  └─ __init__.py
@@ -246,6 +260,26 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 
 ---
 
+## バグ修正フロー
+
+バグをいきなり修正せず、以下の順番で進めてください。
+
+1. **バグ報告書を作成する**（`prompts/create_bug_report.md`）
+   - 現象、期待動作、再現手順を整理する。原因は断定しない。修正しない。
+2. **バグを調査する**（`prompts/investigate_bug.md`）
+   - 仕様・設計・実装・テストを読み、原因仮説を整理する。修正しない。
+3. **修正計画書を作成する**（`prompts/create_bug_fix_plan.md`）
+   - 修正対象、テスト方針、確認コマンドを明記する。修正しない。
+4. **人間が修正計画書を承認する**
+   - 承認欄にチェックを入れる。
+5. **修正を実装する**（`prompts/implement_bug_fix.md`）
+   - 承認済み計画の範囲だけを修正する。ついで修正はしない。
+
+バグ管理ドキュメントは `docs/<command_or_app_name>/bugs/<bug_id>/` に配置します。
+仕様・設計・テスト計画への反映が必要な場合は、修正実装とは別作業として明記し、人間が判断してから進めます。
+
+---
+
 ## レビューの位置づけ
 
 レビューは段階的に扱います。
@@ -338,6 +372,7 @@ entrypoint の分離、結合試験、3層レビュー、common_design は、実
 | `010_simple_calculator.md` | 既存の初期状態サンプル（cli_simple_calculator）を使って進める。単一 feature の設計・実装・テスト・レビューを体験する。 |
 | `020_create_new_sample_from_scratch.md` | 新しいサンプルを1から作る。複数 feature に分ける 10_overview.md の作り方と、docs / features / tasks.md の初期構造を体験する。 |
 | `030_update_existing_feature.md` | 実装済み feature に対して、仕様変更・軽微な機能追加・バグ修正・レビュー指摘反映を安全に行う流れを確認する。 |
+| `040_bug_fix_flow.md` | バグ修正専用フロー。報告・調査・修正計画・人間承認・実装の順番を想定バグを使って確認する。 |
 
 `cli_text_tools` はリポジトリに最初から配置されているサンプルではありません。020 チュートリアルの中で読者が作成する題材です。
 

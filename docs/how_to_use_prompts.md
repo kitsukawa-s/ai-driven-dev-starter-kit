@@ -97,6 +97,8 @@ prompts/implement_feature.md を参照してください。
 
 ## 汎用プロンプト一覧
 
+バグ修正フロー全体の進め方は `docs/tutorials/040_bug_fix_flow.md` を参照してください。個別プロンプトを単体で使う前に、報告 → 調査 → 修正計画 → 人間承認 → 実装の順番を確認します。
+
 | プロンプト | 用途 | 主な出力先 |
 |---|---|---|
 | `prompts/create_overview.md` | コマンド/アプリ全体の overview を作成する | `docs/<command_or_app_name>/10_overview.md` |
@@ -112,6 +114,10 @@ prompts/implement_feature.md を参照してください。
 | `prompts/implement_integration_test.md` | 結合試験を実装する | `tests/<command_or_app_name>/test_integration_<short_name>.py` |
 | `prompts/review_feature.md` | feature 単体レビューを行う | `<対象機能フォルダ>/25_review_result.md` |
 | `prompts/review_command.md` | command/app 全体レビューを行う | `docs/<command_or_app_name>/12_command_review_result.md` |
+| `prompts/create_bug_report.md` | バグ報告書を作成する（原因調査・修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md` |
+| `prompts/investigate_bug.md` | バグ原因を調査し調査書を作成する（修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/20_bug_investigation.md` |
+| `prompts/create_bug_fix_plan.md` | バグ修正計画書を作成する（承認待ち。修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/30_bug_fix_plan.md` |
+| `prompts/implement_bug_fix.md` | 承認済み修正計画に従ってバグを修正する | 修正計画書に記載された実装ファイル、テストファイル |
 
 ---
 

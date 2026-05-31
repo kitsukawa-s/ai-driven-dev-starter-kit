@@ -34,6 +34,11 @@ docs/
         23_test_plan.md
         24_review_checklist.md
         25_review_result.md
+    bugs/
+      <bug_id>/
+        10_bug_report.md
+        20_bug_investigation.md
+        30_bug_fix_plan.md
 ```
 
 `25_review_result.md` は、feature 単体レビューを行った場合に作成します。
@@ -55,6 +60,9 @@ docs/
 | `23_test_plan.md` | feature 単体テストの観点を書く |
 | `24_review_checklist.md` | feature 単体レビュー観点を書く。レビュー結果は書き込まない |
 | `25_review_result.md` | feature 単体レビュー結果、指摘事項、最終判定を書く |
+| `10_bug_report.md` | バグ報告を整理する。原因断定や修正はしない |
+| `20_bug_investigation.md` | 仕様・設計・実装・テストを確認し、原因仮説と影響範囲を整理する。修正はしない |
+| `30_bug_fix_plan.md` | 修正対象、テスト方針、確認コマンド、人間承認欄を整理する。承認前に実装しない |
 
 `25_review_result.md` は feature 単体の仕様、設計、実装、単体テストを確認するためのレビュー結果です。
 `12_command_review_result.md` は overview、entrypoint、結合試験、全体テスト、feature 単体レビュー結果を確認するためのレビュー結果です。
@@ -76,6 +84,19 @@ docs/
 | `11_integration_test_plan.md` | `docs/templates/11_integration_test_plan_template.md` |
 | `12_command_review_result.md` | `docs/templates/12_command_review_result_template.md` |
 | `30_common_proposal.md` | `docs/templates/30_common_proposal_template.md` |
+| `10_bug_report.md` | `docs/templates/10_bug_report_template.md` |
+| `20_bug_investigation.md` | `docs/templates/20_bug_investigation_template.md` |
+| `30_bug_fix_plan.md` | `docs/templates/30_bug_fix_plan_template.md` |
+
+---
+
+## バグ修正フロー
+
+バグ修正は、報告 → 調査 → 修正計画 → 人間承認 → 実装の順に進める。
+仕様・設計・テスト計画の更新が必要な場合は、修正実装とは別作業として扱う。
+
+`bug_id` は `bug_001` のような形式を基本とする。同一 command/app 内で重複しない名前にする。
+チュートリアルでは `bug_001` を使用してよい。
 
 ---
 
