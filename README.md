@@ -81,7 +81,8 @@ ai-driven-dev-starter-kit/
 │  ├─ tutorials/
 │  │  ├─ 010_simple_calculator.md
 │  │  ├─ 020_create_new_sample_from_scratch.md
-│  │  └─ 030_update_existing_feature.md
+│  │  ├─ 030_update_existing_feature.md
+│  │  └─ 040_bug_fix_flow.md
 │  ├─ cli_hello_greeting/
 │  │  ├─ 10_overview.md
 │  │  ├─ tasks.md

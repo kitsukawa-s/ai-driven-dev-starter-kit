@@ -11,8 +11,8 @@
 
 - command/app: `cli_text_counter`
 - feature: `text_counter`
-- 状態: 10_overview.md の記述を現在の実装状態に合わせて更新済み
-- 最終更新: 2026-05-17
+- 状態: bug_001 対応（ドキュメント修正）完了
+- 最終更新: 2026-06-02
 
 ## 作業メモ
 
@@ -31,6 +31,7 @@
 - [x] 結合試験を含む `cli_text_counter` 関連テストの結果を確認する
 - [x] command/app 全体レビューを行う（12_command_review_result.md 作成済み）
 - [x] 10_overview.md の記述を現在の実装状態に合わせて更新する（軽微な指摘対応）
+- [x] bug_001 対応: 空文字列の CLI 実行例を `--text=` 推奨に整理（ドキュメント不整合 / 実行例の環境差として対応、src/ tests/ は変更なし、詳細は `docs/cli_text_counter/bugs/bug_001/` 参照）
 
 ## 次に確認すること
 
