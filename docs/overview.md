@@ -58,7 +58,7 @@ docs/
 | `21_design.md` | 関数単位の責務、入力、出力、エラー方針を書く |
 | `22_flow.md` | 関数同士の呼び出し順、依存関係、全体フローを書く |
 | `23_test_plan.md` | feature 単体テストの観点を書く |
-| `24_review_checklist.md` | feature 単体レビュー観点を書く。レビュー結果は書き込まない |
+| `24_review_checklist.md` | feature 単体レビュー観点を書く。末尾に実装着手承認欄を含む。レビュー結果は書き込まない |
 | `25_review_result.md` | feature 単体レビュー結果、指摘事項、最終判定を書く |
 | `10_bug_report.md` | バグ報告を整理する。原因断定や修正はしない |
 | `20_bug_investigation.md` | 仕様・設計・実装・テストを確認し、原因仮説と影響範囲を整理する。修正はしない |
@@ -87,6 +87,13 @@ docs/
 | `10_bug_report.md` | `docs/templates/10_bug_report_template.md` |
 | `20_bug_investigation.md` | `docs/templates/20_bug_investigation_template.md` |
 | `30_bug_fix_plan.md` | `docs/templates/30_bug_fix_plan_template.md` |
+
+---
+
+## 実装前承認ゲート
+
+feature 実装（`prompts/implement_feature.md`）に進む前に、`24_review_checklist.md` 末尾の実装着手承認欄を人間が確認してチェックを入れる。
+承認欄に未チェック項目がある場合、AIは実装を開始せず STOP する。AIが勝手にチェックを入れて進んではならない。
 
 ---
 

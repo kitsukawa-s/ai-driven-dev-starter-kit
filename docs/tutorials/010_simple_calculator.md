@@ -199,6 +199,17 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 
 ---
 
+## 5a. 実装着手承認欄を確認する（人間が行う）
+
+`docs/cli_simple_calculator/features/calculator/24_review_checklist.md` の末尾にある実装着手承認欄を確認してください。
+
+すべての項目を確認したら、チェックを入れてください。
+チェックを入れるのは人間です。AIはこの欄にチェックを入れません。
+
+未チェック項目がある状態で次のステップに進むと、`prompts/implement_feature.md` が STOP します。
+
+---
+
 ## 6. feature 実装と feature 単体テストを作成する
 
 `prompts/implement_feature.md` を参照して、feature 本体と feature 単体テストを作成します。

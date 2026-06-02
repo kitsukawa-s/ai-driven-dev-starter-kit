@@ -106,9 +106,9 @@ prompts/implement_feature.md を参照してください。
 | `prompts/create_function_design.md` | 関数設計を作成する | `<対象機能フォルダ>/21_design.md` |
 | `prompts/create_function_call_flow.md` | 関数呼び出し定義を作成する | `<対象機能フォルダ>/22_flow.md` |
 | `prompts/create_test_design.md` | feature 単体のテスト計画を作成する | `<対象機能フォルダ>/23_test_plan.md` |
-| `prompts/create_review_checklist.md` | feature 単体レビュー観点を作成する | `<対象機能フォルダ>/24_review_checklist.md` |
+| `prompts/create_review_checklist.md` | feature 単体レビュー観点と実装着手承認欄を作成する（承認欄は未チェックで作成） | `<対象機能フォルダ>/24_review_checklist.md` |
 | `prompts/create_integration_test_plan.md` | command/app 単位の結合試験計画を作成する | `docs/<command_or_app_name>/11_integration_test_plan.md` |
-| `prompts/implement_feature.md` | feature 本体と feature 単体テストを作成する | 指定された feature 実装ファイル、feature 単体テストファイル |
+| `prompts/implement_feature.md` | feature 本体と feature 単体テストを作成する（事前に `24_review_checklist.md` の実装着手承認欄がすべてチェック済みであることを確認。未チェックがあれば STOP） | 指定された feature 実装ファイル、feature 単体テストファイル |
 | `prompts/review_feature_source.md` | feature 実装直後のソースレビューを行う（中間チェック。修正はしない） | チャットで報告（ファイル出力なし） |
 | `prompts/implement_entrypoint.md` | `entrypoint.py` と entrypoint のテストを作成する | `src/<command_or_app_name>/entrypoint.py`、`tests/<command_or_app_name>/test_entrypoint_<short_name>.py` |
 | `prompts/implement_integration_test.md` | 結合試験を実装する | `tests/<command_or_app_name>/test_integration_<short_name>.py` |

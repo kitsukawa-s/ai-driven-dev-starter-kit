@@ -27,6 +27,7 @@ AIには小さな機能単位で実装を依頼し、人間が段階的に確認
 - `10_overview.md` を起点に、コマンド/アプリ全体と feature 分割を整理する流れ
 - 必要に応じて、entrypoint から feature を束ねる結合試験計画を作る流れ
 - バグをいきなり修正せず、報告 → 調査 → 修正計画 → 承認 → 実装の順に進む流れ
+- `24_review_checklist.md` の実装着手承認欄を人間が確認し、承認なしでは feature 実装に進まない流れ
 
 ---
 
@@ -258,6 +259,14 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 
 結合試験計画は、必要に応じて `docs/<command_or_app_name>/11_integration_test_plan.md` に作成します。
 常に必須ではなく、entrypoint から feature を束ねて確認する必要がある場合に扱います。
+
+---
+
+## 実装前承認ゲート
+
+feature 実装に進む前に、`24_review_checklist.md` の末尾にある実装着手承認欄を人間が確認してチェックを入れてください。
+承認欄に未チェック項目がある場合、`prompts/implement_feature.md` は STOP します。
+これは、設計完了後にAIが勝手に実装へ進まないためのゲートです。
 
 ---
 
