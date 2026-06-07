@@ -40,6 +40,7 @@
 - `tests/<command_or_app_name>/test_entrypoint_<short_name>.py`
 - `docs/<command_or_app_name>/11_integration_test_plan.md`
 - `tests/<command_or_app_name>/test_integration_<short_name>.py`
+- `docs/context/`（補助資料。確定仕様ではない。確認トリガーとしてのみ参照する）
 
 ## 変更してよいファイル
 
@@ -57,6 +58,7 @@
 - `docs/<command_or_app_name>/features/` 配下の既存ドキュメント（仕様・設計・テスト計画は変更しない）
 - `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md`
 - `docs/<command_or_app_name>/bugs/<bug_id>/30_bug_fix_plan.md`
+- `docs/context/`（補助資料として参照するだけにとどめ、変更しない）
 
 ---
 
@@ -80,6 +82,16 @@
 - **ドキュメント不整合**: 仕様・設計・実装の間に記述の矛盾がある
 
 仕様通りに動いているが期待と違う場合は、バグではなく仕様変更候補として扱ってください。
+
+## docs/context/ を使った確認
+
+`docs/context/` が存在する場合は、補助資料として確認してください。
+基準は常に正式資料（仕様・設計・テスト計画）であり、`docs/context/` は確定仕様ではありません。
+
+- バグ報告が、`docs/context/` にある未決事項・却下案・保留事項・未反映の会議メモに基づいていないかを確認する
+- 基づいている疑いがある場合は、実装バグと断定せず、仕様変更候補または人間確認事項として `20_bug_investigation.md` に記録する
+- `docs/context/` の内容を、そのまま確定仕様として原因や正解の根拠に使わない
+- AIが確定可否を判断できない場合は、人間確認事項として記録する
 
 ## 禁止事項
 

@@ -30,6 +30,10 @@
 - `docs/<command_or_app_name>/features/<feature_name>/21_design.md`
 - `docs/<command_or_app_name>/features/<feature_name>/23_test_plan.md`
 
+必要に応じて以下も参照してください。
+
+- `docs/context/`（補助資料。確定仕様ではない。確認トリガーとしてのみ参照する）
+
 ## 変更してよいファイル
 
 - `docs/<command_or_app_name>/bugs/<bug_id>/30_bug_fix_plan.md`（新規作成または更新）
@@ -46,6 +50,7 @@
 - `docs/<command_or_app_name>/features/` 配下の既存ドキュメント（仕様・設計・テスト計画は変更しない）
 - `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md`
 - `docs/<command_or_app_name>/bugs/<bug_id>/20_bug_investigation.md`
+- `docs/context/`（補助資料として参照するだけにとどめ、変更しない）
 
 ---
 
@@ -55,6 +60,9 @@
 
 - `調査完了` の場合のみ、修正計画の作成に進んでください
 - `追加調査が必要` または `仕様確認待ち` の場合は、修正計画を作成せずに STOP し、理由を報告してください
+
+また、修正計画が `docs/context/` の未決事項・却下案・保留事項・未反映の会議メモを前提にしていないかを確認してください。
+`docs/context/` は確定仕様ではありません。これらを前提にした修正が必要に見える場合は、修正計画を作成せずに STOP し、仕様変更候補または人間確認事項として報告してください。
 
 ## 作業範囲
 

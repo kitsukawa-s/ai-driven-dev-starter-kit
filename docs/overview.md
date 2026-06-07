@@ -63,6 +63,7 @@ docs/
 | `10_bug_report.md` | バグ報告を整理する。原因断定や修正はしない |
 | `20_bug_investigation.md` | 仕様・設計・実装・テストを確認し、原因仮説と影響範囲を整理する。修正はしない |
 | `30_bug_fix_plan.md` | 修正対象、テスト方針、確認コマンド、人間承認欄を整理する。承認前に実装しない |
+| `docs/context/` | 会議メモ・未決事項・却下案などの補助資料。確定仕様ではなく、レビュー・バグ調査・任意調査の確認トリガーとして参照する |
 
 `25_review_result.md` は feature 単体の仕様、設計、実装、単体テストを確認するためのレビュー結果です。
 `12_command_review_result.md` は overview、entrypoint、結合試験、全体テスト、feature 単体レビュー結果を確認するためのレビュー結果です。
@@ -87,6 +88,16 @@ docs/
 | `10_bug_report.md` | `docs/templates/10_bug_report_template.md` |
 | `20_bug_investigation.md` | `docs/templates/20_bug_investigation_template.md` |
 | `30_bug_fix_plan.md` | `docs/templates/30_bug_fix_plan_template.md` |
+| `docs/context/` 配下のメモ | `docs/templates/context_note_template.md` |
+
+---
+
+## docs/context（補助コンテキスト）
+
+`docs/context/` は、会議メモ・チャット補足・過去判断・未決事項・却下案・注意事項を集める補助資料の置き場です。
+
+確定仕様ではありません。レビュー・バグ調査・任意調査のときに、正式資料とのズレ・矛盾・反映漏れ・未決事項・却下案の混入に気づくための確認トリガーとして参照します。
+詳しくは `docs/context/README.md` を参照してください。
 
 ---
 
