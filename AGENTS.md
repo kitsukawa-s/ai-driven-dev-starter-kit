@@ -394,6 +394,8 @@ AIは、人間の明示指示なしに `src/common/` を作成・更新しては
 - AIは `docs/context/` の内容を、そのまま仕様・設計・実装方針として採用してはいけません
 - `docs/context/` は、正式資料（`20_spec.md`、`21_design.md`、`common_design/` など）とのズレ・矛盾・反映漏れ・未決事項・却下案の混入を検出するための「確認トリガー」です
 - レビュー・バグ調査・任意調査では、正式資料を基準とし、`docs/context/` は補助資料として扱う
+- 通常レビュー（`prompts/review_feature.md` / `prompts/review_command.md`）やバグ調査（`prompts/investigate_bug.md` / `prompts/create_bug_fix_plan.md`）は、`docs/context/` を軽い確認トリガーとしてのみ扱い、横断探索を主責務にしない。context 量が増えても通常レビューやバグ調査を完遂できるようにするため
+- `docs/context/` の横断的な深掘りが必要な場合は、`prompts/review_context.md` に委譲する。`review_context.md` は候補出し専用で、正式資料・`docs/context/`・`bugs/` 配下のいずれも変更せず、結果をチャットで報告する。採用・却下・保留は人間が判断し、採用分だけを別作業として正式資料へ反映する
 - 正式資料と矛盾する場合、AIは勝手にどちらかを採用せず、人間確認事項として報告する
 - AIが判断できない内容は、確定仕様とせず人間確認事項として扱う
 - AIは人間の明示指示なしに `docs/context/` を作成・更新しない（人間が管理する入力資料です）

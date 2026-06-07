@@ -99,6 +99,9 @@ docs/
 確定仕様ではありません。レビュー・バグ調査・任意調査のときに、正式資料とのズレ・矛盾・反映漏れ・未決事項・却下案の混入に気づくための確認トリガーとして参照します。
 詳しくは `docs/context/README.md` を参照してください。
 
+`docs/context/` の横断探索は、通常レビューやバグ調査の主責務にしません。通常レビュー（`prompts/review_feature.md` / `prompts/review_command.md`）やバグ調査（`prompts/investigate_bug.md` / `prompts/create_bug_fix_plan.md`）は `docs/context/` を軽い確認トリガーとしてのみ扱い、深掘りが必要な場合は `prompts/review_context.md` に委譲します。これは、context 量が増えても通常レビューやバグ調査を完遂できるようにするためです。
+`prompts/review_context.md` は候補出し専用で、正式資料・`docs/context/`・`bugs/` 配下のいずれも変更しません。採用・却下・保留は人間が判断します。
+
 ---
 
 ## 実装前承認ゲート
@@ -188,6 +191,8 @@ feature の詳細ロジック、正常系、異常系、境界値などを確認
 詳しくは `docs/how_to_use_prompts.md` を参照してください。
 
 `review_feature_source.md` は `implement_feature.md` 直後の中間チェック用プロンプトです。実装ファイルとテストファイルを仕様・設計・テスト計画と照合し、修正候補をチャットで報告します。ファイルは変更しません。`25_review_result.md` も作成しません。正式なレビュー結果は `review_feature.md` で行います。
+
+`review_context.md` は `docs/context/` の横断探索専任プロンプトです。通常レビューから探索責務を分離し、正式資料への反映候補・矛盾候補・未決事項・却下案の混入候補・人間確認事項を候補として整理してチャットで報告します。正式資料・`docs/context/`・`bugs/` 配下のいずれも変更しません。採用・却下・保留は人間が判断し、採用分だけを別作業として正式資料へ反映します。
 
 ---
 

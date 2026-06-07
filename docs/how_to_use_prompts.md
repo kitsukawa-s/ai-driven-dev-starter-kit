@@ -114,6 +114,7 @@ prompts/implement_feature.md を参照してください。
 | `prompts/implement_integration_test.md` | 結合試験を実装する | `tests/<command_or_app_name>/test_integration_<short_name>.py` |
 | `prompts/review_feature.md` | feature 単体レビューを行う | `<対象機能フォルダ>/25_review_result.md` |
 | `prompts/review_command.md` | command/app 全体レビューを行う | `docs/<command_or_app_name>/12_command_review_result.md` |
+| `prompts/review_context.md` | `docs/context/` を横断探索し、正式資料への反映候補・矛盾候補・未決事項・却下案の混入候補・人間確認事項を候補として整理する（候補のみ。正式資料・docs/context/ は変更しない） | チャットで報告（ファイル出力なし） |
 | `prompts/create_bug_report.md` | バグ報告書を作成する（原因調査・修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/10_bug_report.md` |
 | `prompts/investigate_bug.md` | バグ原因を調査し調査書を作成する（修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/20_bug_investigation.md` |
 | `prompts/create_bug_fix_plan.md` | バグ修正計画書を作成する（承認待ち。修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/30_bug_fix_plan.md` |
@@ -130,6 +131,10 @@ prompts/implement_feature.md を参照してください。
 `prompts/review_command.md` は command/app 全体レビュー用です。`10_overview.md`、`entrypoint.py`、`test_entrypoint_<short_name>.py`、`11_integration_test_plan.md`、`test_integration_<short_name>.py`、feature 単体レビュー結果を確認し、結果を `docs/<command_or_app_name>/12_command_review_result.md` に記録します。
 
 entrypoint と結合試験まで含めた最終確認は、`review_command.md` で扱います。`review_feature.md` で entrypoint や結合試験に触れる場合は、feature との責務分担に関係する範囲にとどめます。
+
+`prompts/review_context.md` は `docs/context/` の横断探索を専任で行うプロンプトです。通常レビュー（`review_feature.md` / `review_command.md`）やバグ調査（`investigate_bug.md` / `create_bug_fix_plan.md`）は、`docs/context/` を軽い確認トリガーとしてのみ扱い、横断探索を主責務にしません。context 量が増えても通常レビューやバグ調査を完遂できるようにするためです。`docs/context/` の深掘りが必要になったら、`review_context.md` に委譲します。
+
+`review_context.md` は候補出し専用です。正式資料・`docs/context/`・`bugs/` 配下のいずれも変更せず、結果はチャットで報告します。採用・却下・保留は人間が判断し、採用されたものだけを別作業として正式資料へ反映します。
 
 ---
 
