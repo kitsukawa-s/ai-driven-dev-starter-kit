@@ -2,7 +2,9 @@
 
 このチュートリアルでは、実装済みサンプル `cli_text_counter` を題材に、バグを見つけたときにいきなり修正せず、報告、調査、修正計画、人間承認、実装の順に進める流れを確認します。
 
-今回は想定バグを使った説明だけを行います。実際の `src/`、`tests/`、`docs/cli_text_counter/` は変更しません。
+このチュートリアルは、バグ修正フローの説明が目的です。`src/`、`tests/`、`docs/cli_text_counter/features/` は変更しません。
+
+`docs/cli_text_counter/bugs/bug_001/` 配下には、このフローを実際に回したサンプルドキュメント（`10_bug_report.md`、`20_bug_investigation.md`、`30_bug_fix_plan.md`）が配置済みです。各ステップの説明と合わせて参照してください。
 
 ---
 
@@ -313,26 +315,20 @@ prompts/implement_bug_fix.md を参照してください。
 
 ---
 
-## このチュートリアルでは実際の修正ファイルを作らない
+## このチュートリアルでは src/ と tests/ を変更しない
 
 このチュートリアルは、バグ修正フローの説明です。
 
-そのため、今回は次のファイルを作成しません。
-
-- `docs/cli_text_counter/bugs/bug_001/10_bug_report.md`
-- `docs/cli_text_counter/bugs/bug_001/20_bug_investigation.md`
-- `docs/cli_text_counter/bugs/bug_001/30_bug_fix_plan.md`
-
-また、次のファイルも変更しません。
+次のファイルは変更しません。
 
 - `src/cli_text_counter/features/text_counter.py`
 - `src/cli_text_counter/entrypoint.py`
 - `tests/cli_text_counter/features/test_text_counter.py`
 - `tests/cli_text_counter/test_entrypoint_text_counter.py`
 - `tests/cli_text_counter/test_integration_text_counter.py`
-- `docs/cli_text_counter/` 配下の既存ドキュメント
+- `docs/cli_text_counter/features/` 配下の既存ドキュメント
 
-実際に `bug_001` のサンプルドキュメントを作る場合は、このチュートリアルとは別作業として依頼します。
+`docs/cli_text_counter/bugs/bug_001/` 配下の3ファイル（`10_bug_report.md`、`20_bug_investigation.md`、`30_bug_fix_plan.md`）は、このフローを実際に回したサンプルとしてリポジトリに配置済みです。各ステップの説明と合わせて参照してください。
 
 ---
 
@@ -356,8 +352,6 @@ prompts/implement_bug_fix.md を参照してください。
 
 このチュートリアルの発展として、次の作業が考えられます。
 
-- `docs/cli_text_counter/bugs/bug_001/` 配下にサンプルの `10_bug_report.md`、`20_bug_investigation.md`、`30_bug_fix_plan.md` を作る
-- 承認済み修正計画に従って、実際のバグ修正例を追加する
-- 必要に応じて `README.md` や `docs/how_to_use_prompts.md` からこのチュートリアルへのリンクを追加する
+- 承認済み修正計画に従って、実際のバグ修正例を `src/` と `tests/` に追加する
 
-これらは、このチュートリアル作成作業では行いません。
+これはこのチュートリアルでは扱いません。

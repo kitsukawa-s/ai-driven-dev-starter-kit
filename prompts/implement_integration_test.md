@@ -52,14 +52,10 @@ feature 単体の詳細ロジックは、各 feature の単体試験で確認し
 ## 変更してよいファイル
 
 - `tests/<command_or_app_name>/test_integration_<short_name>.py`
-- `docs/<command_or_app_name>/tasks.md`
-- `docs/<command_or_app_name>/features/<feature_name>/tasks.md`
-  - 対象 feature が明確な場合のみ、現在地と次に確認することを短く更新する場合に限る
 
 ## 変更してはいけないファイル
 
 明示指示がない限り、以下は変更しないでください。
-ただし、変更してよいファイルに記載した `tasks.md` の必要最小限の更新は例外です。
 
 - このプロンプトファイル
 - `AGENTS.md`
@@ -159,7 +155,7 @@ feature 内部の詳細は、以下で確認します。
 - テストを通すために `src/` を変更しないでください
 - `entrypoint.py` や feature 実装を変更しないでください
 - `src/common/` を作成・更新しないでください
-- `docs/` を変更しないでください。ただし、対象 `tasks.md` の現在地メモ更新は例外です
+- `docs/` を変更しないでください
 - `AGENTS.md` を変更しないでください
 - `prompts/` を変更しないでください
 - CI/CD、デプロイ資産を追加しないでください
@@ -187,13 +183,9 @@ feature 内部の詳細は、以下で確認します。
 - 確認事項を提示した場合、その理由
 - 仮定を置いた場合、その内容
 
-## 作業後の tasks.md 更新
+## 作業後の tasks.md 更新候補
 
-作業後は、対象 command/app または feature の `tasks.md` を必ず確認してください。
+このプロンプトでは `tasks.md` を直接更新しません。
 
-必要に応じて、現在の状態、作業メモ、次に確認すること、引き継ぎに必要な短い注意点だけを更新してください。
-
-`tasks.md` には、仕様・設計・テスト計画・レビュー結果の詳細や長いテストログを書かないでください。
-詳細は `10_overview.md`、`20_spec.md`、`21_design.md`、`22_flow.md`、`23_test_plan.md`、`24_review_checklist.md`、`11_integration_test_plan.md`、レビュー結果ファイルなど、それぞれの専用ファイルに記録してください。
-
-`tasks.md` を更新しない場合は、更新しない理由を作業報告に書いてください。
+`tasks.md` の更新が必要と判断した場合は、作業報告に「tasks.md 更新候補」として記載してください。
+`tasks.md` の実際の更新は、人間が確認したうえで別作業として行います。

@@ -58,6 +58,9 @@ ai-driven-dev-starter-kit/
 │  ├─ prompt_design_notes.md
 │  ├─ concept/
 │  │  └─ ai_driven_development.md
+│  ├─ context/                          ← 補助コンテキスト（確定仕様ではない）
+│  │  ├─ README.md
+│  │  └─ rejected_verbose_option.md
 │  ├─ common/
 │  │  └─ README.md
 │  ├─ templates/
@@ -78,7 +81,8 @@ ai-driven-dev-starter-kit/
 │  │  ├─ 30_common_design_index_template.md
 │  │  ├─ 31_file_design_template.md
 │  │  ├─ 32_data_design_template.md
-│  │  └─ 33_db_design_template.md
+│  │  ├─ 33_db_design_template.md
+│  │  └─ context_note_template.md
 │  ├─ tutorials/
 │  │  ├─ 010_simple_calculator.md
 │  │  ├─ 020_create_new_sample_from_scratch.md
@@ -146,7 +150,8 @@ ai-driven-dev-starter-kit/
 │  ├─ create_bug_report.md
 │  ├─ investigate_bug.md
 │  ├─ create_bug_fix_plan.md
-│  └─ implement_bug_fix.md
+│  ├─ implement_bug_fix.md
+│  └─ review_prompt_integrity.md       ← スターターキット自体のプロンプト完全性レビュー用
 ├─ src/
 │  ├─ common/
 │  │  └─ __init__.py

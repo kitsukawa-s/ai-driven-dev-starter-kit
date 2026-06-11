@@ -36,10 +36,10 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 - `tests/cli_simple_calculator/test_integration_calculator.py`
 - `tests/cli_simple_calculator/features/test_calculator.py`
 
-また、各ステップの作業後に、必要に応じて以下の現在地メモを短く更新します。
+作業後の `tasks.md` 更新は、工程によって扱いが異なります。
 
-- `docs/cli_simple_calculator/tasks.md`
-- `docs/cli_simple_calculator/features/calculator/tasks.md`
+- **ドキュメント作成工程・レビュー結果作成工程**（関数設計、テスト計画、レビュー観点作成、feature 単体レビュー、全体レビューなど）: 現在地メモとして最小限の更新を行います
+- **実装工程**（feature 実装、entrypoint 実装、結合試験実装）: `tasks.md` を直接更新しません。作業報告に「tasks.md 更新候補」として提示されるので、人間が確認して必要であれば別作業として反映します
 
 `prompts/*.md` は直接編集しません。
 必要な情報は、各ステップのチャット例としてAIに渡します。
@@ -51,11 +51,12 @@ docs/cli_simple_calculator/features/calculator/tasks.md
 チュートリアル開始時は、`docs/cli_simple_calculator/tasks.md` を確認して、command/app 全体の現在地を把握します。
 feature 作業に入る前は、`docs/cli_simple_calculator/features/calculator/tasks.md` を確認して、個別機能の現在地を把握します。
 
-作業後は、各 `prompts/*.md` の「作業後の tasks.md 更新」ルールに従います。
-そのため、チャット側で毎回 `tasks.md` 更新ルールを長く書く必要はありません。
-更新する場合は、`tasks.md` の「現在の状態」や「次に確認すること」だけを短く更新します。
-仕様、設計、テスト計画、レビュー結果の詳細や長いテストログは `tasks.md` には書かず、それぞれの専用ファイルに記録します。
-以降の「作成または更新されるファイル」に含まれる `tasks.md` は、現在地メモとして必要最小限更新されるファイルです。
+作業後の tasks.md の扱いは工程によって異なります。各 `prompts/*.md` の「作業後の tasks.md 更新」または「tasks.md 更新候補」セクションに従います。
+
+- **ドキュメント作成工程・レビュー結果作成工程**: `tasks.md` の「現在の状態」や「次に確認すること」だけを短く更新します。仕様・設計・テスト計画・レビュー結果の詳細は書きません
+- **実装工程（feature 実装、entrypoint 実装、結合試験実装）**: `tasks.md` を直接更新しません。AIが作業報告に「tasks.md 更新候補」として提示するので、人間が確認して必要なら別作業として反映します
+
+以降の「作成または更新されるファイル」に `tasks.md` が含まれるステップはドキュメント作成工程・レビュー結果作成工程です。実装工程のステップには tasks.md は含まれません。
 
 ---
 
@@ -233,9 +234,9 @@ prompts/implement_feature.md を参照してください。
 ```text
 src/cli_simple_calculator/features/calculator.py
 tests/cli_simple_calculator/features/test_calculator.py
-docs/cli_simple_calculator/tasks.md
-docs/cli_simple_calculator/features/calculator/tasks.md
 ```
+
+tasks.md の更新が必要な場合は、作業報告に「tasks.md 更新候補」として提示されます。人間が確認して必要であれば別作業として反映します。
 
 ---
 
@@ -292,9 +293,9 @@ short_name: calculator
 ```text
 src/cli_simple_calculator/entrypoint.py
 tests/cli_simple_calculator/test_entrypoint_calculator.py
-docs/cli_simple_calculator/tasks.md
-docs/cli_simple_calculator/features/calculator/tasks.md
 ```
+
+tasks.md の更新が必要な場合は、作業報告に「tasks.md 更新候補」として提示されます。人間が確認して必要であれば別作業として反映します。
 
 ---
 
@@ -356,9 +357,9 @@ short_name: calculator
 
 ```text
 tests/cli_simple_calculator/test_integration_calculator.py
-docs/cli_simple_calculator/tasks.md
-docs/cli_simple_calculator/features/calculator/tasks.md
 ```
+
+tasks.md の更新が必要な場合は、作業報告に「tasks.md 更新候補」として提示されます。人間が確認して必要であれば別作業として反映します。
 
 ---
 

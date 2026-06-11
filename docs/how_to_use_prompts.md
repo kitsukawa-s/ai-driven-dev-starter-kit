@@ -63,7 +63,8 @@ prompts/create_function_design.md を参照してください。
 標準プロンプトに任せてよい内容の例:
 
 - 指定外ファイルを変更しない
-- `tasks.md` には現在地と次の一手だけを短く書く
+- `tasks.md` の扱い（ドキュメント作成系・レビュー結果作成系は現在地メモを最小更新、実装系・バグ修正系は直接更新せず「tasks.md 更新候補」として作業報告に提示）
+- `tasks.md` に仕様・設計・レビュー結果の詳細を書かない
 - `src/common/` を勝手に作成・更新しない
 - レビュー結果を `25_review_result.md` や `12_command_review_result.md` に書く
 - feature / entrypoint / 結合試験の責務を分ける
@@ -108,6 +109,10 @@ prompts/implement_feature.md を参照してください。
 | `prompts/create_test_design.md` | feature 単体のテスト計画を作成する | `<対象機能フォルダ>/23_test_plan.md` |
 | `prompts/create_review_checklist.md` | feature 単体レビュー観点と実装着手承認欄を作成する（承認欄は未チェックで作成） | `<対象機能フォルダ>/24_review_checklist.md` |
 | `prompts/create_integration_test_plan.md` | command/app 単位の結合試験計画を作成する | `docs/<command_or_app_name>/11_integration_test_plan.md` |
+| `prompts/create_common_design_index.md` | 共通設計書の目次・feature 対応表を作成する | `docs/<command_or_app_name>/common_design/30_common_design_index.md` |
+| `prompts/create_file_design.md` | 入出力・中間ファイル・ディレクトリ構成の共通設計書を作成する | `docs/<command_or_app_name>/common_design/31_file_design.md` |
+| `prompts/create_data_design.md` | 共通データ項目・ID体系・ステータス定義の設計書を作成する | `docs/<command_or_app_name>/common_design/32_data_design.md` |
+| `prompts/create_db_design.md` | DB種別・テーブル・カラム・制約・トランザクション方針の設計書を作成する | `docs/<command_or_app_name>/common_design/33_db_design.md` |
 | `prompts/implement_feature.md` | feature 本体と feature 単体テストを作成する（事前に `24_review_checklist.md` の実装着手承認欄がすべてチェック済みであることを確認。未チェックがあれば STOP） | 指定された feature 実装ファイル、feature 単体テストファイル |
 | `prompts/review_feature_source.md` | feature 実装直後のソースレビューを行う（中間チェック。修正はしない） | チャットで報告（ファイル出力なし） |
 | `prompts/implement_entrypoint.md` | `entrypoint.py` と entrypoint のテストを作成する | `src/<command_or_app_name>/entrypoint.py`、`tests/<command_or_app_name>/test_entrypoint_<short_name>.py` |
@@ -119,6 +124,7 @@ prompts/implement_feature.md を参照してください。
 | `prompts/investigate_bug.md` | バグ原因を調査し調査書を作成する（修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/20_bug_investigation.md` |
 | `prompts/create_bug_fix_plan.md` | バグ修正計画書を作成する（承認待ち。修正はしない） | `docs/<command_or_app_name>/bugs/<bug_id>/30_bug_fix_plan.md` |
 | `prompts/implement_bug_fix.md` | 承認済み修正計画に従ってバグを修正する | 修正計画書に記載された実装ファイル、テストファイル |
+| `prompts/review_prompt_integrity.md` | スターターキット自体のプロンプト・テンプレート・導線の完全性をレビューする（開発対象機能のレビューではない。キットのメンテナンス用） | チャットで報告（ファイル出力なし） |
 
 ---
 

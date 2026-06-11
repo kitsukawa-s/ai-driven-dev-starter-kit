@@ -24,10 +24,17 @@ tests/<command_or_app_name>/features/test_<feature_name>.py
 docs/
   <command_or_app_name>/
     10_overview.md
+    tasks.md
     11_integration_test_plan.md
     12_command_review_result.md
+    common_design/
+      30_common_design_index.md
+      31_file_design.md
+      32_data_design.md
+      33_db_design.md
     features/
       <feature_name>/
+        tasks.md
         20_spec.md
         21_design.md
         22_flow.md
@@ -41,6 +48,8 @@ docs/
         30_bug_fix_plan.md
 ```
 
+`tasks.md` は作業状態を引き継ぐための現在地メモです。command/app 単位と feature 単位の両方に配置します。まだ作業状態を記録する必要がない場合は、無理に作成しません。
+`common_design/` は、複数 feature にまたがる共通設計が必要になった場合に追加します。すべての command/app で必須ではありません。
 `25_review_result.md` は、feature 単体レビューを行った場合に作成します。
 `12_command_review_result.md` は、command/app 全体レビューを行った場合に作成します。
 まだレビューしていない場合は、無理に作成しません。
@@ -52,6 +61,7 @@ docs/
 | ファイル | 役割 |
 |---|---|
 | `10_overview.md` | コマンド/アプリ全体の目的、入口、機能一覧、責務分担を書く |
+| `tasks.md` | 作業状態を引き継ぐための現在地メモ。現在の状態・次にやること・保留事項を短く書く。仕様・設計・レビュー結果の代わりにしない |
 | `11_integration_test_plan.md` | command/app 単位の結合試験計画を書く |
 | `12_command_review_result.md` | command/app 全体レビュー結果を書く |
 | `20_spec.md` | feature の要件・仕様を書く |
@@ -77,14 +87,20 @@ docs/
 | 作成するファイル | 参照するテンプレート |
 |---|---|
 | `10_overview.md` | `docs/templates/10_overview_template.md` |
+| `tasks.md` | `docs/templates/tasks_template.md` |
 | `20_spec.md` | `docs/templates/20_spec_template.md` |
 | `21_design.md` | `docs/templates/21_design_template.md` |
 | `22_flow.md` | `docs/templates/22_flow_template.md` |
 | `23_test_plan.md` | `docs/templates/23_test_plan_template.md` |
 | `24_review_checklist.md` | `docs/templates/24_review_checklist_template.md` |
+| `25_review_result.md` | `docs/templates/25_review_result_template.md` |
 | `11_integration_test_plan.md` | `docs/templates/11_integration_test_plan_template.md` |
 | `12_command_review_result.md` | `docs/templates/12_command_review_result_template.md` |
 | `30_common_proposal.md` | `docs/templates/30_common_proposal_template.md` |
+| `common_design/30_common_design_index.md` | `docs/templates/30_common_design_index_template.md` |
+| `common_design/31_file_design.md` | `docs/templates/31_file_design_template.md` |
+| `common_design/32_data_design.md` | `docs/templates/32_data_design_template.md` |
+| `common_design/33_db_design.md` | `docs/templates/33_db_design_template.md` |
 | `10_bug_report.md` | `docs/templates/10_bug_report_template.md` |
 | `20_bug_investigation.md` | `docs/templates/20_bug_investigation_template.md` |
 | `30_bug_fix_plan.md` | `docs/templates/30_bug_fix_plan_template.md` |
