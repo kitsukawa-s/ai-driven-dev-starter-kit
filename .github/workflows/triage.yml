@@ -28,6 +28,10 @@ jobs:
     steps:
       # メインのコード（scripts/）を取得
       - uses: actions/checkout@v4
+      # Bedrock の converse を使うため新しめの boto3 を用意（ubuntu の apt 版 botocore は古く converse 非対応）
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       # 読み取り専用ロールでAWSへ
       - uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -36,7 +40,7 @@ jobs:
       - name: Inspect runtime (ECS→digest→SHA, logs)
         id: inspect
         run: |
-          pip install boto3 >/dev/null
+          pip install -U boto3 botocore >/dev/null
           python scripts/inspect_runtime.py | tee inspect.out
           echo "sha=$(grep -oP 'sha=\K.*' inspect.out)" >> "$GITHUB_OUTPUT"
       # ★動いていたコミットのコードを ./deployed に取得
