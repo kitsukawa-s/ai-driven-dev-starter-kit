@@ -120,16 +120,24 @@ def handler(event, _ctx):
     account = os.environ["ACCOUNT_ID"]
     task_arn = f"arn:aws:ecs:{region}:{account}:task/{cluster}/{task_id}"
     run_url = "https://github.com/" + repo + "/actions/workflows/triage.yml"  # 旧表記(波括弧表示の都合で壊れていたため連結に修正): "https://github.com/{repo}/actions/workflows/triage.yml"
-    msgs = "\\n".join(e["message"] for e in data["logEvents"])
+    msgs = "\n".join(e["message"] for e in data["logEvents"])
+    cmd = (f"gh workflow run triage.yml -R {repo} "
+           f"-f task_arn='{task_arn}' -f log_stream='{log_stream}'")
     body = (
-        "バッチでエラーを検知しました。起票すると判断したら以下を実行してください。\\n\\n"
-        f"[1] GitHub Actions を開く: {run_url}\\n"
-        "[2] 「Run workflow」を押し、次の2つを入力して実行:\\n"
-        f"    task_arn   = {task_arn}\\n"
-        f"    log_stream = {log_stream}\\n\\n"
-        f"cluster   = {cluster}\\n"
-        f"log_group = {log_group}\\n\\n"
-        "----- 検知ログ -----\\n" + msgs
+        "■ バッチ nightly-etl でエラーを検知しました。\n"
+        "起票すると判断したら、次の A か B のどちらかで triage を実行してください。\n\n"
+        "=== 方法A: GitHub CLI（この1行をそのままコピペ実行）===\n"
+        f"{cmd}\n\n"
+        "=== 方法B: ブラウザ ===\n"
+        f"1) 次のURLを開く: {run_url}\n"
+        "2) 右上の「Run workflow」を押す\n"
+        "3) 表示される2つの入力欄に、以下をそのまま貼り付けて Run:\n"
+        f"   - task_arn   = {task_arn}\n"
+        f"   - log_stream = {log_stream}\n\n"
+        "※ 必須は log_stream（ログから原因箇所とコミットSHAを特定します）。task_arn は予備（フォールバック用）です。\n\n"
+        f"[参考] cluster   = {cluster}\n"
+        f"[参考] log_group = {log_group}\n\n"
+        "----- 検知ログ -----\n" + msgs
     )
     sns.publish(TopicArn=os.environ["TOPIC_ARN"],
                 Subject="[障害][nightly-etl] エラー検知 - 起票評価をお願いします",

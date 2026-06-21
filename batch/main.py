@@ -11,6 +11,7 @@ def log_error(error_type, message, source, *, severity="P2", category="app", is_
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "level": "ERROR",
         "app": BATCH,
+        "commit": os.environ.get("GIT_SHA", "unknown"),  # ← 実行中イメージに埋め込んだコミットSHA（耐久的に残す）
         "error_type": error_type,
         "severity": severity,
         "category": category,

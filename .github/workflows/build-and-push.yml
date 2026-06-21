@@ -24,6 +24,6 @@ jobs:
           REPO: ${{ vars.ECR_REPO }}
           SHA: ${{ github.sha }}
         run: |
-          docker build -t "$REGISTRY/$REPO:$SHA" -t "$REGISTRY/$REPO:latest" batch/
+          docker build --build-arg GIT_SHA="$SHA" -t "$REGISTRY/$REPO:$SHA" -t "$REGISTRY/$REPO:latest" batch/
           docker push "$REGISTRY/$REPO:$SHA"
           docker push "$REGISTRY/$REPO:latest"
