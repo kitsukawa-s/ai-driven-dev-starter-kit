@@ -1,0 +1,29 @@
+name: build-and-push
+on:
+  push:
+    branches: [main]
+    paths: ["batch/**"]
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: $ secrets.AWS_PUSH_ROLE_ARN 
+          aws-region: $ vars.AWS_REGION 
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build & push (tag = commit SHA + latest)
+        env:
+          REGISTRY: $ steps.ecr.outputs.registry 
+          REPO: $ vars.ECR_REPO 
+          SHA: $ github.sha 
+        run: |
+          docker build -t "$REGISTRY/$REPO:$SHA" -t "$REGISTRY/$REPO:latest" batch/
+          docker push "$REGISTRY/$REPO:$SHA"
+          docker push "$REGISTRY/$REPO:latest"

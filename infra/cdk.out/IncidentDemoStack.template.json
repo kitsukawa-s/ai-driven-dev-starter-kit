@@ -1,0 +1,968 @@
+{
+ "Resources": {
+  "Vpc8378EB38": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "IncidentDemoStack/Vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/Resource"
+   }
+  },
+  "VpcpublicSubnet1Subnet2BB74ED7": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-northeast-1a",
+    "CidrBlock": "10.0.0.0/17",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "IncidentDemoStack/Vpc/publicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet1/Subnet"
+   }
+  },
+  "VpcpublicSubnet1RouteTable15C15F8E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "IncidentDemoStack/Vpc/publicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet1/RouteTable"
+   }
+  },
+  "VpcpublicSubnet1RouteTableAssociation4E83B6E4": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VpcpublicSubnet1RouteTable15C15F8E"
+    },
+    "SubnetId": {
+     "Ref": "VpcpublicSubnet1Subnet2BB74ED7"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet1/RouteTableAssociation"
+   }
+  },
+  "VpcpublicSubnet1DefaultRouteB88F9E93": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VpcIGWD7BA715C"
+    },
+    "RouteTableId": {
+     "Ref": "VpcpublicSubnet1RouteTable15C15F8E"
+    }
+   },
+   "DependsOn": [
+    "VpcVPCGWBF912B6E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet1/DefaultRoute"
+   }
+  },
+  "VpcpublicSubnet2SubnetE34B022A": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "ap-northeast-1c",
+    "CidrBlock": "10.0.128.0/17",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "IncidentDemoStack/Vpc/publicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet2/Subnet"
+   }
+  },
+  "VpcpublicSubnet2RouteTableC5A6DF77": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "IncidentDemoStack/Vpc/publicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet2/RouteTable"
+   }
+  },
+  "VpcpublicSubnet2RouteTableAssociationCCE257FF": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VpcpublicSubnet2RouteTableC5A6DF77"
+    },
+    "SubnetId": {
+     "Ref": "VpcpublicSubnet2SubnetE34B022A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet2/RouteTableAssociation"
+   }
+  },
+  "VpcpublicSubnet2DefaultRoute732F0BEB": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VpcIGWD7BA715C"
+    },
+    "RouteTableId": {
+     "Ref": "VpcpublicSubnet2RouteTableC5A6DF77"
+    }
+   },
+   "DependsOn": [
+    "VpcVPCGWBF912B6E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/publicSubnet2/DefaultRoute"
+   }
+  },
+  "VpcIGWD7BA715C": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "IncidentDemoStack/Vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/IGW"
+   }
+  },
+  "VpcVPCGWBF912B6E": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "VpcIGWD7BA715C"
+    },
+    "VpcId": {
+     "Ref": "Vpc8378EB38"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Vpc/VPCGW"
+   }
+  },
+  "BatchLogsA0B94732": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 7
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/BatchLogs/Resource"
+   }
+  },
+  "BatchRepo47D47D65": {
+   "Type": "AWS::ECR::Repository",
+   "Properties": {
+    "ImageScanningConfiguration": {
+     "ScanOnPush": true
+    },
+    "RepositoryName": "incident-demo-batch"
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/BatchRepo/Resource"
+   }
+  },
+  "ClusterEB0386A7": {
+   "Type": "AWS::ECS::Cluster",
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Cluster/Resource"
+   }
+  },
+  "BatchTaskTaskRole718616FE": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/BatchTask/TaskRole/Resource"
+   }
+  },
+  "BatchTask85C4D5A5": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Environment": [
+       {
+        "Name": "BATCH_NAME",
+        "Value": "nightly-etl"
+       }
+      ],
+      "Essential": true,
+      "Image": {
+       "Fn::Join": [
+        "",
+        [
+         {
+          "Fn::Select": [
+           4,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "BatchRepo47D47D65",
+               "Arn"
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         ".dkr.ecr.",
+         {
+          "Fn::Select": [
+           3,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "BatchRepo47D47D65",
+               "Arn"
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         ".",
+         {
+          "Ref": "AWS::URLSuffix"
+         },
+         "/",
+         {
+          "Ref": "BatchRepo47D47D65"
+         },
+         ":latest"
+        ]
+       ]
+      },
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "BatchLogsA0B94732"
+        },
+        "awslogs-stream-prefix": "batch",
+        "awslogs-region": "ap-northeast-1"
+       }
+      },
+      "Name": "batch"
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "BatchTaskExecutionRole21D21956",
+      "Arn"
+     ]
+    },
+    "Family": "IncidentDemoStackBatchTaskCA4F3E36",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "BatchTaskTaskRole718616FE",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/BatchTask/Resource"
+   }
+  },
+  "BatchTaskExecutionRole21D21956": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/BatchTask/ExecutionRole/Resource"
+   }
+  },
+  "BatchTaskExecutionRoleDefaultPolicy8ACFD078": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "BatchRepo47D47D65",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "BatchLogsA0B94732",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "BatchTaskExecutionRoleDefaultPolicy8ACFD078",
+    "Roles": [
+     {
+      "Ref": "BatchTaskExecutionRole21D21956"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/BatchTask/ExecutionRole/DefaultPolicy/Resource"
+   }
+  },
+  "IncidentTopicC2D68739": {
+   "Type": "AWS::SNS::Topic",
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/IncidentTopic/Resource"
+   }
+  },
+  "IncidentTopickitsukawasyugmailcom4C24897D": {
+   "Type": "AWS::SNS::Subscription",
+   "Properties": {
+    "Endpoint": "kitsukawasyu@gmail.com",
+    "Protocol": "email",
+    "TopicArn": {
+     "Ref": "IncidentTopicC2D68739"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/IncidentTopic/kitsukawasyu@gmail.com/Resource"
+   }
+  },
+  "NotifyFnServiceRoleAEF697F4": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/NotifyFn/ServiceRole/Resource"
+   }
+  },
+  "NotifyFnServiceRoleDefaultPolicy1CDEFE4C": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "IncidentTopicC2D68739"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "NotifyFnServiceRoleDefaultPolicy1CDEFE4C",
+    "Roles": [
+     {
+      "Ref": "NotifyFnServiceRoleAEF697F4"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/NotifyFn/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "NotifyFn73D5825E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\nimport base64\nimport gzip\nimport json\nimport os\n\nimport boto3\n\nsns = boto3.client(\"sns\")\n\n\ndef handler(event, _ctx):\n    data = json.loads(gzip.decompress(base64.b64decode(event[\"awslogs\"][\"data\"])))\n    log_group = data[\"logGroup\"]\n    log_stream = data[\"logStream\"]\n    task_id = log_stream.split(\"/\")[-1]   # awslogs: \"batch/batch/<taskId>\"\n    region = os.environ[\"REGION\"]\n    cluster = os.environ[\"CLUSTER_NAME\"]\n    repo = os.environ[\"GITHUB_REPO\"]\n    account = os.environ[\"ACCOUNT_ID\"]\n    task_arn = f\"arn:aws:ecs:{region}:{account}:task/{cluster}/{task_id}\"\n    run_url = \"https://github.com/\" + repo + \"/actions/workflows/triage.yml\"  # 旧表記(波括弧表示の都合で壊れていたため連結に修正): \"https://github.com/{repo}/actions/workflows/triage.yml\"\n    msgs = \"\\\\n\".join(e[\"message\"] for e in data[\"logEvents\"])\n    body = (\n        \"バッチでエラーを検知しました。起票すると判断したら以下を実行してください。\\\\n\\\\n\"\n        f\"[1] GitHub Actions を開く: {run_url}\\\\n\"\n        \"[2] 「Run workflow」を押し、次の2つを入力して実行:\\\\n\"\n        f\"    task_arn   = {task_arn}\\\\n\"\n        f\"    log_stream = {log_stream}\\\\n\\\\n\"\n        f\"cluster   = {cluster}\\\\n\"\n        f\"log_group = {log_group}\\\\n\\\\n\"\n        \"----- 検知ログ -----\\\\n\" + msgs\n    )\n    sns.publish(TopicArn=os.environ[\"TOPIC_ARN\"],\n                Subject=\"[障害][nightly-etl] エラー検知 - 起票評価をお願いします\",\n                Message=body)\n"
+    },
+    "Environment": {
+     "Variables": {
+      "TOPIC_ARN": {
+       "Ref": "IncidentTopicC2D68739"
+      },
+      "CLUSTER_NAME": {
+       "Ref": "ClusterEB0386A7"
+      },
+      "LOG_GROUP": {
+       "Ref": "BatchLogsA0B94732"
+      },
+      "GITHUB_REPO": "kitsukawa-s/ai-driven-dev-starter-kit",
+      "REGION": "ap-northeast-1",
+      "ACCOUNT_ID": "395947696061"
+     }
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "NotifyFnServiceRoleAEF697F4",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "NotifyFnServiceRoleDefaultPolicy1CDEFE4C",
+    "NotifyFnServiceRoleAEF697F4"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/NotifyFn/Resource"
+   }
+  },
+  "ErrorSubCanInvokeLambda2DDDEBBD": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "NotifyFn73D5825E",
+      "Arn"
+     ]
+    },
+    "Principal": "logs.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "BatchLogsA0B94732",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/ErrorSub/CanInvokeLambda"
+   }
+  },
+  "ErrorSub987B62E1": {
+   "Type": "AWS::Logs::SubscriptionFilter",
+   "Properties": {
+    "DestinationArn": {
+     "Fn::GetAtt": [
+      "NotifyFn73D5825E",
+      "Arn"
+     ]
+    },
+    "FilterPattern": "\"ERROR\"",
+    "LogGroupName": {
+     "Ref": "BatchLogsA0B94732"
+    }
+   },
+   "DependsOn": [
+    "ErrorSubCanInvokeLambda2DDDEBBD"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/ErrorSub/Resource"
+   }
+  },
+  "GitHubOIDC66557355": {
+   "Type": "Custom::AWSCDKOpenIdConnectProvider",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomAWSCDKOpenIdConnectProviderCustomResourceProviderHandlerF2C543E0",
+      "Arn"
+     ]
+    },
+    "ClientIDList": [
+     "sts.amazonaws.com"
+    ],
+    "Url": "https://token.actions.githubusercontent.com",
+    "RejectUnauthorized": false,
+    "CodeHash": "c0d9f24649426c60a1bc01108070535a40353ae6cd8ceccb812969319b936e5d"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/GitHubOIDC/Resource/Default"
+   }
+  },
+  "CustomAWSCDKOpenIdConnectProviderCustomResourceProviderRole517FED65": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Resource": "*",
+         "Action": [
+          "iam:CreateOpenIDConnectProvider",
+          "iam:DeleteOpenIDConnectProvider",
+          "iam:UpdateOpenIDConnectProviderThumbprint",
+          "iam:AddClientIDToOpenIDConnectProvider",
+          "iam:RemoveClientIDFromOpenIDConnectProvider"
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Custom::AWSCDKOpenIdConnectProviderCustomResourceProvider/Role"
+   }
+  },
+  "CustomAWSCDKOpenIdConnectProviderCustomResourceProviderHandlerF2C543E0": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-395947696061-ap-northeast-1",
+     "S3Key": "c0d9f24649426c60a1bc01108070535a40353ae6cd8ceccb812969319b936e5d.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomAWSCDKOpenIdConnectProviderCustomResourceProviderRole517FED65",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x"
+   },
+   "DependsOn": [
+    "CustomAWSCDKOpenIdConnectProviderCustomResourceProviderRole517FED65"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/Custom::AWSCDKOpenIdConnectProviderCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.c0d9f24649426c60a1bc01108070535a40353ae6cd8ceccb812969319b936e5d",
+    "aws:asset:property": "Code"
+   }
+  },
+  "GhPushRole1D02C647": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRoleWithWebIdentity",
+       "Condition": {
+        "StringEquals": {
+         "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+         "token.actions.githubusercontent.com:sub": "repo:kitsukawa-s/ai-driven-dev-starter-kit:*"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Federated": {
+         "Ref": "GitHubOIDC66557355"
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/GhPushRole/Resource"
+   }
+  },
+  "GhPushRoleDefaultPolicyE9DCF895": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:CompleteLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "BatchRepo47D47D65",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GhPushRoleDefaultPolicyE9DCF895",
+    "Roles": [
+     {
+      "Ref": "GhPushRole1D02C647"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/GhPushRole/DefaultPolicy/Resource"
+   }
+  },
+  "GhInspectRoleA171BFE1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRoleWithWebIdentity",
+       "Condition": {
+        "StringEquals": {
+         "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+         "token.actions.githubusercontent.com:sub": "repo:kitsukawa-s/ai-driven-dev-starter-kit:*"
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Federated": {
+         "Ref": "GitHubOIDC66557355"
+        }
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/GhInspectRole/Resource"
+   }
+  },
+  "GhInspectRoleDefaultPolicyF67C13E6": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecs:DescribeTasks",
+        "ecs:DescribeTaskDefinition",
+        "ecs:ListTasks",
+        "ecr:DescribeImages",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer",
+        "logs:GetLogEvents",
+        "logs:FilterLogEvents",
+        "logs:DescribeLogStreams",
+        "rds:DescribeDBInstances"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "bedrock:InvokeModel",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:bedrock:ap-northeast-1:395947696061:inference-profile/apac.anthropic.claude-haiku-4-5-20251001-v1:0",
+        "arn:aws:bedrock:*::foundation-model/anthropic.claude-haiku-4-5-20251001-v1:0"
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GhInspectRoleDefaultPolicyF67C13E6",
+    "Roles": [
+     {
+      "Ref": "GhInspectRoleA171BFE1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/GhInspectRole/DefaultPolicy/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/21QTU/DMAz9LdyzAAPtPoqGkJCoOsQVpZlXzFq7ih2mKep/R9k6iiZOfn5+/nie2/nixt5cub3M/GY3a7G2aa3O74zby0cCP7fpvfem2NJ7WZgy1i36dawJNHMTqjgqvLm6hYmfuKUIe3SKTL/iDJ5JIRDok1PYu8O4ZsyWqs5/dkA6mJYbsemFm6fAsc+6X7yOtfiAfR6+wlYhjBdcsIMBH2yqoGdB5XDcNmW5LDYVbZRxxBmuXGhcNiK7R9gi4dnGJcOkDgnCxA0GXWdTxae3HGPJLfrj8hG99kDPm4KJwGsZ+Bs3+VohsemNezx+/wT+urp0OZjWdfXG2bSK5M+Kv7iE0KFI1g6mAuEYPJgiinI3pfkp/5bOpz04AbMUAV2ra5Ca3PMatY86mPKgn0zXd/b23i6uvgRxFiIpdmCrU/wBlDCvQHQCAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "IncidentDemoStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "EcrRepoUri": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Fn::Select": [
+        4,
+        {
+         "Fn::Split": [
+          ":",
+          {
+           "Fn::GetAtt": [
+            "BatchRepo47D47D65",
+            "Arn"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      ".dkr.ecr.",
+      {
+       "Fn::Select": [
+        3,
+        {
+         "Fn::Split": [
+          ":",
+          {
+           "Fn::GetAtt": [
+            "BatchRepo47D47D65",
+            "Arn"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "BatchRepo47D47D65"
+      }
+     ]
+    ]
+   }
+  },
+  "GhPushRoleArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GhPushRole1D02C647",
+     "Arn"
+    ]
+   }
+  },
+  "GhInspectRoleArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GhInspectRoleA171BFE1",
+     "Arn"
+    ]
+   }
+  },
+  "LogGroupName": {
+   "Value": {
+    "Ref": "BatchLogsA0B94732"
+   }
+  },
+  "ClusterName": {
+   "Value": {
+    "Ref": "ClusterEB0386A7"
+   }
+  },
+  "TaskDefArn": {
+   "Value": {
+    "Ref": "BatchTask85C4D5A5"
+   }
+  },
+  "SubnetIds": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Ref": "VpcpublicSubnet1Subnet2BB74ED7"
+      },
+      ",",
+      {
+       "Ref": "VpcpublicSubnet2SubnetE34B022A"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

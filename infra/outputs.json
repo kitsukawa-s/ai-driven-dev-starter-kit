@@ -1,0 +1,11 @@
+{
+  "IncidentDemoStack": {
+    "GhPushRoleArn": "arn:aws:iam::395947696061:role/IncidentDemoStack-GhPushRole1D02C647-8bPWt9bRPLh3",
+    "GhInspectRoleArn": "arn:aws:iam::395947696061:role/IncidentDemoStack-GhInspectRoleA171BFE1-BTaOp7KOx1fK",
+    "EcrRepoUri": "395947696061.dkr.ecr.ap-northeast-1.amazonaws.com/incident-demo-batch",
+    "ClusterName": "IncidentDemoStack-ClusterEB0386A7-CbX4vEt5nDjQ",
+    "LogGroupName": "IncidentDemoStack-BatchLogsA0B94732-xPep4bZ2amEi",
+    "TaskDefArn": "arn:aws:ecs:ap-northeast-1:395947696061:task-definition/IncidentDemoStackBatchTaskCA4F3E36:1",
+    "SubnetIds": "subnet-0d665e7fec3df35ad,subnet-0e14fca670cb276e3"
+  }
+}

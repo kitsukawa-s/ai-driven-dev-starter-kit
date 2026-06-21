@@ -1,0 +1,56 @@
+name: incident-triage
+on:
+  workflow_dispatch:
+    inputs:
+      task_arn:
+        description: "失敗したECSタスクのARN（通知メールに記載）"
+        required: true
+      log_stream:
+        description: "CloudWatch Logs のストリーム名（通知メールに記載）"
+        required: true
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: $ github.token 
+      AWS_REGION: $ vars.AWS_REGION 
+      CLUSTER_NAME: $ vars.CLUSTER_NAME 
+      ECR_REPO: $ vars.ECR_REPO 
+      LOG_GROUP: $ vars.LOG_GROUP 
+      BEDROCK_MODEL_ID: $ vars.BEDROCK_MODEL_ID 
+      TASK_ARN: $ inputs.task_arn 
+      LOG_STREAM: $ inputs.log_stream 
+      MAX_TOKENS: "1200"
+    steps:
+      # メインのコード（scripts/）を取得
+      - uses: actions/checkout@v4
+      # 読み取り専用ロールでAWSへ
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: $ secrets.AWS_INSPECT_ROLE_ARN 
+          aws-region: $ vars.AWS_REGION 
+      - name: Inspect runtime (ECS→digest→SHA, logs)
+        id: inspect
+        run: |
+          pip install boto3 >/dev/null
+          python scripts/inspect_runtime.py | tee inspect.out
+          echo "sha=$(grep -oP 'sha=\K.*' inspect.out)" >> "$GITHUB_OUTPUT"
+      # ★ 動いていたコミットのコードを ./deployed に取得
+      - name: Checkout deployed commit
+        if: steps.inspect.outputs.sha != 'NOT_FOUND'
+        uses: actions/checkout@v4
+        with:
+          ref: $ steps.inspect.outputs.sha 
+          path: deployed
+      - name: Analyze with Bedrock
+        run: |
+          python scripts/analyze_and_issue.py
+      - name: Create issue (AI起票)
+        run: |
+          TITLE="[障害][nightly-etl] AI起票 (commit $ steps.inspect.outputs.sha )"
+          gh issue create --repo "$ github.repository " \
+            --title "$TITLE" --body-file issue.md --label "incident:triaged"
